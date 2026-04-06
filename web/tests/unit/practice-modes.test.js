@@ -24,7 +24,7 @@ class ExerciseManager {
         this.loaded = false;
     }
 
-    async loadExercises(jsonPath = '/assets/exercises/hindustani_class1.json') {
+    async loadExercises(jsonPath = 'assets/exercises/hindustani_class1.json') {
         const response = await fetch(jsonPath);
         const data = await response.json();
 
@@ -109,7 +109,7 @@ describe('Exercise defaults in JSON', () => {
             json: async () => hindustaniClass1,
         });
         exerciseManager = new ExerciseManager();
-        await exerciseManager.loadExercises('/assets/exercises/hindustani_class1.json');
+        await exerciseManager.loadExercises('assets/exercises/hindustani_class1.json');
     });
 
     afterAll(() => {
