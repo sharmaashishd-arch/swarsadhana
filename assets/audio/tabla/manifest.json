@@ -1,0 +1,119 @@
+{
+  "description": "TablaKit — physically-modeled tabla one-shot samples",
+  "generated_by": "scripts/synthesize_tabla.py",
+  "format": "WAV 44100Hz 16-bit mono",
+  "samples": [
+    {
+      "filename": "oneshots/dha/v1.wav",
+      "bol": "dha",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/dha/v2.wav",
+      "bol": "dha",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/dhin/v1.wav",
+      "bol": "dhin",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/dhin/v2.wav",
+      "bol": "dhin",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/tin/v1.wav",
+      "bol": "tin",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/tin/v2.wav",
+      "bol": "tin",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/na/v1.wav",
+      "bol": "na",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/na/v2.wav",
+      "bol": "na",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ta/v1.wav",
+      "bol": "ta",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ta/v2.wav",
+      "bol": "ta",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ge/v1.wav",
+      "bol": "ge",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ge/v2.wav",
+      "bol": "ge",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ke/v1.wav",
+      "bol": "ke",
+      "variant": "v1",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    },
+    {
+      "filename": "oneshots/ke/v2.wav",
+      "bol": "ke",
+      "variant": "v2",
+      "source_url": "synthesized:scripts/synthesize_tabla.py",
+      "license": "generated-no-license-needed",
+      "attribution_required": false
+    }
+  ]
+}

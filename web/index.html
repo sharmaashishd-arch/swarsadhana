@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SwarSadhana - स्वर साधना</title>
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/robot-riyaaz.css">
+    <link rel="stylesheet" href="css/robot-guruji.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Main App (no splash for debugging) -->
+        <div id="main-app" class="main-app active">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="logo">SwarSadhana</h1>
+                <div class="settings-summary" id="settings-summary"></div>
+                <button class="icon-btn" onclick="showSettings()">⚙️</button>
+            </header>
+
+            <!-- Audio Status Banner -->
+            <div id="audio-status" class="audio-status">
+                🔇 Tap anywhere to enable audio
+            </div>
+
+            <!-- Instruments tab hidden; JS functions still available -->
+            <main class="content tab-content hidden" id="tab-instruments" style="display:none">
+                <div id="tanpura-card"></div>
+                <div id="tabla-card"></div>
+                <div id="beat-dots"></div>
+                <div id="vibhag-grid" class="vibhag-grid"></div>
+                <div id="beat-viz"><div id="theka-display"></div><div id="current-bol">-</div></div>
+                <div id="taal-options"></div>
+                <span id="tanpura-status"></span><span id="tabla-status"></span>
+                <span id="tanpura-play-btn"></span><span id="tabla-play-btn"></span>
+                <span id="current-taal-badge"></span>
+                <span id="tanpura-vol-display"></span><span id="tabla-vol-display"></span>
+                <span id="tempo-value">90</span><span id="laya-indicator"></span>
+                <span id="test-result"></span>
+            </main>
+
+            <!-- Sadhana / Exercises (primary home screen) -->
+            <section id="tab-robot-riyaaz">
+                <div id="robot-riyaaz-content">
+                    <div class="loading-placeholder">
+                        <p>🕉️ Loading Exercises...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Setup Modal -->
+            <div id="practice-setup-overlay" class="settings-overlay" style="display:none">
+                <div class="settings-modal">
+                    <div class="settings-header">
+                        <h2>Practice Setup</h2>
+                        <button class="settings-close-btn" onclick="closePracticeSetup()">&times;</button>
+                    </div>
+                    <div class="settings-body">
+                        <section class="settings-section">
+                            <h3>Key &amp; Tempo</h3>
+                            <div class="settings-row">
+                                <label>Sa (Key)</label>
+                                <select id="key-select" onchange="setGlobalKey(this.value)">
+                                    <option value="C">C</option>
+                                    <option value="C#" selected>C# / Db</option>
+                                    <option value="D">D</option>
+                                    <option value="D#">D# / Eb</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="F#">F# / Gb</option>
+                                    <option value="G">G</option>
+                                    <option value="G#">G# / Ab</option>
+                                    <option value="A">A</option>
+                                    <option value="A#">A# / Bb</option>
+                                    <option value="B">B</option>
+                                </select>
+                            </div>
+                            <div class="settings-row">
+                                <label>Saptak (Octave)</label>
+                                <div class="saptak-selector" id="saptak-selector">
+                                    <button class="saptak-btn" data-saptak="MANDRA" onclick="setGlobalSaptak('MANDRA')">Mandra</button>
+                                    <button class="saptak-btn active" data-saptak="MADHYA" onclick="setGlobalSaptak('MADHYA')">Madhya</button>
+                                    <button class="saptak-btn" data-saptak="TAAR" onclick="setGlobalSaptak('TAAR')">Taar</button>
+                                </div>
+                            </div>
+                            <div class="settings-row">
+                                <label>Default BPM</label>
+                                <div class="settings-bpm">
+                                    <input type="range" id="settings-tempo-slider" min="30" max="200" value="90" oninput="setGlobalTempo(this.value)">
+                                    <span id="settings-tempo-value">90</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="settings-section">
+                            <h3>Tanpura</h3>
+                            <div class="settings-row">
+                                <label>Pattern</label>
+                                <div class="string-options">
+                                    <button class="string-btn active" onclick="setTanpuraStrings('pa', this)">Pa-Sa</button>
+                                    <button class="string-btn" onclick="setTanpuraStrings('ma', this)">Ma-Sa</button>
+                                    <button class="string-btn" onclick="setTanpuraStrings('ni', this)">Ni-Sa</button>
+                                </div>
+                            </div>
+                            <div class="settings-row">
+                                <label>Volume</label>
+                                <input type="range" id="tanpura-volume" min="0" max="100" value="25" oninput="setTanpuraVolume(this.value)">
+                                <span id="settings-tanpura-vol">25%</span>
+                            </div>
+                            <div class="settings-row">
+                                <label>Jivari (Buzz)</label>
+                                <input type="range" id="jivari-amount" min="0" max="100" value="60" oninput="setJivari(this.value)">
+                                <span id="jivari-display">60%</span>
+                            </div>
+                        </section>
+
+                        <section class="settings-section">
+                            <h3>Tabla</h3>
+                            <div class="settings-row">
+                                <label>Default Taal</label>
+                                <div class="settings-taal-options" id="settings-taal-options"></div>
+                            </div>
+                            <div class="settings-row">
+                                <label>Volume</label>
+                                <input type="range" id="tabla-volume" min="0" max="100" value="25" oninput="setTablaVolume(this.value)">
+                                <span id="settings-tabla-vol">25%</span>
+                            </div>
+                        </section>
+
+                        <section class="settings-section settings-diagnostics">
+                            <button class="diagnostics-toggle" onclick="toggleDiagnostics()">
+                                <span>Diagnostics</span>
+                                <span class="diagnostics-arrow" id="diagnostics-arrow">&#9654;</span>
+                            </button>
+                            <div id="diagnostics-panel" style="display:none">
+                                <div class="settings-row">
+                                    <button class="btn-primary test-btn" onclick="playTestTone()">Play Test Tone</button>
+                                    <span id="settings-test-result"></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Defaults — single source of truth, must load first -->
+    <script src="js/practice-defaults.js"></script>
+    <!-- Shared music tables and helpers -->
+    <script src="js/music-constants.js"></script>
+    <!-- Taal Registry — must load before inline script that references TAAL_DEFINITIONS -->
+    <script src="js/taal-definitions.js"></script>
+
+    <script>
+    // ============================================
+    // SIMPLE INLINE AUDIO ENGINE
+    // ============================================
+    
+    let audioCtx = null;
+    let isAudioReady = false;
+    
+    // Initialize audio on ANY user interaction
+    async function initAudio() {
+        if (audioCtx) {
+            if (audioCtx.state === 'suspended') {
+                await audioCtx.resume();
+            }
+            return;
+        }
+        
+        try {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            if (audioCtx.state === 'suspended') {
+                await audioCtx.resume();
+            }
+            
+            isAudioReady = true;
+            document.getElementById('audio-status').innerHTML = '🔊 Audio Ready!';
+            document.getElementById('audio-status').classList.add('ready');
+            console.log('✅ Audio initialized, state:', audioCtx.state);
+        } catch (e) {
+            console.error('Audio init error:', e);
+            document.getElementById('audio-status').innerHTML = '❌ Audio Error: ' + e.message;
+        }
+    }
+    
+    // Init on any click/touch
+    document.addEventListener('click', initAudio);
+    document.addEventListener('touchstart', initAudio);
+    
+    function playTestTone() {
+        initAudio().then(() => {
+            const resultEl = document.getElementById('settings-test-result') || document.getElementById('test-result');
+            if (!audioCtx) {
+                if (resultEl) resultEl.innerHTML = '❌ No audio context';
+                return;
+            }
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.value = 440;
+            gain.gain.value = 0.3;
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            osc.stop(audioCtx.currentTime + 0.5);
+            
+            if (resultEl) resultEl.innerHTML = '✅ Audio working!';
+            console.log('🔊 Test tone played');
+        });
+    }
+    
+    // ============================================
+    // TANPURA - Sample-based Drone Playback
+    // ============================================
+    
+    let tanpuraPlaying = false;
+    let tanpuraVolume = PRACTICE_DEFAULTS.tanpuraVolume;
+    let tanpuraStrings = 'pa';
+    let globalKey = PRACTICE_DEFAULTS.key;
+    let tanpuraSource = null;
+    let tanpuraGain = null;
+    let tanpuraBufferCache = {};
+    
+    const keyFileMap = {
+        'C': 'c', 'C#': 'db', 'Db': 'db', 'D': 'd', 'D#': 'eb', 'Eb': 'eb',
+        'E': 'e', 'F': 'f', 'F#': 'gb', 'Gb': 'gb', 'G': 'g',
+        'G#': 'ab', 'Ab': 'ab', 'A': 'a', 'A#': 'bb', 'Bb': 'bb', 'B': 'b'
+    };
+    
+    function getTanpuraAssetUrl() {
+        const keyName = keyFileMap[globalKey] || 'c';
+        const tuning = tanpuraStrings === 'ma' ? 'ma_sa' : 'pa_sa';
+        return `assets/audio/tanpura/${tuning}_${keyName}.mp3`;
+    }
+    
+    async function loadTanpuraBuffer(url) {
+        if (tanpuraBufferCache[url]) return tanpuraBufferCache[url];
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+        tanpuraBufferCache[url] = audioBuffer;
+        return audioBuffer;
+    }
+    
+    function stopTanpuraSource() {
+        if (tanpuraSource) {
+            try { tanpuraSource.stop(); } catch (e) {}
+            try { tanpuraSource.disconnect(); } catch (e) {}
+            tanpuraSource = null;
+        }
+    }
+    
+    async function startTanpuraPlayback() {
+        const url = getTanpuraAssetUrl();
+        try {
+            const buffer = await loadTanpuraBuffer(url);
+            stopTanpuraSource();
+            
+            if (!tanpuraGain) {
+                tanpuraGain = audioCtx.createGain();
+                tanpuraGain.connect(audioCtx.destination);
+            }
+            tanpuraGain.gain.value = tanpuraVolume;
+            
+            const source = audioCtx.createBufferSource();
+            source.buffer = buffer;
+            source.loop = true;
+            source.connect(tanpuraGain);
+            source.start(0);
+            tanpuraSource = source;
+            console.log('Tanpura playing (sample):', url);
+        } catch (e) {
+            console.error('Failed to load tanpura drone:', e);
+        }
+    }
+    
+    async function crossfadeTanpura() {
+        if (!tanpuraPlaying || !audioCtx) return;
+        
+        const url = getTanpuraAssetUrl();
+        try {
+            const buffer = await loadTanpuraBuffer(url);
+            const now = audioCtx.currentTime;
+            
+            const newGain = audioCtx.createGain();
+            newGain.gain.setValueAtTime(0, now);
+            newGain.gain.linearRampToValueAtTime(tanpuraVolume, now + 0.5);
+            newGain.connect(audioCtx.destination);
+            
+            const newSource = audioCtx.createBufferSource();
+            newSource.buffer = buffer;
+            newSource.loop = true;
+            newSource.connect(newGain);
+            newSource.start(0);
+            
+            const oldSource = tanpuraSource;
+            const oldGain = tanpuraGain;
+            if (oldGain) {
+                oldGain.gain.linearRampToValueAtTime(0, now + 0.5);
+            }
+            
+            setTimeout(() => {
+                stopTanpuraSource();
+                if (oldGain) { try { oldGain.disconnect(); } catch (e) {} }
+                tanpuraSource = newSource;
+                tanpuraGain = newGain;
+            }, 600);
+            
+            tanpuraSource = newSource;
+            tanpuraGain = newGain;
+        } catch (e) {
+            console.error('Tanpura crossfade failed:', e);
+        }
+    }
+    
+    async function toggleTanpura() {
+        await initAudio();
+        
+        if (tanpuraPlaying) {
+            tanpuraPlaying = false;
+            if (tanpuraGain) {
+                tanpuraGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.3);
+                setTimeout(() => stopTanpuraSource(), 1000);
+            } else {
+                stopTanpuraSource();
+            }
+            document.getElementById('tanpura-status').textContent = 'Stopped';
+            document.getElementById('tanpura-status').style.color = '';
+            document.getElementById('tanpura-play-btn').innerHTML = '▶';
+            document.getElementById('tanpura-play-btn').classList.remove('playing');
+        } else {
+            tanpuraPlaying = true;
+            document.getElementById('tanpura-status').textContent = 'Playing';
+            document.getElementById('tanpura-status').style.color = '#8B4513';
+            document.getElementById('tanpura-play-btn').innerHTML = '⏹';
+            document.getElementById('tanpura-play-btn').classList.add('playing');
+            
+            await startTanpuraPlayback();
+        }
+    }
+    
+    function setTanpuraVolume(val) {
+        tanpuraVolume = val / 100;
+        const el = document.getElementById('settings-tanpura-vol') || document.getElementById('tanpura-vol-display');
+        if (el) el.textContent = val + '%';
+        if (tanpuraGain && audioCtx) {
+            tanpuraGain.gain.setTargetAtTime(tanpuraVolume, audioCtx.currentTime, 0.05);
+        }
+        if (window.realisticTanpura && typeof window.realisticTanpura.setVolume === 'function') {
+            window.realisticTanpura.setVolume(tanpuraVolume);
+        }
+        try { localStorage.setItem(STORAGE_KEYS.TANPURA_VOLUME, tanpuraVolume); } catch(e) {}
+    }
+    
+    function setTanpuraStrings(config, btn) {
+        const oldConfig = tanpuraStrings;
+        tanpuraStrings = config;
+        document.querySelectorAll('.string-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (tanpuraPlaying && oldConfig !== config) {
+            crossfadeTanpura();
+        }
+    }
+    
+    function setJivari(val) {
+        document.getElementById('jivari-display').textContent = val + '%';
+    }
+    
+    // ============================================
+    // TABLA
+    // ============================================
+    
+    // TAALS now sourced from centralized TAAL_DEFINITIONS (taal-definitions.js)
+    // Legacy alias for backwards compat — points to same objects
+    const TAALS = window.TAAL_DEFINITIONS;
+    
+    let tablaPlaying = false;
+    let tablaInterval = null;
+    let tablaVolume = PRACTICE_DEFAULTS.tablaVolume;
+    let currentTaal = TAALS.teentaal;
+    let currentMatra = 0;
+    let globalTempo = PRACTICE_DEFAULTS.tempo;
+    
+    function playTableBol(bol, isSam, isTali, isKhali) {
+        if (!audioCtx) return;
+        
+        let accentGain = 1.0;
+        if (isSam)        accentGain = 1.3;
+        else if (isTali)  accentGain = 1.1;
+        else if (isKhali) accentGain = 0.85;
+        
+        const now = audioCtx.currentTime;
+        const isBass = ['धा', 'धी', 'धिं', 'गे'].some(b => bol.includes(b));
+        const isTreble = ['ता', 'ती', 'तिं', 'ना', 'क'].some(b => bol.includes(b));
+        
+        // Bass (Bayan)
+        if (isBass) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(isSam ? 90 : 75, now);
+            osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+            gain.gain.setValueAtTime(tablaVolume * 0.5 * accentGain, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.3);
+        }
+        
+        // Treble (Dayan)
+        if (isTreble || !isBass) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(isSam ? 400 : 320, now);
+            osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+            gain.gain.setValueAtTime(tablaVolume * 0.35 * accentGain, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.15);
+        }
+    }
+    
+    function updateBeatDisplay() {
+        document.querySelectorAll('.beat-dot').forEach((dot, i) => {
+            dot.classList.toggle('current', i === currentMatra);
+        });
+        document.getElementById('current-bol').textContent = currentTaal.bols[currentMatra];
+    }
+    
+    function _matraFlags(matra, taal) {
+        const beatNum = matra + 1;
+        const isSam = matra === 0;
+        const isTali = !isSam && (taal.talis || []).includes(beatNum);
+        const isKhali = (taal.khalis || []).includes(beatNum);
+        return { isSam, isTali, isKhali };
+    }
+    
+    async function toggleTabla() {
+        await initAudio();
+        
+        if (tablaPlaying) {
+            tablaPlaying = false;
+            if (tablaInterval) clearInterval(tablaInterval);
+            document.getElementById('tabla-status').textContent = 'Stopped';
+            document.getElementById('tabla-status').style.color = '';
+            document.getElementById('tabla-play-btn').innerHTML = '▶';
+            document.getElementById('tabla-play-btn').classList.remove('playing');
+            document.getElementById('current-bol').textContent = '-';
+        } else {
+            tablaPlaying = true;
+            currentMatra = 0;
+            document.getElementById('tabla-status').textContent = 'Playing';
+            document.getElementById('tabla-status').style.color = '#CD853F';
+            document.getElementById('tabla-play-btn').innerHTML = '⏹';
+            document.getElementById('tabla-play-btn').classList.add('playing');
+            
+            const matras = currentTaal.beats || currentTaal.matras || 16;
+            const tick = () => {
+                if (!tablaPlaying) return;
+                const bol = currentTaal.bols[currentMatra];
+                const { isSam, isTali, isKhali } = _matraFlags(currentMatra, currentTaal);
+                playTableBol(bol, isSam, isTali, isKhali);
+                updateBeatDisplay();
+                currentMatra = (currentMatra + 1) % matras;
+            };
+            
+            tick();
+            tablaInterval = setInterval(tick, 60000 / globalTempo);
+            console.log('🥁 Tabla started');
+        }
+    }
+    
+    function selectTaal(taalKey) {
+        currentTaal = TAALS[taalKey] || TAALS.teentaal;
+        currentMatra = 0;
+        
+        document.querySelectorAll('.taal-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.taal === taalKey);
+        });
+        document.getElementById('current-taal-badge').textContent = currentTaal.name;
+        document.getElementById('theka-display').textContent = currentTaal.theka;
+        
+        renderBeatDots();
+        renderVibhagGrid();
+        
+        if (tablaPlaying) {
+            clearInterval(tablaInterval);
+            const matras = currentTaal.beats || currentTaal.matras || 16;
+            tablaInterval = setInterval(() => {
+                if (!tablaPlaying) return;
+                const bol = currentTaal.bols[currentMatra];
+                const { isSam, isTali, isKhali } = _matraFlags(currentMatra, currentTaal);
+                playTableBol(bol, isSam, isTali, isKhali);
+                updateBeatDisplay();
+                currentMatra = (currentMatra + 1) % matras;
+            }, 60000 / globalTempo);
+        }
+    }
+    
+    function renderBeatDots() {
+        const container = document.getElementById('beat-dots');
+        container.innerHTML = '';
+        const matras = currentTaal.beats || currentTaal.matras || 16;
+        for (let i = 0; i < matras; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'beat-dot';
+            if (i === 0) dot.classList.add('sam');
+            if (currentTaal.talis.includes(i + 1)) dot.classList.add('tali');
+            if (currentTaal.khalis.includes(i + 1)) dot.classList.add('khali');
+            dot.textContent = currentTaal.khalis.includes(i + 1) ? '०' : (i + 1);
+            container.appendChild(dot);
+        }
+    }
+    
+    function renderVibhagGrid() {
+        const container = document.getElementById('vibhag-grid');
+        if (!container) return;
+        const taal = currentTaal;
+        const matras = taal.beats || taal.matras || 16;
+        const vibhag = taal.vibhag || [matras];
+        
+        let html = '';
+        let matraIdx = 0;
+        vibhag.forEach((vLen, vIdx) => {
+            html += '<div class="vibhag-section">';
+            for (let j = 0; j < vLen; j++) {
+                const beatNum = matraIdx + 1;
+                const isSam = matraIdx === 0;
+                const isTali = !isSam && (taal.talis || []).includes(beatNum);
+                const isKhali = (taal.khalis || []).includes(beatNum);
+                
+                let cls = 'vibhag-beat';
+                if (isSam) cls += ' sam';
+                else if (isTali) cls += ' tali';
+                else if (isKhali) cls += ' khali';
+                
+                const marker = isSam ? 'X' : isKhali ? '०' : (isTali ? '|' : '');
+                const bol = taal.bols[matraIdx] || '';
+                
+                html += `<div class="${cls}" data-beat="${matraIdx}">
+                    <span class="vb-marker">${marker}</span>
+                    <span class="vb-num">${beatNum}</span>
+                    <span class="vb-bol">${bol}</span>
+                </div>`;
+                matraIdx++;
+            }
+            html += '</div>';
+        });
+        container.innerHTML = html;
+    }
+    
+    function renderTaalOptions() {
+        const container = document.getElementById('taal-options');
+        Object.entries(TAALS).forEach(([key, taal]) => {
+            const beats = taal.beats || taal.matras || 0;
+            const btn = document.createElement('button');
+            btn.className = 'taal-btn' + (key === 'teentaal' ? ' active' : '');
+            btn.dataset.taal = key;
+            btn.innerHTML = `${taal.name}<small>${beats} beats</small>`;
+            btn.onclick = () => selectTaal(key);
+            container.appendChild(btn);
+        });
+    }
+    
+    function setTablaVolume(val) {
+        tablaVolume = val / 100;
+        const el = document.getElementById('settings-tabla-vol') || document.getElementById('tabla-vol-display');
+        if (el) el.textContent = val + '%';
+        if (window.realisticTabla && typeof window.realisticTabla.setVolume === 'function') {
+            window.realisticTabla.setVolume(tablaVolume);
+        }
+        try { localStorage.setItem(STORAGE_KEYS.TABLA_VOLUME, tablaVolume); } catch(e) {}
+    }
+    
+    // ============================================
+    // GLOBAL CONTROLS
+    // ============================================
+    
+    let globalSaptak = PRACTICE_DEFAULTS.saptak;
+
+    function setGlobalKey(key) {
+        globalKey = key;
+        if (tanpuraPlaying) {
+            crossfadeTanpura();
+        }
+        if (window.realisticAudioEngine) {
+            window.realisticAudioEngine.setKey(key);
+        }
+        if (window.realisticTanpura) {
+            window.realisticTanpura.onKeyChange();
+        }
+        updateSettingsSummary();
+    }
+
+    function setGlobalSaptak(saptak) {
+        globalSaptak = saptak;
+        if (window.realisticAudioEngine) {
+            window.realisticAudioEngine.setSaptak(saptak);
+        }
+        if (window.robotUI) {
+            window.robotUI._syncSaptakToEngines();
+        }
+        document.querySelectorAll('.saptak-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.saptak === saptak);
+        });
+        updateSettingsSummary();
+        try { localStorage.setItem(STORAGE_KEYS.SAPTAK, saptak); } catch(e) {}
+    }
+    
+    function setGlobalTempo(bpm) {
+        globalTempo = parseInt(bpm);
+        const tv = document.getElementById('tempo-value');
+        if (tv) tv.textContent = bpm;
+        const stv = document.getElementById('settings-tempo-value');
+        if (stv) stv.textContent = bpm;
+        
+        let laya = 'Vilambit (विलम्बित)';
+        if (bpm > 120) laya = 'Drut (द्रुत)';
+        else if (bpm > 60) laya = 'Madhya (मध्य)';
+        const li = document.getElementById('laya-indicator');
+        if (li) li.textContent = laya;
+        
+        if (tablaPlaying) {
+            clearInterval(tablaInterval);
+            const matras = currentTaal.beats || currentTaal.matras || 16;
+            tablaInterval = setInterval(() => {
+                if (!tablaPlaying) return;
+                const bol = currentTaal.bols[currentMatra];
+                const { isSam, isTali, isKhali } = _matraFlags(currentMatra, currentTaal);
+                playTableBol(bol, isSam, isTali, isKhali);
+                updateBeatDisplay();
+                currentMatra = (currentMatra + 1) % matras;
+            }, 60000 / globalTempo);
+        }
+        updateSettingsSummary();
+    }
+    
+    let masterPlaying = false;
+    
+    async function toggleMasterPlay() {
+        await initAudio();
+        
+        masterPlaying = !masterPlaying;
+        const btn = document.getElementById('master-play-btn');
+        
+        if (masterPlaying) {
+            btn.innerHTML = '⏹';
+            btn.classList.add('playing');
+            
+            if (!tanpuraPlaying) toggleTanpura();
+            if (!tablaPlaying) toggleTabla();
+        } else {
+            btn.innerHTML = '▶';
+            btn.classList.remove('playing');
+            
+            if (tanpuraPlaying) toggleTanpura();
+            if (tablaPlaying) toggleTabla();
+        }
+    }
+    
+    function updateSettingsSummary() {
+        const el = document.getElementById('settings-summary');
+        if (!el) return;
+        const saptakLabels = { MANDRA: 'Mandra', MADHYA: 'Madhya', TAAR: 'Taar' };
+        const saptakLabel = saptakLabels[globalSaptak] || 'Madhya';
+        el.innerHTML = `<span>${globalKey}</span><span class="dot">·</span><span>${globalTempo}</span><span class="dot">·</span><span>${saptakLabel}</span>`;
+    }
+
+    function showSettings() {
+        const overlay = document.getElementById('practice-setup-overlay');
+        overlay.style.display = 'flex';
+        renderSettingsTaalOptions();
+    }
+
+    function closePracticeSetup() {
+        document.getElementById('practice-setup-overlay').style.display = 'none';
+        updateSettingsSummary();
+    }
+
+    function toggleDiagnostics() {
+        const panel = document.getElementById('diagnostics-panel');
+        const arrow = document.getElementById('diagnostics-arrow');
+        if (panel.style.display === 'none') {
+            panel.style.display = 'block';
+            arrow.innerHTML = '&#9660;';
+        } else {
+            panel.style.display = 'none';
+            arrow.innerHTML = '&#9654;';
+        }
+    }
+
+    function renderSettingsTaalOptions() {
+        const container = document.getElementById('settings-taal-options');
+        if (!container || container.children.length > 0) return;
+        Object.entries(TAALS).forEach(([key, taal]) => {
+            const beats = taal.beats || taal.matras || 0;
+            const btn = document.createElement('button');
+            btn.className = 'taal-btn' + (key === 'teentaal' ? ' active' : '');
+            btn.dataset.taal = key;
+            btn.innerHTML = `${taal.name}<small>${beats} beats</small>`;
+            btn.onclick = () => {
+                selectTaal(key);
+                container.querySelectorAll('.taal-btn').forEach(b => b.classList.toggle('active', b.dataset.taal === key));
+            };
+            container.appendChild(btn);
+        });
+    }
+
+    // switchTab kept for E2E test compatibility
+    function switchTab(tabName) {
+        if (tabName === 'robot-riyaaz' && window.robotUI && !window.robotUI.exerciseManager?.loaded) {
+            window.robotUI.init().catch(console.error);
+        }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        renderTaalOptions();
+        renderBeatDots();
+        renderVibhagGrid();
+
+        // Restore saptak preference
+        try {
+            const savedSaptak = localStorage.getItem(STORAGE_KEYS.SAPTAK);
+            if (savedSaptak && ['MANDRA', 'MADHYA', 'TAAR'].includes(savedSaptak)) {
+                setGlobalSaptak(savedSaptak);
+            }
+        } catch(e) {}
+
+        // Restore user volume preferences from localStorage
+        try {
+            const savedTanpuraVol = localStorage.getItem(STORAGE_KEYS.TANPURA_VOLUME);
+            if (savedTanpuraVol !== null) {
+                const pct = Math.round(parseFloat(savedTanpuraVol) * 100);
+                tanpuraVolume = parseFloat(savedTanpuraVol);
+                const slider = document.getElementById('tanpura-volume');
+                if (slider) slider.value = pct;
+                const label = document.getElementById('settings-tanpura-vol');
+                if (label) label.textContent = pct + '%';
+            }
+            const savedTablaVol = localStorage.getItem(STORAGE_KEYS.TABLA_VOLUME);
+            if (savedTablaVol !== null) {
+                const pct = Math.round(parseFloat(savedTablaVol) * 100);
+                tablaVolume = parseFloat(savedTablaVol);
+                const slider = document.getElementById('tabla-volume');
+                if (slider) slider.value = pct;
+                const label = document.getElementById('settings-tabla-vol');
+                if (label) label.textContent = pct + '%';
+            }
+        } catch(e) {}
+        
+        updateSettingsSummary();
+
+        // Create single Sadhana UI instance and initialize immediately
+        if (typeof RobotRiyaazUI !== 'undefined') {
+            window.robotUI = new RobotRiyaazUI();
+            window.robotRiyaazUI = window.robotUI;
+            window.robotUI.init().catch(console.error);
+        }
+    });
+    </script>
+    
+    <!-- WebAudioFont (sample-based instrument playback) -->
+    <script src="js/webaudiofont/WebAudioFontPlayer.js"></script>
+    <script src="js/webaudiofont/0210_FluidR3_GM_sf2_file.js"></script>
+    
+    <!-- Sadhana Scripts -->
+    <script src="js/realistic-audio-engine.js"></script>
+    <script src="js/robot-riyaaz.js"></script>
+    <script src="js/robot-riyaaz-ui.js"></script>
+    <script src="js/robot-guruji.js"></script>
+    
+    <script>
+    // Initialize Guruji after page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Wait for Sadhana UI to be ready
+        const checkReady = setInterval(async () => {
+            if (window.robotRiyaazUI && window.robotRiyaazUI.audioEngine && window.exerciseManager?.loaded) {
+                clearInterval(checkReady);
+                
+                // Create and initialize Guruji
+                window.robotGurujiUI = new RobotGurujiUI();
+                await window.robotGurujiUI.init(
+                    window.robotRiyaazUI.audioEngine,
+                    window.robotRiyaazUI.tanpura,
+                    window.robotRiyaazUI.tabla,
+                    window.exerciseManager
+                );
+                
+                console.log('🎓 Guruji ready');
+            }
+        }, 100);
+    });
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+    </script>
+</body>
+</html>

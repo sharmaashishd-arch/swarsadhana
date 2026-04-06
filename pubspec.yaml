@@ -1,0 +1,65 @@
+name: swarsadhana
+description: Professional Indian Classical Music Accompaniment App - Tabla, Tanpura, Swarmandal & Harmonium
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Audio Engine
+  flutter_soloud: ^3.0.0
+  audio_session: ^0.1.18
+  dart_melty_soundfont: ^2.0.0
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Local Storage
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.2
+  
+  # Permissions
+  permission_handler: ^11.3.0
+  
+  # UI Components
+  google_fonts: ^6.1.0
+  animated_text_kit: ^4.2.2
+  
+  # Utilities
+  equatable: ^2.0.5
+  uuid: ^4.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/audio/tanpura/
+    - assets/audio/tabla/
+    - assets/audio/tabla/oneshots/dha/
+    - assets/audio/tabla/oneshots/dhin/
+    - assets/audio/tabla/oneshots/tin/
+    - assets/audio/tabla/oneshots/na/
+    - assets/audio/tabla/oneshots/ta/
+    - assets/audio/tabla/oneshots/ge/
+    - assets/audio/tabla/oneshots/ke/
+    - assets/audio/swarmandal/
+    - assets/audio/harmonium/
+    - assets/soundfonts/
+    - assets/images/
+    - assets/exercises/
+    
+  # Fonts loaded at runtime via google_fonts package
+

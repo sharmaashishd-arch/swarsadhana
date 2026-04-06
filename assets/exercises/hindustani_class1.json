@@ -1,0 +1,2104 @@
+{
+  "version": "1.0",
+  "title": "Hindustani Class 1 - Exercises",
+  "language": "en",
+  "default_settings": {
+    "base_sa": "C#4",
+    "default_tempo_bpm": 90,
+    "default_saptak": "MADHYA"
+  },
+  "accompaniment_defaults": {
+    "tanpura": {
+      "enabled": true,
+      "pattern": "PaSa",
+      "volume": 0.25
+    },
+    "tabla": {
+      "enabled": true,
+      "volume": 0.25
+    },
+    "count_in_avartans": 1,
+    "demo_avartans": 1,
+    "practice_avartans": 2,
+    "swar_per_matra": 1
+  },
+  "taals": {
+    "TEENTAAL_16": {
+      "id": "TEENTAAL_16",
+      "name": "Teentaal",
+      "nameHindi": "तीनताल",
+      "beats": 16,
+      "vibhag": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        1,
+        5,
+        13
+      ],
+      "khali_beats": [
+        9
+      ],
+      "bols": [
+        "धा",
+        "धिं",
+        "धिं",
+        "धा",
+        "धा",
+        "धिं",
+        "धिं",
+        "धा",
+        "धा",
+        "तिं",
+        "तिं",
+        "ता",
+        "ता",
+        "धिं",
+        "धिं",
+        "धा"
+      ]
+    },
+    "DADRA_6": {
+      "id": "DADRA_6",
+      "name": "Dadra",
+      "nameHindi": "दादरा",
+      "beats": 6,
+      "vibhag": [
+        3,
+        3
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        1
+      ],
+      "khali_beats": [
+        4
+      ],
+      "bols": [
+        "धा",
+        "धी",
+        "ना",
+        "ना",
+        "ती",
+        "ना"
+      ]
+    },
+    "KEHARWA_8": {
+      "id": "KEHARWA_8",
+      "name": "Keharwa",
+      "nameHindi": "कहरवा",
+      "beats": 8,
+      "vibhag": [
+        4,
+        4
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        1
+      ],
+      "khali_beats": [
+        5
+      ],
+      "bols": [
+        "धा",
+        "गे",
+        "ना",
+        "ती",
+        "ना",
+        "क",
+        "धी",
+        "ना"
+      ]
+    },
+    "RUPAK_7": {
+      "id": "RUPAK_7",
+      "name": "Rupak",
+      "nameHindi": "रूपक",
+      "beats": 7,
+      "vibhag": [
+        3,
+        2,
+        2
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        4,
+        6
+      ],
+      "khali_beats": [
+        1
+      ],
+      "bols": [
+        "ती",
+        "ती",
+        "ना",
+        "धी",
+        "ना",
+        "धी",
+        "ना"
+      ]
+    },
+    "JHAPTAAL_10": {
+      "id": "JHAPTAAL_10",
+      "name": "Jhaptaal",
+      "nameHindi": "झपताल",
+      "beats": 10,
+      "vibhag": [
+        2,
+        3,
+        2,
+        3
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        1,
+        3,
+        8
+      ],
+      "khali_beats": [
+        6
+      ],
+      "bols": [
+        "धी",
+        "ना",
+        "धी",
+        "धी",
+        "ना",
+        "ती",
+        "ना",
+        "धी",
+        "धी",
+        "ना"
+      ]
+    }
+  },
+  "swaras": {
+    "Sa": {
+      "semitone": 0,
+      "hindi": "सा",
+      "octaveMarker": ""
+    },
+    "re": {
+      "semitone": 1,
+      "hindi": "रे॒",
+      "octaveMarker": "",
+      "isKomal": true
+    },
+    "Re": {
+      "semitone": 2,
+      "hindi": "रे",
+      "octaveMarker": ""
+    },
+    "ga": {
+      "semitone": 3,
+      "hindi": "ग॒",
+      "octaveMarker": "",
+      "isKomal": true
+    },
+    "Ga": {
+      "semitone": 4,
+      "hindi": "ग",
+      "octaveMarker": ""
+    },
+    "Ma": {
+      "semitone": 5,
+      "hindi": "म",
+      "octaveMarker": ""
+    },
+    "ma": {
+      "semitone": 6,
+      "hindi": "म॑",
+      "octaveMarker": "",
+      "isTivra": true
+    },
+    "Pa": {
+      "semitone": 7,
+      "hindi": "प",
+      "octaveMarker": ""
+    },
+    "dha": {
+      "semitone": 8,
+      "hindi": "ध॒",
+      "octaveMarker": "",
+      "isKomal": true
+    },
+    "Dha": {
+      "semitone": 9,
+      "hindi": "ध",
+      "octaveMarker": ""
+    },
+    "ni": {
+      "semitone": 10,
+      "hindi": "नि॒",
+      "octaveMarker": "",
+      "isKomal": true
+    },
+    "Ni": {
+      "semitone": 11,
+      "hindi": "नि",
+      "octaveMarker": ""
+    },
+    ".Sa": {
+      "semitone": 12,
+      "hindi": "सां",
+      "octaveMarker": "upper"
+    },
+    "Sa.": {
+      "semitone": -12,
+      "hindi": "सा॒",
+      "octaveMarker": "lower"
+    }
+  },
+  "categories": [
+    "Basic Sargam",
+    "Janti Swaras",
+    "Alankar"
+  ],
+  "exercises": [
+    {
+      "id": "BASIC_01",
+      "title": "Exercise 1 - Aaroh/Avaroh",
+      "category": "Basic Sargam",
+      "description": "Basic ascending and descending sargam pattern",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh": [
+        "Sa",
+        "Re",
+        "Ga",
+        "Ma",
+        "Pa",
+        "Dha",
+        "Ni",
+        ".Sa"
+      ],
+      "avroh": [
+        ".Sa",
+        "Ni",
+        "Dha",
+        "Pa",
+        "Ma",
+        "Ga",
+        "Re",
+        "Sa"
+      ],
+      "display": {
+        "aaroh_hindi": "सा रे ग म प ध नि सां",
+        "avroh_hindi": "सां नि ध प म ग रे सा"
+      }
+    },
+    {
+      "id": "BASIC_02",
+      "title": "Exercise 2 - Extended Aaroh",
+      "category": "Basic Sargam",
+      "description": "Building up the sargam gradually",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "BASIC_03",
+      "title": "Exercise 3 - Oscillating Pattern",
+      "category": "Basic Sargam",
+      "description": "Practice with back-and-forth movement",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Sa",
+          "Re",
+          "Sa",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          ".Sa",
+          "Ni",
+          ".Sa",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "BASIC_04",
+      "title": "Exercise 4 - Triple Repetition",
+      "category": "Basic Sargam",
+      "description": "Three-note groups ascending",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Sa",
+          "Re",
+          "Ga",
+          "Sa",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          ".Sa",
+          "Ni",
+          "Dha",
+          ".Sa",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "BASIC_05",
+      "title": "Exercise 5 - Ascending-Descending Mix",
+      "category": "Basic Sargam",
+      "description": "Combination of up and down within phrases",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "BASIC_06",
+      "title": "Exercise 6 - Pa Anchor",
+      "category": "Basic Sargam",
+      "description": "Using Pa as anchor point",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Sa",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ma",
+          ".Sa",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "BASIC_08",
+      "title": "Exercise 8 - Interlocking Steps",
+      "category": "Basic Sargam",
+      "description": "Complex stepping pattern",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma"
+        ],
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "JANTI_BASIC",
+      "title": "Basic Janti Pattern (Double Notes)",
+      "category": "Janti Swaras",
+      "description": "Each swar repeated twice - fundamental janti practice",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 2
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh": [
+        "Sa",
+        "Sa",
+        "Re",
+        "Re",
+        "Ga",
+        "Ga",
+        "Ma",
+        "Ma",
+        "Pa",
+        "Pa",
+        "Dha",
+        "Dha",
+        "Ni",
+        "Ni",
+        ".Sa",
+        ".Sa"
+      ],
+      "avroh": [
+        ".Sa",
+        ".Sa",
+        "Ni",
+        "Ni",
+        "Dha",
+        "Dha",
+        "Pa",
+        "Pa",
+        "Ma",
+        "Ma",
+        "Ga",
+        "Ga",
+        "Re",
+        "Re",
+        "Sa",
+        "Sa"
+      ]
+    },
+    {
+      "id": "JANTI_01_SEQ_GROUPS",
+      "title": "Janti Pattern 1 (Sequential Groups)",
+      "category": "Janti Swaras",
+      "description": "Four-swar groups moving up the scale",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 2
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_groups": [
+        [
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni",
+          ".Sa",
+          ".Sa"
+        ]
+      ],
+      "avroh_groups": [
+        [
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re",
+          "Sa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "JANTI_02_JUMPING",
+      "title": "Janti Pattern 2 (Jumping Patterns)",
+      "category": "Janti Swaras",
+      "description": "Skip intervals with janti",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 2
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_groups": [
+        [
+          "Sa",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Re",
+          "Ga",
+          "Sa",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re",
+          "Ga"
+        ],
+        [
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Ni",
+          "Dha",
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni"
+        ],
+        [
+          "Pa",
+          ".Sa",
+          "Ni",
+          ".Sa",
+          "Dha",
+          "Ni",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni",
+          ".Sa",
+          ".Sa"
+        ]
+      ],
+      "avroh_groups": [
+        [
+          ".Sa",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Ni",
+          "Dha",
+          ".Sa",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni",
+          "Dha"
+        ],
+        [
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Re",
+          "Ga",
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Sa",
+          "Re",
+          "Sa",
+          "Ga",
+          "Re",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re",
+          "Sa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "JANTI_03_TURNING",
+      "title": "Janti Pattern 3 (Turning Patterns)",
+      "category": "Janti Swaras",
+      "description": "Turn back before continuing ascent",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 2
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_groups": [
+        [
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni",
+          ".Sa",
+          ".Sa"
+        ]
+      ],
+      "avroh_groups": [
+        [
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re",
+          "Sa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "JANTI_04_COMBINATION",
+      "title": "Janti Pattern 4 (Combination Pattern)",
+      "category": "Janti Swaras",
+      "description": "Complex combination of janti techniques",
+      "raga_mode": "neutral",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 2
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_groups": [
+        [
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Sa",
+          "Re",
+          "Sa",
+          "Re",
+          "Sa",
+          "Sa",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Re",
+          "Ga",
+          "Re",
+          "Ga",
+          "Re",
+          "Re",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Ni",
+          ".Sa",
+          ".Sa"
+        ]
+      ],
+      "avroh_groups": [
+        [
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          ".Sa",
+          "Ni",
+          ".Sa",
+          "Ni",
+          ".Sa",
+          ".Sa",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Ni",
+          "Dha",
+          "Ni",
+          "Dha",
+          "Ni",
+          "Ni",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Dha",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Pa",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ma",
+          "Ga",
+          "Ga",
+          "Re",
+          "Re",
+          "Sa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_01_TRIPLES",
+      "title": "Alankar 1: Groups of Three",
+      "category": "Alankar",
+      "description": "Three-note ascending/descending patterns",
+      "raga_mode": "neutral",
+      "taal_id": "DADRA_6",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "DADRA_6",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 3
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_02_FOURS",
+      "title": "Alankar 2: Groups of Four",
+      "category": "Alankar",
+      "description": "Four-note patterns for fluid movement",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_03_STEPBACKS",
+      "title": "Alankar 3: Step-Backs",
+      "category": "Alankar",
+      "description": "Two steps forward, one step back pattern",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Sa",
+          "Re",
+          "Ga",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Re",
+          "Ga",
+          "Ma",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Pa",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Dha",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Pa",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Ni",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Dha",
+          "Ni",
+          "Dha",
+          "Ni",
+          ".Sa",
+          "-",
+          "-",
+          "-"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          ".Sa",
+          "Ni",
+          "Dha",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Ni",
+          "Dha",
+          "Pa",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Ma",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Ga",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Re",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ga",
+          "Re",
+          "Ga",
+          "Re",
+          "Sa",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_04_EXTENDED",
+      "title": "Alankar 4: Extended Sequences",
+      "category": "Alankar",
+      "description": "Longer melodic phrases",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 2,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "-",
+          "-"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "-",
+          "-"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "-",
+          "-"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          "-",
+          "-"
+        ],
+        [
+          "Pa",
+          "Dha",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa",
+          "-",
+          "-"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "-",
+          "-"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "-",
+          "-"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "-",
+          "-"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "-",
+          "-"
+        ],
+        [
+          "Ma",
+          "Ga",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_05_INTERLOCKING",
+      "title": "Alankar 5: Interlocking Sets",
+      "category": "Alankar",
+      "description": "Alternating 3 and 4 note groups",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "-",
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma",
+          "-",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Pa",
+          "-",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Dha",
+          "-",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Dha",
+          "Ni",
+          "-",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "-",
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa",
+          "-",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Ma",
+          "-",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Ga",
+          "-",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ga",
+          "Re",
+          "-",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    }
+  ]
+}
