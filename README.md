@@ -211,9 +211,6 @@ Payment is handled via **Razorpay** with UPI support.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
-
-- Inspired by [iShala](https://ishala.in/) - the gold standard in Indian music accompaniment
-- SoLoud audio engine by Jari Komppa
 - Indian classical music theory resources from NCERT and Sangeet Natak Akademi
 
 ---
