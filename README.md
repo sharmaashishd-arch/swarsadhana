@@ -19,20 +19,9 @@ SwarSadhana is a professional-grade music accompaniment app designed for Indian 
   - Real-time beat visualization with Sam/Tali/Khali markers
   - Bol display in Devanagari script
   - Laya indicators (Vilambit/Madhya/Drut)
-- 🕉️ **Sadhana** - Automated practice system
+- 🕉️ **Sadhana** -  practice system
   - Structured exercise library (Sargam, Janti, Alankar)
   - Robot Player: Auto-play exercises with tanpura + tabla + swar
-  - Robot Listener: Pitch detection and grading
-  - Session flow: Demo → Practice → Score → Recommendation
-- 🎓 **Guruji** - AI Tutor Mode
-  - Robot sings exercises with voice-like synthesis
-  - Demo → User Repeat → Grade workflow
-  - Per-swar analysis with cents error and timing drift
-  - Self-test harness for automated testing (robot grades itself)
-- 🎻 **Swarmandal** - Background arpeggios (Pro)
-- 🎹 **Harmonium/Lehra** - Melodic accompaniment (Pro)
-- 🎤 **Pitch Monitor** - Real-time voice tuning with Swara mapping (Pro)
-- 🎙️ **Recording** - Record your practice sessions (Pro)
 
 ### Audio Capabilities
 
@@ -151,26 +140,7 @@ The web version uses synthesized audio and doesn't require audio files. For the 
 - Pitch Monitor
 - Recording
 
-Payment is handled via **Razorpay** with UPI support.
 
-## Technical Stack
-
-### Web Version
-| Component | Technology |
-|-----------|------------|
-| Audio Engine | Web Audio API (oscillators, filters, envelopes) |
-| UI | Vanilla HTML/CSS/JavaScript |
-| Fonts | Google Fonts (Poppins, Noto Sans Devanagari) |
-
-### Flutter Version (iOS/Android)
-| Component | Technology |
-|-----------|------------|
-| Framework | Flutter |
-| Audio Engine | flutter_soloud (SoLoud C++) |
-| State Management | Provider |
-| Local Storage | Hive + SharedPreferences |
-| Payments | Razorpay Flutter |
-| Analytics | Firebase Analytics |
 
 ## Indian Music Theory
 
@@ -213,7 +183,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 - Indian classical music theory resources from NCERT and Sangeet Natak Akademi
 
----
 
-Made with ❤️ for the Indian Classical Music community
 
