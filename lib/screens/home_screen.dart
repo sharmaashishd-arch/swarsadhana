@@ -8,6 +8,7 @@ import '../features/tanpura/providers/tanpura_provider.dart';
 import '../features/tabla/providers/tabla_provider.dart';
 import '../features/robot_riyaaz/providers/robot_riyaaz_provider.dart';
 import '../features/robot_riyaaz/screens/robot_riyaaz_screen.dart';
+import '../features/settings/providers/settings_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -240,6 +241,11 @@ class _PracticeSetupContentState extends State<_PracticeSetupContent> {
         _buildSectionHeader('Tabla'),
         const SizedBox(height: 12),
         _buildTablaSection(),
+        const SizedBox(height: 24),
+
+        _buildSectionHeader('Display'),
+        const SizedBox(height: 12),
+        _buildNotationRow(),
         const SizedBox(height: 24),
 
         _buildDiagnosticsSection(),
@@ -475,6 +481,47 @@ class _PracticeSetupContentState extends State<_PracticeSetupContent> {
                   ),
                 ),
               ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildNotationRow() {
+    return Consumer<SettingsProvider>(
+      builder: (context, settings, _) {
+        final useEnglish = settings.useEnglishNotation;
+        return Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Swara & Taal Notation', style: AppTheme.bodyMedium),
+                Text(
+                  useEnglish ? 'Sa Re Ga Ma Pa Dha Ni' : 'सा रे ग म प ध नि',
+                  style: AppTheme.bodySmall.copyWith(
+                    color: AppTheme.textMuted,
+                    fontSize: 11,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            ToggleButtons(
+              isSelected: [!useEnglish, useEnglish],
+              onPressed: (i) {
+                settings.setSwarNotation(i == 0 ? 'hindi' : 'english');
+              },
+              borderRadius: BorderRadius.circular(20),
+              selectedColor: AppTheme.primaryDark,
+              fillColor: AppTheme.gold,
+              color: AppTheme.textSecondary,
+              borderColor: AppTheme.gold.withValues(alpha: 0.3),
+              selectedBorderColor: AppTheme.gold,
+              constraints: const BoxConstraints(minWidth: 56, minHeight: 32),
+              textStyle: AppTheme.bodySmall.copyWith(fontSize: 12),
+              children: const [Text('Hindi'), Text('English')],
             ),
           ],
         );

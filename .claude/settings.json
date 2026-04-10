@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"$\\(ruby -e 'print Gem.user_dir'\\)/bin/\")",
+      "Bash(gem env:*)",
+      "Read(//Users/ashishsharma/**)",
+      "Read(//Library/Ruby/Gems/**)",
+      "Bash(brew install:*)",
+      "Bash(flutter build:*)",
+      "Bash(open /Users/ashishsharma/Projects/personal/swarsadhana/build/macos/Build/Products/Debug/swarsadhana.app)",
+      "Bash(screencapture -x /tmp/swarsadhana_home.png)",
+      "Bash(flutter test:*)",
+      "Bash(git -C /Users/ashishsharma/Projects/personal/swarsadhana branch -a)",
+      "Bash(grep -rn \"fetch\\\\|'/\\\\|'/assets\\\\|'/js\\\\|'/css\\\\|'/icons\" /Users/ashishsharma/Projects/personal/swarsadhana/web/js/*.js)",
+      "Bash(grep -rn \"https://\\\\|http://\" /Users/ashishsharma/Projects/personal/swarsadhana/web/js/*.js)",
+      "Bash(git -C /Users/ashishsharma/Projects/personal/swarsadhana config --get remote.origin.url)",
+      "Bash(npm install:*)",
+      "Bash(npm test:*)"
+    ]
+  }
+}

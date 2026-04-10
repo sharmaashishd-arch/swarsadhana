@@ -1,8 +1,9 @@
-const CACHE_VERSION = 'swarsadhana-v2';
+const CACHE_VERSION = 'swarsadhana-v3';
 const AUDIO_CACHE = 'swarsadhana-audio-v1';
 const FONT_CACHE = 'swarsadhana-fonts-v1';
 
 const PRECACHE_URLS = [
+  './',
   'index.html',
   'styles.css',
   'css/robot-riyaaz.css',
@@ -72,6 +73,12 @@ async function cacheFirstShell(request) {
     }
     return response;
   } catch {
+    // For navigation requests (page loads), serve the cached shell so the
+    // app still opens offline even if the exact URL wasn't cached.
+    if (request.mode === 'navigate') {
+      const shell = await caches.match('index.html');
+      if (shell) return shell;
+    }
     return new Response('Offline', { status: 503, statusText: 'Offline' });
   }
 }

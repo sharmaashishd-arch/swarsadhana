@@ -221,6 +221,23 @@ class ExerciseTaal extends Equatable {
     this.bols,
   });
 
+  /// Transliterates Devanagari tabla bols to English equivalents.
+  List<String>? get bolsEnglish {
+    if (bols == null) return null;
+    return bols!.map(_transliterateBol).toList();
+  }
+
+  static String _transliterateBol(String bol) {
+    const map = {
+      'धा': 'Dha', 'धिं': 'Dhin', 'धी': 'Dhi', 'धिन': 'Dhin',
+      'ता': 'Ta', 'तिं': 'Tin', 'ती': 'Ti',
+      'ना': 'Na', 'नि': 'Ni',
+      'गे': 'Ge', 'क': 'Ka', 'कत': 'Kata',
+      'धागे': 'Dhage', 'तिरकिट': 'Tirkita', 'तू': 'Tu',
+    };
+    return map[bol] ?? bol;
+  }
+
   factory ExerciseTaal.fromJson(Map<String, dynamic> json) {
     return ExerciseTaal(
       id: json['id'] as String,
@@ -262,6 +279,19 @@ class SwarInfo extends Equatable {
       isKomal: json['isKomal'] as bool? ?? false,
       isTivra: json['isTivra'] as bool? ?? false,
     );
+  }
+
+  /// English transliteration of this swara (e.g. "Sa", "re", "Re", "Ga").
+  String get english {
+    final normalizedSemitone = ((semitone % 12) + 12) % 12;
+    final swara = Swara.values.firstWhere(
+      (s) => s.semitoneOffset == normalizedSemitone,
+      orElse: () => Swara.sa,
+    );
+    String name = swara.english;
+    if (octaveMarker == 'upper') name = "$name'";
+    if (octaveMarker == 'lower') name = '$name,';
+    return name;
   }
 
   @override

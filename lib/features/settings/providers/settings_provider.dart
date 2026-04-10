@@ -8,12 +8,14 @@ class SettingsProvider extends ChangeNotifier {
   static const String _keyBackgroundPlay = 'background_play';
   static const String _keyIsPro = 'is_pro';
   static const String _keyShowHints = 'show_hints';
-  
+  static const String _keySwarNotation = 'swar_notation';
+
   String _language = 'en';
   int _bufferSize = 256; // Audio buffer size
   bool _backgroundPlay = true;
   bool _isPro = false;
   bool _showHints = true;
+  String _swarNotation = 'hindi'; // 'hindi' or 'english'
   
   SettingsProvider() {
     _loadSettings();
@@ -25,6 +27,8 @@ class SettingsProvider extends ChangeNotifier {
   bool get backgroundPlay => _backgroundPlay;
   bool get isPro => _isPro;
   bool get showHints => _showHints;
+  String get swarNotation => _swarNotation;
+  bool get useEnglishNotation => _swarNotation == 'english';
 
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
@@ -34,7 +38,8 @@ class SettingsProvider extends ChangeNotifier {
     _backgroundPlay = prefs.getBool(_keyBackgroundPlay) ?? true;
     _isPro = prefs.getBool(_keyIsPro) ?? false;
     _showHints = prefs.getBool(_keyShowHints) ?? true;
-    
+    _swarNotation = prefs.getString(_keySwarNotation) ?? 'hindi';
+
     notifyListeners();
   }
 
@@ -73,6 +78,13 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> setSwarNotation(String notation) async {
+    _swarNotation = notation;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_keySwarNotation, notation);
+    notifyListeners();
+  }
+
   /// Reset all settings to defaults
   Future<void> resetSettings() async {
     final prefs = await SharedPreferences.getInstance();
@@ -82,6 +94,7 @@ class SettingsProvider extends ChangeNotifier {
     _bufferSize = 256;
     _backgroundPlay = true;
     _showHints = true;
+    _swarNotation = 'hindi';
     // Don't reset isPro
     
     notifyListeners();
