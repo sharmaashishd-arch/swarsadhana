@@ -1,27 +1,27 @@
-const CACHE_VERSION = 'swarsadhana-v3';
+const CACHE_VERSION = 'swarsadhana-v1';
 const AUDIO_CACHE = 'swarsadhana-audio-v1';
 const FONT_CACHE = 'swarsadhana-fonts-v1';
 
 const PRECACHE_URLS = [
-  './',
-  'index.html',
-  'styles.css',
-  'css/robot-riyaaz.css',
-  'css/robot-guruji.css',
-  'js/practice-defaults.js',
-  'js/music-constants.js',
-  'js/taal-definitions.js',
-  'js/webaudiofont/WebAudioFontPlayer.js',
-  'js/webaudiofont/0210_FluidR3_GM_sf2_file.js',
-  'js/realistic-audio-engine.js',
-  'js/robot-riyaaz.js',
-  'js/robot-riyaaz-ui.js',
-  'js/robot-guruji.js',
-  'assets/exercises/hindustani_class1.json',
-  'manifest.json',
-  'favicon.png',
-  'icons/icon-192.png',
-  'icons/icon-512.png',
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/css/robot-riyaaz.css',
+  '/css/robot-guruji.css',
+  '/js/practice-defaults.js',
+  '/js/music-constants.js',
+  '/js/taal-definitions.js',
+  '/js/webaudiofont/WebAudioFontPlayer.js',
+  '/js/webaudiofont/0210_FluidR3_GM_sf2_file.js',
+  '/js/realistic-audio-engine.js',
+  '/js/robot-riyaaz.js',
+  '/js/robot-riyaaz-ui.js',
+  '/js/robot-guruji.js',
+  '/assets/exercises/hindustani_class1.json',
+  '/manifest.json',
+  '/favicon.png',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {
@@ -48,7 +48,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.includes('/assets/audio/')) {
+  if (url.pathname.startsWith('/assets/audio/')) {
     event.respondWith(cacheFirstAudio(event.request));
     return;
   }
@@ -73,12 +73,6 @@ async function cacheFirstShell(request) {
     }
     return response;
   } catch {
-    // For navigation requests (page loads), serve the cached shell so the
-    // app still opens offline even if the exact URL wasn't cached.
-    if (request.mode === 'navigate') {
-      const shell = await caches.match('index.html');
-      if (shell) return shell;
-    }
     return new Response('Offline', { status: 503, statusText: 'Offline' });
   }
 }

@@ -68,42 +68,6 @@ function cancelActiveNote(envelope, osc, fadeTime) {
     }
 }
 
-/**
- * Returns the display label for a swara based on the current notation setting.
- *
- * In Hindi mode  → swarInfo.hindi (Devanagari script, e.g. "सा", "रे॒")
- * In English mode → swarCode itself, which already IS the English label
- *                   (e.g. "Sa", "re", "Re", "Ga", ".Sa", "Sa.")
- *
- * @param {string}  swarCode  The canonical swar key (e.g. 'Sa', 're', '.Sa')
- * @param {object}  swarInfo  Object from exerciseManager.getSwarInfo(), may have .hindi
- * @returns {string}
- */
-function getSwarLabel(swarCode, swarInfo) {
-    if (window.globalSwarNotation === 'english') return swarCode;
-    return (swarInfo && swarInfo.hindi) || swarCode;
-}
-
-/** Transliteration map for tabla bols (Devanagari → Latin). */
-const BOL_TRANSLITERATION = Object.freeze({
-    'धा': 'Dha', 'धिं': 'Dhin', 'धी': 'Dhi', 'धिन': 'Dhin',
-    'ता': 'Ta',  'तिं': 'Tin',  'ती': 'Ti',
-    'ना': 'Na',  'गे': 'Ge',   'क': 'Ka',
-    'धागे': 'Dhage', 'तिरकिट': 'Tirkita', 'कत': 'Kata', 'तू': 'Tu',
-});
-
-/**
- * Returns the display label for a tabla bol based on the current notation setting.
- * @param {string} hindiBol  Devanagari bol string (e.g. 'धा', 'धिं')
- * @returns {string}
- */
-function getBolLabel(hindiBol) {
-    if (window.globalSwarNotation === 'english') {
-        return BOL_TRANSLITERATION[hindiBol] || hindiBol;
-    }
-    return hindiBol;
-}
-
 if (typeof window !== 'undefined') {
     window.SWAR_RATIOS = SWAR_RATIOS;
     window.SWAR_SEMITONES = SWAR_SEMITONES;
@@ -112,7 +76,4 @@ if (typeof window !== 'undefined') {
     window.freqToMidi = freqToMidi;
     window.computeNoteDuration = computeNoteDuration;
     window.cancelActiveNote = cancelActiveNote;
-    window.getSwarLabel = getSwarLabel;
-    window.getBolLabel = getBolLabel;
-    window.BOL_TRANSLITERATION = BOL_TRANSLITERATION;
 }

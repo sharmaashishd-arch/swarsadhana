@@ -6,7 +6,6 @@ import '../models/exercise.dart';
 import '../models/grading.dart';
 import '../../../core/constants/music_constants.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../settings/providers/settings_provider.dart';
 
 /// Main Sadhana Screen - Exercise Browser
 class RobotRiyaazScreen extends StatefulWidget {
@@ -255,7 +254,6 @@ class ExerciseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useEnglish = context.watch<SettingsProvider>().useEnglishNotation;
     return Consumer<RobotRiyaazProvider>(
       builder: (context, provider, child) {
         final exercise = provider.selectedExercise;
@@ -292,10 +290,10 @@ class ExerciseDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                 ],
-                _buildSwarDisplay(exercise, provider, useEnglish),
+                _buildSwarDisplay(exercise, provider),
                 if (taal != null) ...[
                   const SizedBox(height: 16),
-                  _buildTaalDisplay(taal, useEnglish),
+                  _buildTaalDisplay(taal),
                 ],
                 const SizedBox(height: 12),
                 _buildAccompanimentBadges(provider),
@@ -315,9 +313,7 @@ class ExerciseDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSwarDisplay(Exercise exercise, RobotRiyaazProvider provider, bool useEnglish) {
-    final aarohLabel = useEnglish ? 'Aaroh' : 'आरोह';
-    final avrohLabel = useEnglish ? 'Avroh' : 'अवरोह';
+  Widget _buildSwarDisplay(Exercise exercise, RobotRiyaazProvider provider) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -337,23 +333,23 @@ class ExerciseDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           if (exercise.aaroh != null)
-            _buildSwarLine(aarohLabel, exercise.aaroh!, provider, useEnglish),
+            _buildSwarLine('आरोह', exercise.aaroh!, provider),
           if (exercise.avroh != null) ...[
             const SizedBox(height: 8),
-            _buildSwarLine(avrohLabel, exercise.avroh!, provider, useEnglish),
+            _buildSwarLine('अवरोह', exercise.avroh!, provider),
           ],
           if (exercise.aarohPhrases != null)
             ...exercise.aarohPhrases!.map(
               (phrase) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: _buildSwarLine(aarohLabel, phrase, provider, useEnglish),
+                child: _buildSwarLine('आरोह', phrase, provider),
               ),
             ),
           if (exercise.avrohPhrases != null)
             ...exercise.avrohPhrases!.map(
               (phrase) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: _buildSwarLine(avrohLabel, phrase, provider, useEnglish),
+                child: _buildSwarLine('अवरोह', phrase, provider),
               ),
             ),
         ],
@@ -362,7 +358,7 @@ class ExerciseDetailScreen extends StatelessWidget {
   }
 
   Widget _buildSwarLine(
-      String label, List<String> swars, RobotRiyaazProvider provider, bool useEnglish) {
+      String label, List<String> swars, RobotRiyaazProvider provider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -377,9 +373,6 @@ class ExerciseDetailScreen extends StatelessWidget {
           children: swars.map((swar) {
             final info = provider.getSwarInfo(swar);
             final isRest = swar == '-';
-            final displayText = useEnglish
-                ? (info?.english ?? swar)
-                : (info?.hindi ?? swar);
             return Container(
               width: 36,
               height: 36,
@@ -394,11 +387,11 @@ class ExerciseDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                displayText,
+                info?.hindi ?? swar,
                 style: TextStyle(
                   color: isRest ? Colors.white54 : Colors.black,
                   fontWeight: FontWeight.w600,
-                  fontFamily: useEnglish ? null : 'NotoSansDevanagari',
+                  fontFamily: 'NotoSansDevanagari',
                 ),
               ),
             );
@@ -408,11 +401,7 @@ class ExerciseDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTaalDisplay(ExerciseTaal taal, bool useEnglish) {
-    final bols = useEnglish ? taal.bolsEnglish : taal.bols;
-    final taalTitle = useEnglish
-        ? taal.name
-        : '${taal.name} ${taal.nameHindi ?? ''}';
+  Widget _buildTaalDisplay(ExerciseTaal taal) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -423,7 +412,7 @@ class ExerciseDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            taalTitle,
+            '${taal.name} ${taal.nameHindi ?? ''}',
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -472,13 +461,13 @@ class ExerciseDetailScreen extends StatelessWidget {
                         fontSize: 12,
                       ),
                     ),
-                    if (bols != null && index < bols.length)
+                    if (taal.bols != null && index < taal.bols!.length)
                       Text(
-                        bols[index],
-                        style: TextStyle(
+                        taal.bols![index],
+                        style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 10,
-                          fontFamily: useEnglish ? null : 'NotoSansDevanagari',
+                          fontFamily: 'NotoSansDevanagari',
                         ),
                       ),
                   ],
@@ -743,7 +732,6 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final useEnglish = context.watch<SettingsProvider>().useEnglishNotation;
     return Consumer<RobotRiyaazProvider>(
       builder: (context, provider, child) {
         if (provider.sessionState == RobotSessionState.complete &&
@@ -786,8 +774,8 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
             children: [
               _buildSessionStatus(provider),
               _buildSessionSpeedSelector(provider),
-              _buildDualStrip(provider, useEnglish),
-              Expanded(child: _buildCurrentSwar(provider, useEnglish)),
+              _buildDualStrip(provider),
+              Expanded(child: _buildCurrentSwar(provider)),
             ],
           ),
         );
@@ -795,7 +783,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     );
   }
 
-  Widget _buildDualStrip(RobotRiyaazProvider provider, bool useEnglish) {
+  Widget _buildDualStrip(RobotRiyaazProvider provider) {
     final events = provider.currentEvents;
     if (events.isEmpty) return const SizedBox.shrink();
 
@@ -892,7 +880,6 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                           subdivision,
                           taal,
                           totalTaalBeats,
-                          useEnglish,
                         );
                       },
                     ),
@@ -916,7 +903,6 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     int subdivision,
     ExerciseTaal? taal,
     int totalTaalBeats,
-    bool useEnglish,
   ) {
     final taalBeatIdx = beatCol % totalTaalBeats;
     final beatNum = taalBeatIdx + 1;
@@ -926,9 +912,8 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     final isCurrentBeat = beatCol == currentBeatCol;
 
     final marker = isSam ? 'X' : isKhali ? '०' : (isTali ? '|' : '');
-    final bolList = useEnglish ? taal?.bolsEnglish : taal?.bols;
-    final bol = (bolList != null && taalBeatIdx < bolList.length)
-        ? bolList[taalBeatIdx]
+    final bol = (taal?.bols != null && taalBeatIdx < taal!.bols!.length)
+        ? taal.bols![taalBeatIdx]
         : '';
 
     Color borderColor = Colors.transparent;
@@ -946,11 +931,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
       final hasEvent = eventIdx < events.length;
       final info =
           hasEvent ? provider.getSwarInfo(events[eventIdx].swar) : null;
-      final label = hasEvent
-          ? (useEnglish
-              ? (info?.english ?? events[eventIdx].swar)
-              : (info?.hindi ?? events[eventIdx].swar))
-          : '-';
+      final label = hasEvent ? (info?.hindi ?? events[eventIdx].swar) : '-';
 
       final isActive = isPlaying && eventIdx == currentSwarIdx;
       final isDone = isPlaying && eventIdx < currentSwarIdx;
@@ -988,7 +969,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
           child: Text(
             label,
             style: TextStyle(
-              fontFamily: useEnglish ? null : 'NotoSansDevanagari',
+              fontFamily: 'NotoSansDevanagari',
               fontSize: isActive ? 14 : 11,
               fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
               color: isActive
@@ -1052,7 +1033,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                   if (bol.isNotEmpty)
                     Text(bol,
                         style: TextStyle(
-                          fontFamily: useEnglish ? null : 'NotoSansDevanagari',
+                          fontFamily: 'NotoSansDevanagari',
                           fontSize: 8,
                           color: isCurrentBeat
                               ? Colors.white70
@@ -1152,14 +1133,11 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     }
   }
 
-  Widget _buildCurrentSwar(RobotRiyaazProvider provider, bool useEnglish) {
+  Widget _buildCurrentSwar(RobotRiyaazProvider provider) {
     final currentSwar = provider.currentSwar;
     final info = currentSwar != null
         ? provider.getSwarInfo(currentSwar.swar)
         : null;
-    final displayText = useEnglish
-        ? (info?.english ?? currentSwar?.swar ?? '-')
-        : (info?.hindi ?? currentSwar?.swar ?? '-');
 
     return Container(
       padding: const EdgeInsets.all(32),
@@ -1177,12 +1155,12 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
             ),
             child: Center(
               child: Text(
-                displayText,
-                style: TextStyle(
+                info?.hindi ?? currentSwar?.swar ?? '-',
+                style: const TextStyle(
                   fontSize: 64,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
-                  fontFamily: useEnglish ? null : 'NotoSansDevanagari',
+                  fontFamily: 'NotoSansDevanagari',
                 ),
               ),
             ),

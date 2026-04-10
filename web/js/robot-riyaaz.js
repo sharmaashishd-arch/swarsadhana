@@ -25,7 +25,7 @@ class ExerciseManager {
         this.loaded = false;
     }
     
-    async loadExercises(jsonPath = 'assets/exercises/hindustani_class1.json') {
+    async loadExercises(jsonPath = '/assets/exercises/hindustani_class1.json') {
         try {
             const response = await fetch(jsonPath);
             const data = await response.json();

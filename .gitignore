@@ -43,3 +43,32 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Node modules
+web/node_modules/
+
+# Cursor IDE
+.cursor/
+
+# Platform build artifacts
+/android/.gradle/
+/ios/Pods/
+*.lock.hcl
+
+# Local properties
+/android/local.properties
+
+# Android release signing (secrets)
+/android/key.properties
+*.jks
+
+# Packaged app builds
+swarsadhana.apk
+swarsadhana.app/
+
+# Playwright artifacts
+web/playwright-report/
+web/test-results/
+
+# Android build
+/android/build/
