@@ -26,6 +26,8 @@ const PRACTICE_DEFAULTS = Object.freeze({
     swarPerMatra: 1,
 
     recommendedSaptak: 'MADHYA',
+
+    swarNotation: 'hindi', // 'hindi' | 'english'
 });
 
 const STORAGE_KEYS = Object.freeze({
@@ -34,6 +36,7 @@ const STORAGE_KEYS = Object.freeze({
     SAPTAK: 'ss_saptak',
     KEY: 'ss_key',
     TEMPO: 'ss_tempo',
+    SWAR_NOTATION: 'ss_swar_notation',
 });
 
 if (typeof window !== 'undefined') {
