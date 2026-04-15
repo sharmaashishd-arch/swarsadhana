@@ -47,8 +47,9 @@ app.*.map.json
 # Node modules
 web/node_modules/
 
-# Cursor IDE
-.cursor/
+# Cursor IDE (keep .cursor/rules/ for project conventions)
+.cursor/*
+!.cursor/rules/
 
 # Platform build artifacts
 /android/.gradle/

@@ -253,20 +253,16 @@ class RobotRiyaazUI {
     
     buildSwarDisplay(exercise) {
         let html = '';
-
-        const useEnglish = window.globalSwarNotation === 'english';
-        const aarohLabel = useEnglish ? 'Aaroh' : 'आरोह';
-        const avrohLabel = useEnglish ? 'Avroh' : 'अवरोह';
-
+        
         const renderSwarLine = (swars, label, direction) => {
             if (!swars) return '';
-
+            
             const swarElements = swars.map(s => {
                 if (s === '-') return '<span class="swar rest">-</span>';
                 const swarInfo = this.exerciseManager.getSwarInfo(s) || {};
-                return `<span class="swar" data-swar="${s}">${getSwarLabel(s, swarInfo)}</span>`;
+                return `<span class="swar" data-swar="${s}">${swarInfo.hindi || s}</span>`;
             }).join('');
-
+            
             return `
                 <div class="swar-line ${direction}">
                     <span class="line-label">${label}</span>
@@ -274,10 +270,10 @@ class RobotRiyaazUI {
                 </div>
             `;
         };
-
+        
         const renderPhrases = (phrases, label, direction) => {
             if (!phrases) return '';
-
+            
             return `
                 <div class="swar-phrases ${direction}">
                     <span class="line-label">${label}</span>
@@ -287,7 +283,7 @@ class RobotRiyaazUI {
                                 ${phrase.map(s => {
                                     if (s === '-') return '<span class="swar rest">-</span>';
                                     const info = this.exerciseManager.getSwarInfo(s) || {};
-                                    return `<span class="swar">${getSwarLabel(s, info)}</span>`;
+                                    return `<span class="swar">${info.hindi || s}</span>`;
                                 }).join('')}
                             </div>
                         `).join('')}
@@ -295,29 +291,29 @@ class RobotRiyaazUI {
                 </div>
             `;
         };
-
+        
         // Aaroh
         if (exercise.aaroh) {
-            html += renderSwarLine(exercise.aaroh, aarohLabel, 'aaroh');
+            html += renderSwarLine(exercise.aaroh, 'आरोह', 'aaroh');
         }
         if (exercise.aaroh_phrases) {
-            html += renderPhrases(exercise.aaroh_phrases, aarohLabel, 'aaroh');
+            html += renderPhrases(exercise.aaroh_phrases, 'आरोह', 'aaroh');
         }
         if (exercise.aaroh_groups) {
-            html += renderPhrases(exercise.aaroh_groups, aarohLabel, 'aaroh');
+            html += renderPhrases(exercise.aaroh_groups, 'आरोह', 'aaroh');
         }
-
+        
         // Avroh
         if (exercise.avroh) {
-            html += renderSwarLine(exercise.avroh, avrohLabel, 'avroh');
+            html += renderSwarLine(exercise.avroh, 'अवरोह', 'avroh');
         }
         if (exercise.avroh_phrases) {
-            html += renderPhrases(exercise.avroh_phrases, avrohLabel, 'avroh');
+            html += renderPhrases(exercise.avroh_phrases, 'अवरोह', 'avroh');
         }
         if (exercise.avroh_groups) {
-            html += renderPhrases(exercise.avroh_groups, avrohLabel, 'avroh');
+            html += renderPhrases(exercise.avroh_groups, 'अवरोह', 'avroh');
         }
-
+        
         return html;
     }
     
@@ -340,8 +336,8 @@ class RobotRiyaazUI {
             else if (isKhali) className += ' khali';
             
             const marker = isKhali ? '०' : (isTali || isSam ? 'X' : '');
-            const bol = getBolLabel(bols[i] || '');
-
+            const bol = bols[i] || '';
+            
             html += `
                 <div class="${className}" data-beat="${i}">
                     <span class="beat-num">${beatNum}</span>
@@ -500,14 +496,14 @@ class RobotRiyaazUI {
             else if (isKhali) colClass += ' khali';
             
             const marker = isSam ? 'X' : isKhali ? '०' : (isTali ? '|' : '');
-            const bol = getBolLabel(bols[taalBeatIdx] || '');
-
+            const bol = bols[taalBeatIdx] || '';
+            
             let subcellsHtml = '';
             for (let s = 0; s < subdivision; s++) {
                 const eventIdx = b * subdivision + s;
                 const event = events[eventIdx];
                 const swarLabel = event
-                    ? getSwarLabel(event.swar, this.exerciseManager.getSwarInfo(event.swar))
+                    ? (this.exerciseManager.getSwarInfo(event.swar)?.hindi || event.swar)
                     : '-';
                 const isEmpty = !event;
                 
@@ -620,7 +616,7 @@ class RobotRiyaazUI {
         const currentSwarEl = document.getElementById('current-swar');
         if (currentSwarEl) {
             const swarInfo = this.exerciseManager.getSwarInfo(event.swar) || {};
-            currentSwarEl.textContent = getSwarLabel(event.swar, swarInfo);
+            currentSwarEl.textContent = swarInfo.hindi || event.swar;
             currentSwarEl.className = 'current-swar pulse';
             setTimeout(() => currentSwarEl.classList.remove('pulse'), 200);
         }
@@ -669,7 +665,7 @@ class RobotRiyaazUI {
         const detectedEl = document.getElementById('detected-swar');
         if (detectedEl) {
             const swarInfo = this.exerciseManager.getSwarInfo(grade.detectedSwar) || {};
-            detectedEl.textContent = getSwarLabel(grade.detectedSwar, swarInfo);
+            detectedEl.textContent = swarInfo.hindi || grade.detectedSwar;
             detectedEl.className = 'detected-swar ' + (grade.isCorrectSwar ? 'correct' : 'incorrect');
         }
         

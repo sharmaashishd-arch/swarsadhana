@@ -1,0 +1,39 @@
+---
+description: Cross-platform consistency rules for SwarSadhana (web, iOS, Android)
+alwaysApply: true
+---
+
+# Cross-Platform Consistency
+
+SwarSadhana ships as three apps from one repo:
+- **Flutter** (iOS + Android): `lib/`, assets in `assets/`
+- **Standalone web**: `web/` (HTML/JS/CSS, not Flutter-web)
+
+## Shared Assets
+
+- Tanpura MP3 drones live in `assets/audio/tanpura/` (Flutter) AND `web/assets/audio/tanpura/` (web).
+- When adding/modifying audio assets, update BOTH locations.
+- Run `diff <(ls assets/audio/tanpura/) <(ls web/assets/audio/tanpura/)` to verify parity.
+- Document every audio asset in `assets/licenses.md`.
+
+## Feature Parity
+
+- Every user-facing feature must work on all three platforms.
+- When implementing a feature, implement it in BOTH the Flutter code AND the web JS code.
+- The swara look-ahead strip, tanpura controls, and exercise UI must behave consistently.
+
+## Testing Checklist (run for every change)
+
+1. `flutter analyze` — no new errors
+2. `flutter test` — all tests pass
+3. `flutter build ios --simulator --no-codesign` — iOS compiles
+4. `flutter build apk --debug` — Android compiles
+5. Serve `web/` locally and verify in browser
+
+## Sound Engine Mapping
+
+| Feature | Flutter (iOS/Android) | Web (standalone) |
+|---------|----------------------|-----------------|
+| Swar demo | `dart_melty_soundfont` + `harmonium.sf2` | WebAudioFont Accordion preset |
+| Tanpura drone | Recorded MP3 loops via `flutter_soloud` | Recorded MP3 loops via Web Audio API |
+| Tabla | Sample-based via `flutter_soloud` | Synthesized via Web Audio API |

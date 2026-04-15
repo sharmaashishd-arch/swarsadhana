@@ -1,0 +1,66 @@
+---
+description: TDD + Auto Acceptance + E2E UI testing rules - No manual review required
+alwaysApply: true
+---
+
+# TDD + Auto Acceptance + E2E Testing Rules
+
+## Operating Mode
+- User is a product person, not a tester
+- Define success/failure criteria and implement automated tests
+- Do NOT ask user to review or manually verify anything
+
+## Test-Driven Development
+For every feature/bugfix:
+1. Write acceptance criteria FIRST (success + failure cases)
+2. Write automated tests for those criteria
+3. Implement until tests pass
+4. Add regression tests for bugs
+
+**No feature work without tests.**
+
+## Acceptance Criteria Storage
+Create `docs/acceptance/<feature>.md` with:
+- **Success criteria** (observable behavior)
+- **Failure criteria** (expected failure behavior)
+- **Out of scope** (what is not included)
+
+## Required Test Layers
+
+### A) Unit Tests
+- Parsing/content validation
+- Scheduling/timing logic
+- Scoring/mapping rules
+- Pure functions
+
+### B) Integration Tests
+- API endpoints
+- Background jobs
+- Provider failure handling
+- Persistence and idempotency
+
+### C) E2E Tests (Playwright)
+- Simulate real user (navigate, click, fill, assert)
+- Role-based selectors: `getByRole`, `getByLabel`, `getByText`
+- No hard sleeps; use `expect()`-based waits
+- Screenshots/video on failure
+- Test empty/error states
+
+## Fail-Safe Requirements
+On dependency failure:
+- Show friendly error toast
+- Keep app usable
+- Log with error ID
+- Add tests for these scenarios
+
+## Definition of Done
+- Unit tests pass
+- Integration tests pass
+- E2E tests pass
+- Lint + typecheck pass
+- Acceptance doc exists/updated
+
+## Scope Discipline
+- Implement ONLY what the prompt asks
+- No extra features or redesigns
+- Pick simplest safe default for ambiguity

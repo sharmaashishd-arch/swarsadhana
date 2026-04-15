@@ -1,0 +1,27 @@
+name: Local Agent Setup
+version: 1.0.0
+schema: v1
+
+models:
+  # 🧠 Deep planning
+  - name: Gemma Planner
+    provider: ollama
+    model: gemma4:26b
+
+  # 💻 Main coding engine
+  - name: Qwen Coder
+    provider: ollama
+    model: qwen2.5-coder:14b
+
+  # ⚡ Fast helper
+  - name: Fast Coder
+    provider: ollama
+    model: qwen2.5-coder:7b
+
+defaultModel: Gemma Planner
+
+contextLength: 8192
+
+completionOptions:
+  temperature: 0.2
+  maxTokens: 1024

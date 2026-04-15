@@ -1,0 +1,110 @@
+---
+description: E2E testing rules - every UI feature must be tested end-to-end on web AND Flutter
+alwaysApply: true
+---
+
+# E2E Testing Rules
+
+Every UI feature must be tested end-to-end. This project ships on **three platforms** — run E2E on all affected platforms.
+
+## Web E2E (Playwright)
+
+**Location:** `web/tests/e2e/<feature>.spec.js`
+
+```bash
+cd web && npx playwright test          # headless
+cd web && npx playwright test --headed # visible browser
+```
+
+Playwright auto-starts `python3 -m http.server 8080` via `webServer` config.
+
+### Required setup pattern
+
+```javascript
+test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:8080');
+    await page.waitForSelector('.main-nav', { timeout: 10000 });
+    await page.click('#audio-status');
+    await page.waitForTimeout(500);
+});
+```
+
+### Selector preferences (in order)
+1. `getByRole` / `getByLabel` / `getByText`
+2. `locator('text=...')`
+3. CSS class (last resort)
+
+### Waiting — no hard sleeps
+Use `expect(locator).toBeVisible()` or `waitForSelector` with timeout.
+
+## Flutter E2E (integration_test)
+
+**Location:** `integration_test/<feature>_test.dart`
+
+```bash
+flutter test integration_test/          # all integration tests
+flutter test integration_test/foo_test.dart  # single file
+```
+
+To run on a device/simulator:
+```bash
+flutter test integration_test/ -d <device_id>
+```
+
+### Required setup pattern
+
+```dart
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+import 'package:swarsadhana/main.dart' as app;
+
+void main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('feature description', (tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+    // ... interact and assert
+  });
+}
+```
+
+### Selector preferences (in order)
+1. `find.byKey(Key('...'))` — semantic keys set in widgets
+2. `find.text('...')`
+3. `find.byType(WidgetType)`
+
+### If `integration_test/` does not exist yet
+Create it and add `integration_test` to `dev_dependencies` in `pubspec.yaml`:
+```yaml
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+```
+
+## Full Verification Checklist
+
+Run after every UI feature (complements cross-platform rule):
+
+```bash
+# Web
+cd web && npx vitest run && npx playwright test
+
+# Flutter
+flutter analyze
+flutter test
+flutter test integration_test/   # if integration tests exist
+flutter build ios --simulator --no-codesign
+flutter build apk --debug
+```
+
+## When to Write Which
+
+| Change touches…         | Web E2E | Flutter E2E |
+|-------------------------|---------|-------------|
+| `web/` only             | Yes     | No          |
+| `lib/` only             | No      | Yes         |
+| Both (feature parity)   | Yes     | Yes         |
+| Shared assets only      | Yes     | Yes         |
+
+No feature is complete until its E2E tests pass on all affected platforms.

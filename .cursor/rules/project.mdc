@@ -1,0 +1,49 @@
+---
+description: Swarsadhana project rules — Flutter/Dart music education app + vanilla JS web PWA
+alwaysApply: true
+---
+
+# Swarsadhana Project Rules
+
+## Architecture
+
+- **Flutter/Dart mobile app** (`lib/`): iOS and Android targets.
+- **Web PWA** (`web/`): vanilla JavaScript, served via static server. Separate tooling from the Flutter app.
+- **Assets** (`assets/`): audio files, soundfonts, images.
+- **Acceptance docs**: `docs/acceptance/` for feature specifications.
+
+## Flutter Conventions
+
+- **Provider** for state management.
+- **Hive** for local persistence. **shared_preferences** for simple key-value storage.
+- **flutter_soloud** for audio playback. **dart_melty_soundfont** for MIDI rendering.
+- `analysis_options.yaml` with `flutter_lints` — all lint warnings must be resolved.
+- Follow Dart naming conventions: `lowerCamelCase` for variables/functions, `UpperCamelCase` for types.
+
+## Testing (Flutter)
+
+- `flutter_test` for unit tests. `integration_test` for device integration tests.
+- Run tests via `flutter test`.
+- Mock audio and sensor dependencies in unit tests.
+
+## Web Sub-App
+
+- Vanilla JS in `web/` — no TypeScript (explicitly opted out).
+- Separate `package.json` with Vitest + Playwright + ESLint for web-specific tooling.
+- Dev server: `python3 -m http.server` or equivalent static server.
+
+## Content
+
+- Audio assets and soundfonts in `assets/`.
+- Music content (ragas, lessons, exercises) should be data-driven, not hardcoded in Dart code.
+
+## Documentation
+
+- Feature acceptance criteria in `docs/acceptance/`.
+- Write acceptance docs before implementing new features.
+
+## Platform Targets
+
+- Primary: Flutter mobile (iOS + Android).
+- Secondary: Web PWA (vanilla JS).
+- Features may ship mobile-first, but web parity should follow.

@@ -135,17 +135,6 @@
                             </div>
                         </section>
 
-                        <section class="settings-section">
-                            <h3>Display</h3>
-                            <div class="settings-row">
-                                <label>Swara &amp; Taal Notation</label>
-                                <div class="string-options" id="notation-options">
-                                    <button class="string-btn active" id="notation-hindi-btn" onclick="setSwarNotation('hindi')">Hindi</button>
-                                    <button class="string-btn" id="notation-english-btn" onclick="setSwarNotation('english')">English</button>
-                                </div>
-                            </div>
-                        </section>
-
                         <section class="settings-section settings-diagnostics">
                             <button class="diagnostics-toggle" onclick="toggleDiagnostics()">
                                 <span>Diagnostics</span>
@@ -608,8 +597,6 @@
     // ============================================
     
     let globalSaptak = PRACTICE_DEFAULTS.saptak;
-    let globalSwarNotation = PRACTICE_DEFAULTS.swarNotation;
-    window.globalSwarNotation = globalSwarNotation;
 
     function setGlobalKey(key) {
         globalKey = key;
@@ -639,19 +626,7 @@
         updateSettingsSummary();
         try { localStorage.setItem(STORAGE_KEYS.SAPTAK, saptak); } catch(e) {}
     }
-
-    function setSwarNotation(notation) {
-        globalSwarNotation = notation;
-        window.globalSwarNotation = notation;
-        document.getElementById('notation-hindi-btn').classList.toggle('active', notation === 'hindi');
-        document.getElementById('notation-english-btn').classList.toggle('active', notation === 'english');
-        try { localStorage.setItem(STORAGE_KEYS.SWAR_NOTATION, notation); } catch(e) {}
-        // Re-render current exercise display if open
-        if (window.robotUI && window.robotUI.currentExercise) {
-            window.robotUI.renderExerciseDetail(window.robotUI.currentExercise);
-        }
-    }
-
+    
     function setGlobalTempo(bpm) {
         globalTempo = parseInt(bpm);
         const tv = document.getElementById('tempo-value');
@@ -772,14 +747,6 @@
             }
         } catch(e) {}
 
-        // Restore notation preference
-        try {
-            const savedNotation = localStorage.getItem(STORAGE_KEYS.SWAR_NOTATION);
-            if (savedNotation && ['hindi', 'english'].includes(savedNotation)) {
-                setSwarNotation(savedNotation);
-            }
-        } catch(e) {}
-
         // Restore user volume preferences from localStorage
         try {
             const savedTanpuraVol = localStorage.getItem(STORAGE_KEYS.TANPURA_VOLUME);
@@ -847,7 +814,7 @@
     </script>
     <script>
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('/sw.js');
     }
     </script>
 </body>

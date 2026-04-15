@@ -6,6 +6,16 @@ Professional Indian Classical Music Accompaniment App for Web, iOS, and Android.
 ![Web](https://img.shields.io/badge/Web-Audio%20API-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+## Quick Start
+
+```bash
+# Web (no dependencies beyond Python 3)
+make setup-web && make web    # http://localhost:8080
+
+# Flutter mobile
+make setup-flutter && make flutter-run
+```
+
 ## Overview
 
 SwarSadhana is a professional-grade music accompaniment app designed for Indian Classical Music practice (Hindustani & Carnatic). The web version uses real-time audio synthesis via Web Audio API, while the mobile apps use high-quality audio samples with DSP processing.
