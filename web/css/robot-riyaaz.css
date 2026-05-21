@@ -127,7 +127,7 @@
     flex-wrap: wrap;
 }
 
-.taal-tag, .speed-tag {
+.taal-tag, .speed-tag, .raga-tag {
     font-size: 0.75rem;
     padding: 0.15rem 0.5rem;
     border-radius: 8px;
@@ -164,6 +164,8 @@
 }
 
 .swar-display-section,
+.raga-info-section,
+.practice-scope-section,
 .taal-display-section {
     background: var(--rr-card-bg);
     border-radius: 12px;
@@ -172,10 +174,57 @@
 }
 
 .swar-display-section h3,
+.raga-info-section h3,
+.practice-scope-section h3,
 .taal-display-section h3 {
     font-size: 0.9rem;
     color: var(--rr-text-muted);
     margin-bottom: 0.75rem;
+}
+
+.practice-scope-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.scope-chip {
+    border: 1px solid rgba(139, 69, 19, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--rr-text);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.7rem;
+}
+
+.scope-chip.active,
+.scope-chip:hover {
+    background: var(--rr-secondary);
+    border-color: var(--rr-secondary);
+    color: white;
+}
+
+.raga-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.raga-chip {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    background: rgba(139, 69, 19, 0.1);
+    color: var(--rr-primary);
+}
+
+.raga-notes {
+    margin: 0.75rem 0 0;
+    color: var(--rr-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
 /* Swar Display */

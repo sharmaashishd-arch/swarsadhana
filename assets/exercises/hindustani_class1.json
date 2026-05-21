@@ -256,7 +256,8 @@
   "categories": [
     "Basic Sargam",
     "Janti Swaras",
-    "Alankar"
+    "Alankar",
+    "Beginner Ragas"
   ],
   "exercises": [
     {
@@ -2098,6 +2099,492 @@
           "Re",
           "Sa"
         ]
+      ]
+    },
+    {
+      "id": "RAGA_YAMAN_01",
+      "title": "Raga Yaman - Aaroh, Avroh, Pakad",
+      "category": "Beginner Ragas",
+      "description": "Repeat after the teacher: Yaman scale movement, pakad, and short chalan phrases.",
+      "raga_mode": "yaman",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 70,
+      "swars_per_beat": 1,
+      "raga": {
+        "name": "Yaman",
+        "thaat": "Kalyan",
+        "jati": "Sampurna-Sampurna",
+        "time": "Evening",
+        "vadi": "Ga",
+        "samvadi": "Ni",
+        "nyas": ["Ga", "Ni", "Sa"],
+        "notes": "Uses tivra Ma. Keep the movement phrase-led rather than plain scale-only."
+      },
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 70,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "sections",
+        "count_in_beats": 4
+      },
+      "lesson_sections": [
+        {
+          "id": "aaroh",
+          "label": "Aaroh",
+          "label_hindi": "आरोह",
+          "phrases": [["Sa", "Re", "Ga", "ma", "Pa", "Dha", "Ni", ".Sa"]]
+        },
+        {
+          "id": "avroh",
+          "label": "Avroh",
+          "label_hindi": "अवरोह",
+          "phrases": [[".Sa", "Ni", "Dha", "Pa", "ma", "Ga", "Re", "Sa"]]
+        },
+        {
+          "id": "pakad",
+          "label": "Pakad",
+          "label_hindi": "पकड़",
+          "phrases": [
+            ["Ni", "Re", "Ga", "-", "Re", "Ga", "ma", "Ga"],
+            ["Pa", "ma", "Ga", "Re", "Ni", "Re", "Sa", "-"]
+          ]
+        },
+        {
+          "id": "chalan",
+          "label": "Chalan",
+          "label_hindi": "चलन",
+          "phrases": [
+            ["Sa", "Re", "Ga", "Re", "Ga", "ma", "Pa", "-"],
+            ["Dha", "Ni", ".Sa", "Ni", "Dha", "Pa", "ma", "Ga"]
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swargeet",
+          "label_hindi": "स्वरगीत",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Ni", "Re", "Ga", "ma", "Ga", "Re", "Sa", "-"],
+                ["Re", "Ga", "ma", "Pa", "Dha", "Ni", ".Sa", "-"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                [".Sa", "Ni", "Dha", "Pa", "ma", "Ga", "Re", "Sa"],
+                ["Pa", "ma", "Ga", "Re", "Ni", "Re", "Sa", "-"]
+              ]
+            },
+            {
+              "id": "aalap",
+              "label": "Aalap",
+              "label_hindi": "आलाप",
+              "phrases": [
+                ["Ni", "Re", "Ga", "-", "Ga", "ma", "Pa", "-"],
+                ["Dha", "Ni", ".Sa", "-", ".Sa", "Ni", "Dha", "Pa"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RAGA_BHUPALI_01",
+      "title": "Raga Bhupali - Aaroh, Avroh, Pakad",
+      "category": "Beginner Ragas",
+      "description": "Repeat after the teacher: pentatonic Bhupali with clear Re-Ga-Pa-Dha-Sa movement.",
+      "raga_mode": "bhupali",
+      "taal_id": "TEENTAAL_16",
+      "tempo_bpm": 72,
+      "swars_per_beat": 1,
+      "raga": {
+        "name": "Bhupali",
+        "thaat": "Kalyan",
+        "jati": "Audav-Audav",
+        "time": "Evening",
+        "vadi": "Ga",
+        "samvadi": "Dha",
+        "nyas": ["Ga", "Dha", "Sa"],
+        "notes": "Ma and Ni are omitted. Keep phrases open, simple, and steady."
+      },
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "TEENTAAL_16",
+        "recommended_bpm": 72,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "sections",
+        "count_in_beats": 4
+      },
+      "lesson_sections": [
+        {
+          "id": "aaroh",
+          "label": "Aaroh",
+          "label_hindi": "आरोह",
+          "phrases": [["Sa", "Re", "Ga", "Pa", "Dha", ".Sa"]]
+        },
+        {
+          "id": "avroh",
+          "label": "Avroh",
+          "label_hindi": "अवरोह",
+          "phrases": [[".Sa", "Dha", "Pa", "Ga", "Re", "Sa"]]
+        },
+        {
+          "id": "pakad",
+          "label": "Pakad",
+          "label_hindi": "पकड़",
+          "phrases": [
+            ["Ga", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ga"],
+            ["Pa", "Ga", "Re", "Sa", "-", "-", "-", "-"]
+          ]
+        },
+        {
+          "id": "chalan",
+          "label": "Chalan",
+          "label_hindi": "चलन",
+          "phrases": [
+            ["Sa", "Re", "Ga", "Pa", "Ga", "Re", "Sa", "-"],
+            ["Re", "Ga", "Pa", "Dha", "Pa", "Ga", "Re", "Sa"]
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swargeet",
+          "label_hindi": "स्वरगीत",
+          "start_beat": 9,
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Dha", "Sa", "Dha", "Pa", "Ga", "Re", "Sa", "Re"],
+                ["Ga", "-", "Ga", "Pa", "Ga", "Re", "Sa", "-"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Ga", "-", "Ga", "Ga", "Pa", "-", "Dha", "Pa"],
+                [".Sa", "-", ".Sa", ".Sa", "Dha", "Re", ".Sa", "-"]
+              ]
+            },
+            {
+              "id": "aalap",
+              "label": "Aalap",
+              "label_hindi": "आलाप",
+              "phrases": [
+                ["Sa", "Re", "Ga", "Re", "Sa", "-", "Dha", "Sa"],
+                ["Re", "Ga", "Pa", "Dha", "Pa", "Ga", "Re", "Sa"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RAGA_DURGA_01",
+      "title": "Raga Durga - Aaroh, Avroh, Pakad",
+      "category": "Beginner Ragas",
+      "description": "Repeat after the teacher: Durga phrases using Sa Re Ma Pa Dha with restful Ma and Sa.",
+      "raga_mode": "durga",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 72,
+      "swars_per_beat": 1,
+      "raga": {
+        "name": "Durga",
+        "thaat": "Bilawal",
+        "jati": "Audav-Audav",
+        "time": "Evening",
+        "vadi": "Ma",
+        "samvadi": "Sa",
+        "nyas": ["Ma", "Sa", "Pa"],
+        "notes": "Ga and Ni are omitted. Phrases often lean on Ma."
+      },
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 72,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "sections",
+        "count_in_beats": 4
+      },
+      "lesson_sections": [
+        {
+          "id": "aaroh",
+          "label": "Aaroh",
+          "label_hindi": "आरोह",
+          "phrases": [["Sa", "Re", "Ma", "Pa", "Dha", ".Sa"]]
+        },
+        {
+          "id": "avroh",
+          "label": "Avroh",
+          "label_hindi": "अवरोह",
+          "phrases": [[".Sa", "Dha", "Pa", "Ma", "Re", "Sa"]]
+        },
+        {
+          "id": "pakad",
+          "label": "Pakad",
+          "label_hindi": "पकड़",
+          "phrases": [
+            ["Ma", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ma"],
+            ["Pa", "Dha", "Pa", "Ma", "Re", "Sa", "-", "-"]
+          ]
+        },
+        {
+          "id": "chalan",
+          "label": "Chalan",
+          "label_hindi": "चलन",
+          "phrases": [
+            ["Sa", "Re", "Ma", "Pa", "Ma", "Re", "Sa", "-"],
+            ["Re", "Ma", "Pa", "Dha", ".Sa", "Dha", "Pa", "Ma"]
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swargeet",
+          "label_hindi": "स्वरगीत",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa", "Dha", "Pa"],
+                ["Ma", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ma"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Pa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Re", "Sa"],
+                ["Ma", "Pa", "Dha", "Pa", "Ma", "Re", "Sa", "-"]
+              ]
+            },
+            {
+              "id": "aalap",
+              "label": "Aalap",
+              "label_hindi": "आलाप",
+              "phrases": [
+                ["Sa", "Re", "Ma", "-", "Ma", "Pa", "Dha", "-"],
+                [".Sa", "Dha", "Pa", "Ma", "Re", "Sa", "-", "-"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RAGA_KAFI_01",
+      "title": "Raga Kafi - Aaroh, Avroh, Pakad",
+      "category": "Beginner Ragas",
+      "description": "Repeat after the teacher: Kafi with komal Ga and komal Ni in gentle phrase motion.",
+      "raga_mode": "kafi",
+      "taal_id": "DADRA_6",
+      "tempo_bpm": 66,
+      "swars_per_beat": 1,
+      "raga": {
+        "name": "Kafi",
+        "thaat": "Kafi",
+        "jati": "Sampurna-Sampurna",
+        "time": "Late evening",
+        "vadi": "Pa",
+        "samvadi": "Sa",
+        "nyas": ["Pa", "Sa", "Re"],
+        "notes": "Uses komal Ga and komal Ni. Keep the descent relaxed and song-like."
+      },
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "DADRA_6",
+        "recommended_bpm": 66,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "sections",
+        "count_in_beats": 4
+      },
+      "lesson_sections": [
+        {
+          "id": "aaroh",
+          "label": "Aaroh",
+          "label_hindi": "आरोह",
+          "phrases": [["Sa", "Re", "ga", "Ma", "Pa", "Dha", "ni", ".Sa"]]
+        },
+        {
+          "id": "avroh",
+          "label": "Avroh",
+          "label_hindi": "अवरोह",
+          "phrases": [[".Sa", "ni", "Dha", "Pa", "Ma", "ga", "Re", "Sa"]]
+        },
+        {
+          "id": "pakad",
+          "label": "Pakad",
+          "label_hindi": "पकड़",
+          "phrases": [
+            ["Sa", "Re", "ga", "Re", "Sa", "-", "ni", "Sa"],
+            ["Re", "ga", "Ma", "Pa", "Ma", "ga", "Re", "Sa"]
+          ]
+        },
+        {
+          "id": "chalan",
+          "label": "Chalan",
+          "label_hindi": "चलन",
+          "phrases": [
+            ["Sa", "Re", "ga", "Ma", "Pa", "Ma", "ga", "Re"],
+            ["Pa", "Dha", "ni", ".Sa", "ni", "Dha", "Pa", "Ma"]
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swargeet",
+          "label_hindi": "स्वरगीत",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Sa", "Re", "ga", "Ma", "Pa", "Ma", "ga", "Re"],
+                ["Sa", "-", "ni", "Sa", "Re", "ga", "Ma", "Pa"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Dha", "ni", ".Sa", "ni", "Dha", "Pa", "Ma", "ga"],
+                ["Re", "ga", "Ma", "Pa", "Ma", "ga", "Re", "Sa"]
+              ]
+            },
+            {
+              "id": "aalap",
+              "label": "Aalap",
+              "label_hindi": "आलाप",
+              "phrases": [
+                ["Sa", "Re", "ga", "-", "Ma", "Pa", "Ma", "ga"],
+                ["Pa", "Dha", "ni", ".Sa", "ni", "Dha", "Pa", "Ma"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RAGA_KHAMAJ_01",
+      "title": "Raga Khamaj - Aaroh, Avroh, Pakad",
+      "category": "Beginner Ragas",
+      "description": "Repeat after the teacher: Khamaj with shuddha Ni in ascent and komal Ni in descent.",
+      "raga_mode": "khamaj",
+      "taal_id": "DADRA_6",
+      "tempo_bpm": 66,
+      "swars_per_beat": 1,
+      "raga": {
+        "name": "Khamaj",
+        "thaat": "Khamaj",
+        "jati": "Shadav-Sampurna",
+        "time": "Night",
+        "vadi": "Ga",
+        "samvadi": "Ni",
+        "nyas": ["Ga", "Pa", "Sa"],
+        "notes": "Shuddha Ni appears in ascent; komal Ni is characteristic in descent."
+      },
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "DADRA_6",
+        "recommended_bpm": 66,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "sections",
+        "count_in_beats": 4
+      },
+      "lesson_sections": [
+        {
+          "id": "aaroh",
+          "label": "Aaroh",
+          "label_hindi": "आरोह",
+          "phrases": [["Sa", "Ga", "Ma", "Pa", "Dha", "Ni", ".Sa"]]
+        },
+        {
+          "id": "avroh",
+          "label": "Avroh",
+          "label_hindi": "अवरोह",
+          "phrases": [[".Sa", "ni", "Dha", "Pa", "Ma", "Ga", "Re", "Sa"]]
+        },
+        {
+          "id": "pakad",
+          "label": "Pakad",
+          "label_hindi": "पकड़",
+          "phrases": [
+            ["Ga", "Ma", "Pa", "Dha", "Ni", ".Sa", "ni", "Dha"],
+            ["Pa", "Ma", "Ga", "Re", "Sa", "-", "-", "-"]
+          ]
+        },
+        {
+          "id": "chalan",
+          "label": "Chalan",
+          "label_hindi": "चलन",
+          "phrases": [
+            ["Sa", "Ga", "Ma", "Pa", "Dha", "Ni", ".Sa", "-"],
+            [".Sa", "ni", "Dha", "Pa", "Ma", "Ga", "Re", "Sa"]
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swargeet",
+          "label_hindi": "स्वरगीत",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Sa", "Ga", "Ma", "Pa", "Dha", "Ni", ".Sa", "-"],
+                [".Sa", "ni", "Dha", "Pa", "Ma", "Ga", "Re", "Sa"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Ga", "Ma", "Pa", "Dha", "Ni", ".Sa", "ni", "Dha"],
+                ["Pa", "Ma", "Ga", "Re", "Sa", "-", "-", "-"]
+              ]
+            },
+            {
+              "id": "aalap",
+              "label": "Aalap",
+              "label_hindi": "आलाप",
+              "phrases": [
+                ["Sa", "Ga", "Ma", "-", "Pa", "Dha", "Ni", ".Sa"],
+                [".Sa", "ni", "Dha", "Pa", "Ma", "Ga", "Re", "Sa"]
+              ]
+            }
+          ]
+        }
       ]
     }
   ]

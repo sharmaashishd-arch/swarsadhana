@@ -125,6 +125,20 @@ class ExerciseManager {
     
     return events;
   }
+
+  getPracticeScopes(exercise) {
+    const scopes = [{ id: 'full', label: 'Full raga' }];
+    (exercise.lesson_sections || []).forEach(section => {
+      scopes.push({ id: section.id, label: section.label });
+      (section.parts || []).forEach(part => {
+        scopes.push({
+          id: `${section.id}:${part.id}`,
+          label: `${section.label} - ${part.label}`,
+        });
+      });
+    });
+    return scopes;
+  }
 }
 
 describe('ExerciseManager', () => {

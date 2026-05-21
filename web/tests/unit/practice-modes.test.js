@@ -38,6 +38,62 @@ class ExerciseManager {
 
         return this.exercises;
     }
+
+    getTaal(taalId) {
+        return this.taals[taalId];
+    }
+
+    getPracticeScopes(exercise) {
+        const scopes = [{ id: 'full', label: 'Full raga' }];
+        (exercise.lesson_sections || []).forEach(section => {
+            scopes.push({ id: section.id, label: section.label });
+            (section.parts || []).forEach(part => {
+                scopes.push({
+                    id: `${section.id}:${part.id}`,
+                    label: `${section.label} - ${part.label}`,
+                });
+            });
+        });
+        return scopes;
+    }
+
+    flattenExercise(exercise, scopeId = 'full') {
+        const events = [];
+        let beatIndex = 0;
+        const includeWholeExercise = !scopeId || scopeId === 'full';
+
+        const processPhrases = (phrases, direction) => {
+            (phrases || []).forEach((phrase, groupIndex) => {
+                phrase.forEach((swar, index) => {
+                    if (swar && swar !== '-') {
+                        events.push({ swar, beatIndex, direction, groupIndex, index });
+                    }
+                    beatIndex++;
+                });
+            });
+        };
+
+        (exercise.lesson_sections || []).forEach(section => {
+            const includeSection = includeWholeExercise || scopeId === section.id;
+            const matchingParts = (section.parts || []).filter(part =>
+                scopeId === `${section.id}:${part.id}`
+            );
+            if (!includeSection && matchingParts.length === 0) return;
+
+            const taal = exercise.taal_id ? this.getTaal(exercise.taal_id) : null;
+            if (section.start_beat && taal?.beats) {
+                const targetIndex = Math.max(0, Math.min(taal.beats - 1, section.start_beat - 1));
+                const currentIndex = beatIndex % taal.beats;
+                beatIndex += (targetIndex - currentIndex + taal.beats) % taal.beats;
+            }
+
+            if (includeSection) processPhrases(section.phrases, section.id);
+            const parts = includeSection ? (section.parts || []) : matchingParts;
+            parts.forEach(part => processPhrases(part.phrases, `${section.id}:${part.id}`));
+        });
+
+        return events;
+    }
 }
 
 /**
@@ -132,15 +188,16 @@ describe('Exercise defaults in JSON', () => {
         });
     });
 
-    test('all exercises default to BPM 80', () => {
+    test('all exercise defaults match their tempo', () => {
         exerciseManager.exercises.forEach(ex => {
-            expect(ex.defaults.recommended_bpm).toBe(80);
+            expect(ex.defaults.recommended_bpm).toBe(ex.tempo_bpm);
         });
     });
 
-    test('exercise tempo_bpm is 80', () => {
+    test('exercise tempo_bpm is inside practice range', () => {
         exerciseManager.exercises.forEach(ex => {
-            expect(ex.tempo_bpm).toBe(80);
+            expect(ex.tempo_bpm).toBeGreaterThanOrEqual(40);
+            expect(ex.tempo_bpm).toBeLessThanOrEqual(240);
         });
     });
 
@@ -162,6 +219,59 @@ describe('Exercise defaults in JSON', () => {
         basic.forEach(ex => {
             expect(ex.defaults.recommended_notes_per_beat).toBe(1);
         });
+    });
+
+    test('beginner ragas include swargeet sections', () => {
+        const ragas = exerciseManager.exercises.filter(ex =>
+            ex.category === 'Beginner Ragas'
+        );
+        expect(ragas.length).toBe(5);
+        ragas.forEach(ex => {
+            const swargeet = ex.lesson_sections?.find(section => section.id === 'swargeet');
+            expect(swargeet).toBeDefined();
+            expect(swargeet.label).toBe('Swargeet');
+            expect(swargeet.parts.map(part => part.id)).toEqual([
+                'sthayi',
+                'antara',
+                'aalap',
+            ]);
+            swargeet.parts.forEach(part => {
+                expect(part.phrases.length).toBeGreaterThan(0);
+            });
+        });
+    });
+
+    test('Bhupali swargeet starts from 9th matra in Teentaal', () => {
+        const bhupali = exerciseManager.exercises.find(ex =>
+            ex.id === 'RAGA_BHUPALI_01'
+        );
+        const swargeet = bhupali.lesson_sections.find(section =>
+            section.id === 'swargeet'
+        );
+
+        expect(bhupali.taal_id).toBe('TEENTAAL_16');
+        expect(bhupali.defaults.recommended_taal_id).toBe('TEENTAAL_16');
+        expect(swargeet.start_beat).toBe(9);
+    });
+
+    test('practice scopes include nested swargeet parts', () => {
+        const bhupali = exerciseManager.exercises.find(ex =>
+            ex.id === 'RAGA_BHUPALI_01'
+        );
+
+        expect(exerciseManager.getPracticeScopes(bhupali).map(scope => scope.id))
+            .toContain('swargeet:sthayi');
+    });
+
+    test('flattening a nested swargeet part starts on its configured matra', () => {
+        const bhupali = exerciseManager.exercises.find(ex =>
+            ex.id === 'RAGA_BHUPALI_01'
+        );
+        const events = exerciseManager.flattenExercise(bhupali, 'swargeet:sthayi');
+
+        expect(events.length).toBeGreaterThan(0);
+        expect(events[0].direction).toBe('swargeet:sthayi');
+        expect(events[0].beatIndex).toBe(8);
     });
 });
 

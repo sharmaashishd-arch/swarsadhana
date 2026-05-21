@@ -93,9 +93,40 @@ class ExerciseManager {
      * Flatten exercise into a sequence of swar events
      * Returns: [{ swar: 'Sa', beatIndex: 0, groupIndex: 0 }, ...]
      */
-    flattenExercise(exercise) {
+    getPracticeScopes(exercise) {
+        const scopes = [{ id: 'full', label: 'Full raga' }];
+
+        if (exercise.aaroh || exercise.aaroh_phrases || exercise.aaroh_groups) {
+            scopes.push({ id: 'aaroh', label: 'Aaroh', label_hindi: 'आरोह' });
+        }
+        if (exercise.avroh || exercise.avroh_phrases || exercise.avroh_groups) {
+            scopes.push({ id: 'avroh', label: 'Avroh', label_hindi: 'अवरोह' });
+        }
+
+        (exercise.lesson_sections || []).forEach(section => {
+            scopes.push({
+                id: section.id,
+                label: section.label || section.id,
+                label_hindi: section.label_hindi,
+                start_beat: section.start_beat
+            });
+            (section.parts || []).forEach(part => {
+                scopes.push({
+                    id: `${section.id}:${part.id}`,
+                    label: `${section.label || section.id} - ${part.label || part.id}`,
+                    label_hindi: `${section.label_hindi || section.label || section.id} - ${part.label_hindi || part.label || part.id}`,
+                    start_beat: section.start_beat
+                });
+            });
+        });
+
+        return scopes;
+    }
+
+    flattenExercise(exercise, scopeId = 'full') {
         const events = [];
         let beatIndex = 0;
+        const includeWholeExercise = !scopeId || scopeId === 'full';
         
         const processSwars = (swars, direction = 'aaroh') => {
             if (!swars) return;
@@ -150,16 +181,66 @@ class ExerciseManager {
                 });
             });
         };
+
+        const processLessonSections = (sections) => {
+            if (!sections) return;
+
+            sections.forEach(section => {
+                const includeSection = includeWholeExercise || scopeId === section.id;
+                const matchingParts = (section.parts || []).filter(part =>
+                    scopeId === `${section.id}:${part.id}`
+                );
+                if (!includeSection && matchingParts.length === 0) return;
+
+                const taal = exercise.taal_id ? this.getTaal(exercise.taal_id) : null;
+                if (section.start_beat && taal?.beats) {
+                    const targetIndex = Math.max(0, Math.min(taal.beats - 1, section.start_beat - 1));
+                    const currentIndex = beatIndex % taal.beats;
+                    beatIndex += (targetIndex - currentIndex + taal.beats) % taal.beats;
+                }
+
+                const processSectionPhrases = (phrases, direction, groupOffset = 0) => {
+                    (phrases || []).forEach((phrase, groupIndex) => {
+                        phrase.forEach((swar, i) => {
+                            if (swar && swar !== '-') {
+                                events.push({
+                                    swar,
+                                    beatIndex,
+                                    direction,
+                                    groupIndex: groupOffset + groupIndex,
+                                    index: i
+                                });
+                            }
+                            beatIndex++;
+                        });
+                    });
+                };
+
+                if (includeSection) {
+                    processSectionPhrases(section.phrases, section.id || 'section');
+                }
+                let groupOffset = includeSection ? (section.phrases || []).length : 0;
+                const partsToProcess = includeSection ? (section.parts || []) : matchingParts;
+                partsToProcess.forEach(part => {
+                    const direction = `${section.id || 'section'}:${part.id || 'part'}`;
+                    processSectionPhrases(part.phrases, direction, groupOffset);
+                    groupOffset += (part.phrases || []).length;
+                });
+            });
+        };
         
-        // Process aaroh
-        if (exercise.aaroh) processSwars(exercise.aaroh, 'aaroh');
-        if (exercise.aaroh_phrases) processPhrases(exercise.aaroh_phrases, 'aaroh');
-        if (exercise.aaroh_groups) processGroups(exercise.aaroh_groups, 'aaroh');
+        if (includeWholeExercise || scopeId === 'aaroh') {
+            if (exercise.aaroh) processSwars(exercise.aaroh, 'aaroh');
+            if (exercise.aaroh_phrases) processPhrases(exercise.aaroh_phrases, 'aaroh');
+            if (exercise.aaroh_groups) processGroups(exercise.aaroh_groups, 'aaroh');
+        }
         
-        // Process avroh
-        if (exercise.avroh) processSwars(exercise.avroh, 'avroh');
-        if (exercise.avroh_phrases) processPhrases(exercise.avroh_phrases, 'avroh');
-        if (exercise.avroh_groups) processGroups(exercise.avroh_groups, 'avroh');
+        if (includeWholeExercise || scopeId === 'avroh') {
+            if (exercise.avroh) processSwars(exercise.avroh, 'avroh');
+            if (exercise.avroh_phrases) processPhrases(exercise.avroh_phrases, 'avroh');
+            if (exercise.avroh_groups) processGroups(exercise.avroh_groups, 'avroh');
+        }
+        processLessonSections(exercise.lesson_sections);
         
         return events;
     }
@@ -807,6 +888,7 @@ class RobotSession {
         
         this.currentExercise = null;
         this.currentEvents = [];
+        this.currentScopeId = 'full';
         this.tempo = PRACTICE_DEFAULTS.tempo;
         this.state = 'idle';
         this.currentMode = PRACTICE_MODES.SING_ALONG;
@@ -817,19 +899,31 @@ class RobotSession {
         this.onBeatCallback = null;
     }
     
-    selectExercise(exerciseId) {
+    selectExercise(exerciseId, scopeId = 'full') {
         const exercise = this.exerciseManager.getExerciseById(exerciseId);
         if (!exercise) {
             throw new Error(`Exercise not found: ${exerciseId}`);
         }
         
         this.currentExercise = exercise;
-        this.currentEvents = this.exerciseManager.flattenExercise(exercise);
+        this.currentScopeId = scopeId;
+        this.currentEvents = this.exerciseManager.flattenExercise(exercise, scopeId);
         this.tempo = exercise.tempo_bpm || PRACTICE_DEFAULTS.tempo;
         
         this.robotPlayer.setExercise(exercise, this.currentEvents);
         
         return { exercise, events: this.currentEvents };
+    }
+
+    selectPracticeScope(scopeId) {
+        if (!this.currentExercise) return [];
+        this.currentScopeId = scopeId || 'full';
+        this.currentEvents = this.exerciseManager.flattenExercise(
+            this.currentExercise,
+            this.currentScopeId
+        );
+        this.robotPlayer.setExercise(this.currentExercise, this.currentEvents);
+        return this.currentEvents;
     }
     
     setTempo(bpm) {

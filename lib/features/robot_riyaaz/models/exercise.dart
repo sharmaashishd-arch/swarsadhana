@@ -18,6 +18,8 @@ class Exercise extends Equatable {
   final List<List<String>>? avrohPhrases;
   final List<List<String>>? aarohGroups;
   final List<List<String>>? avrohGroups;
+  final List<LessonSection> lessonSections;
+  final RagaInfo? raga;
   final DisplayInfo? display;
   final ExerciseDefaults defaults;
 
@@ -37,6 +39,8 @@ class Exercise extends Equatable {
     this.avrohPhrases,
     this.aarohGroups,
     this.avrohGroups,
+    this.lessonSections = const [],
+    this.raga,
     this.display,
     this.defaults = const ExerciseDefaults(),
   });
@@ -68,6 +72,13 @@ class Exercise extends Equatable {
       avrohGroups: (json['avroh_groups'] as List<dynamic>?)
           ?.map((g) => (g as List<dynamic>).cast<String>())
           .toList(),
+      lessonSections: (json['lesson_sections'] as List<dynamic>?)
+              ?.map((s) => LessonSection.fromJson(s as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      raga: json['raga'] != null
+          ? RagaInfo.fromJson(json['raga'] as Map<String, dynamic>)
+          : null,
       display: json['display'] != null
           ? DisplayInfo.fromJson(json['display'])
           : null,
@@ -82,21 +93,25 @@ class Exercise extends Equatable {
   }
 
   /// Flatten exercise into a list of swar events for playback
-  List<SwarEvent> flatten() {
+  List<SwarEvent> flatten({String? scopeId}) {
     final events = <SwarEvent>[];
     var beatIndex = 0;
+
+    final shouldIncludeWholeExercise = scopeId == null || scopeId == 'full';
 
     void processSwars(List<String>? swars, String direction) {
       if (swars == null) return;
       for (var i = 0; i < swars.length; i++) {
         final swar = swars[i];
         if (swar.isNotEmpty && swar != '-') {
-          events.add(SwarEvent(
-            swar: swar,
-            beatIndex: beatIndex,
-            direction: direction,
-            index: i,
-          ));
+          events.add(
+            SwarEvent(
+              swar: swar,
+              beatIndex: beatIndex,
+              direction: direction,
+              index: i,
+            ),
+          );
         }
         beatIndex++;
       }
@@ -109,34 +124,270 @@ class Exercise extends Equatable {
         for (var i = 0; i < phrase.length; i++) {
           final swar = phrase[i];
           if (swar.isNotEmpty && swar != '-') {
-            events.add(SwarEvent(
-              swar: swar,
-              beatIndex: beatIndex,
-              direction: direction,
-              groupIndex: groupIndex,
-              index: i,
-            ));
+            events.add(
+              SwarEvent(
+                swar: swar,
+                beatIndex: beatIndex,
+                direction: direction,
+                groupIndex: groupIndex,
+                index: i,
+              ),
+            );
           }
           beatIndex++;
         }
       }
     }
 
-    // Process aaroh
-    processSwars(aaroh, 'aaroh');
-    processPhrases(aarohPhrases, 'aaroh');
-    processPhrases(aarohGroups, 'aaroh');
+    if (shouldIncludeWholeExercise || scopeId == 'aaroh') {
+      processSwars(aaroh, 'aaroh');
+      processPhrases(aarohPhrases, 'aaroh');
+      processPhrases(aarohGroups, 'aaroh');
+    }
 
-    // Process avroh
-    processSwars(avroh, 'avroh');
-    processPhrases(avrohPhrases, 'avroh');
-    processPhrases(avrohGroups, 'avroh');
+    if (shouldIncludeWholeExercise || scopeId == 'avroh') {
+      processSwars(avroh, 'avroh');
+      processPhrases(avrohPhrases, 'avroh');
+      processPhrases(avrohGroups, 'avroh');
+    }
+
+    void processLessonPhrases(
+      List<List<String>> phrases,
+      String direction, {
+      int groupOffset = 0,
+    }) {
+      for (var groupIndex = 0; groupIndex < phrases.length; groupIndex++) {
+        final phrase = phrases[groupIndex];
+        for (var i = 0; i < phrase.length; i++) {
+          final swar = phrase[i];
+          if (swar.isNotEmpty && swar != '-') {
+            events.add(
+              SwarEvent(
+                swar: swar,
+                beatIndex: beatIndex,
+                direction: direction,
+                groupIndex: groupOffset + groupIndex,
+                index: i,
+              ),
+            );
+          }
+          beatIndex++;
+        }
+      }
+    }
+
+    for (final section in lessonSections) {
+      final includeSection =
+          shouldIncludeWholeExercise || scopeId == section.id;
+      final matchingParts = section.parts
+          .where((part) => scopeId == '${section.id}:${part.id}')
+          .toList();
+      if (!includeSection && matchingParts.isEmpty) continue;
+
+      final startBeat = section.startBeat;
+      final sectionTaalId = taalId ?? defaults.recommendedTaalId;
+      final taalBeats = sectionTaalId == 'TEENTAAL_16'
+          ? 16
+          : sectionTaalId == 'KEHARWA_8'
+              ? 8
+              : sectionTaalId == 'DADRA_6'
+                  ? 6
+                  : null;
+      if (startBeat != null && taalBeats != null) {
+        final targetIndex = (startBeat - 1).clamp(0, taalBeats - 1);
+        final currentIndex = beatIndex % taalBeats;
+        final padding = (targetIndex - currentIndex + taalBeats) % taalBeats;
+        beatIndex += padding;
+      }
+
+      if (includeSection) {
+        processLessonPhrases(section.phrases, section.id);
+      }
+      var groupOffset = includeSection ? section.phrases.length : 0;
+      final partsToProcess = includeSection ? section.parts : matchingParts;
+      for (final part in partsToProcess) {
+        processLessonPhrases(
+          part.phrases,
+          '${section.id}:${part.id}',
+          groupOffset: groupOffset,
+        );
+        groupOffset += part.phrases.length;
+      }
+    }
 
     return events;
   }
 
+  List<PracticeScope> practiceScopes() {
+    final scopes = <PracticeScope>[
+      const PracticeScope(id: 'full', label: 'Full raga'),
+    ];
+
+    if (aaroh != null || aarohPhrases != null || aarohGroups != null) {
+      scopes.add(const PracticeScope(id: 'aaroh', label: 'Aaroh'));
+    }
+    if (avroh != null || avrohPhrases != null || avrohGroups != null) {
+      scopes.add(const PracticeScope(id: 'avroh', label: 'Avroh'));
+    }
+
+    for (final section in lessonSections) {
+      scopes.add(
+        PracticeScope(
+          id: section.id,
+          label: section.label,
+          labelHindi: section.labelHindi,
+          startBeat: section.startBeat,
+        ),
+      );
+      for (final part in section.parts) {
+        scopes.add(
+          PracticeScope(
+            id: '${section.id}:${part.id}',
+            label: '${section.label} - ${part.label}',
+            labelHindi: '${section.labelHindi ?? section.label} - '
+                '${part.labelHindi ?? part.label}',
+            startBeat: section.startBeat,
+          ),
+        );
+      }
+    }
+
+    return scopes;
+  }
+
   @override
-  List<Object?> get props => [id, title, category];
+  List<Object?> get props => [id, title, category, lessonSections, raga];
+}
+
+class PracticeScope extends Equatable {
+  final String id;
+  final String label;
+  final String? labelHindi;
+  final int? startBeat;
+
+  const PracticeScope({
+    required this.id,
+    required this.label,
+    this.labelHindi,
+    this.startBeat,
+  });
+
+  @override
+  List<Object?> get props => [id, label, labelHindi, startBeat];
+}
+
+class LessonSection extends Equatable {
+  final String id;
+  final String label;
+  final String? labelHindi;
+  final List<List<String>> phrases;
+  final List<LessonPart> parts;
+  final int? startBeat;
+
+  const LessonSection({
+    required this.id,
+    required this.label,
+    this.labelHindi,
+    required this.phrases,
+    this.parts = const [],
+    this.startBeat,
+  });
+
+  factory LessonSection.fromJson(Map<String, dynamic> json) {
+    return LessonSection(
+      id: json['id'] as String? ?? 'section',
+      label: json['label'] as String? ?? 'Section',
+      labelHindi: json['label_hindi'] as String?,
+      phrases: (json['phrases'] as List<dynamic>?)
+              ?.map((p) => (p as List<dynamic>).cast<String>())
+              .toList() ??
+          const [],
+      parts: (json['parts'] as List<dynamic>?)
+              ?.map((p) => LessonPart.fromJson(p as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      startBeat: json['start_beat'] as int?,
+    );
+  }
+
+  @override
+  List<Object?> get props => [id, label, labelHindi, phrases, parts, startBeat];
+}
+
+class LessonPart extends Equatable {
+  final String id;
+  final String label;
+  final String? labelHindi;
+  final List<List<String>> phrases;
+
+  const LessonPart({
+    required this.id,
+    required this.label,
+    this.labelHindi,
+    required this.phrases,
+  });
+
+  factory LessonPart.fromJson(Map<String, dynamic> json) {
+    return LessonPart(
+      id: json['id'] as String? ?? 'part',
+      label: json['label'] as String? ?? 'Part',
+      labelHindi: json['label_hindi'] as String?,
+      phrases: (json['phrases'] as List<dynamic>?)
+              ?.map((p) => (p as List<dynamic>).cast<String>())
+              .toList() ??
+          const [],
+    );
+  }
+
+  @override
+  List<Object?> get props => [id, label, labelHindi, phrases];
+}
+
+class RagaInfo extends Equatable {
+  final String name;
+  final String? thaat;
+  final String? jati;
+  final String? time;
+  final String? vadi;
+  final String? samvadi;
+  final List<String> nyas;
+  final String? notes;
+
+  const RagaInfo({
+    required this.name,
+    this.thaat,
+    this.jati,
+    this.time,
+    this.vadi,
+    this.samvadi,
+    this.nyas = const [],
+    this.notes,
+  });
+
+  factory RagaInfo.fromJson(Map<String, dynamic> json) {
+    return RagaInfo(
+      name: json['name'] as String? ?? 'Raga',
+      thaat: json['thaat'] as String?,
+      jati: json['jati'] as String?,
+      time: json['time'] as String?,
+      vadi: json['vadi'] as String?,
+      samvadi: json['samvadi'] as String?,
+      nyas: (json['nyas'] as List<dynamic>?)?.cast<String>() ?? const [],
+      notes: json['notes'] as String?,
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        name,
+        thaat,
+        jati,
+        time,
+        vadi,
+        samvadi,
+        nyas,
+        notes,
+      ];
 }
 
 class PlaybackPlan extends Equatable {
@@ -286,10 +537,12 @@ class ExerciseDefaults extends Equatable {
   factory ExerciseDefaults.fromJson(Map<String, dynamic> json) {
     return ExerciseDefaults(
       defaultMode: json['default_mode'] as String? ?? 'SING_ALONG',
-      recommendedTaalId: json['recommended_taal_id'] as String? ?? 'TEENTAAL_16',
+      recommendedTaalId:
+          json['recommended_taal_id'] as String? ?? 'TEENTAAL_16',
       recommendedBpm: json['recommended_bpm'] as int? ?? PracticeDefaults.tempo,
       recommendedNotesPerBeat: json['recommended_notes_per_beat'] as int? ?? 1,
-      recommendedSaptak: json['recommended_saptak'] as String? ?? PracticeDefaults.recommendedSaptak,
+      recommendedSaptak: json['recommended_saptak'] as String? ??
+          PracticeDefaults.recommendedSaptak,
     );
   }
 
@@ -307,7 +560,13 @@ class ExerciseDefaults extends Equatable {
   }
 
   @override
-  List<Object?> get props => [defaultMode, recommendedTaalId, recommendedBpm, recommendedNotesPerBeat, recommendedSaptak];
+  List<Object?> get props => [
+        defaultMode,
+        recommendedTaalId,
+        recommendedBpm,
+        recommendedNotesPerBeat,
+        recommendedSaptak,
+      ];
 }
 
 class AccompanimentDefaults extends Equatable {
@@ -337,11 +596,15 @@ class AccompanimentDefaults extends Equatable {
     final tanpura = json['tanpura'] as Map<String, dynamic>? ?? {};
     final tabla = json['tabla'] as Map<String, dynamic>? ?? {};
     return AccompanimentDefaults(
-      tanpuraEnabled: tanpura['enabled'] as bool? ?? PracticeDefaults.tanpuraEnabled,
-      tanpuraPattern: tanpura['pattern'] as String? ?? PracticeDefaults.tanpuraPattern,
-      tanpuraVolume: (tanpura['volume'] as num?)?.toDouble() ?? PracticeDefaults.tanpuraVolume,
+      tanpuraEnabled:
+          tanpura['enabled'] as bool? ?? PracticeDefaults.tanpuraEnabled,
+      tanpuraPattern:
+          tanpura['pattern'] as String? ?? PracticeDefaults.tanpuraPattern,
+      tanpuraVolume: (tanpura['volume'] as num?)?.toDouble() ??
+          PracticeDefaults.tanpuraVolume,
       tablaEnabled: tabla['enabled'] as bool? ?? PracticeDefaults.tablaEnabled,
-      tablaVolume: (tabla['volume'] as num?)?.toDouble() ?? PracticeDefaults.tablaVolume,
+      tablaVolume:
+          (tabla['volume'] as num?)?.toDouble() ?? PracticeDefaults.tablaVolume,
       countInAvartans: json['count_in_avartans'] as int? ?? 1,
       demoAvartans: json['demo_avartans'] as int? ?? 1,
       practiceAvartans: json['practice_avartans'] as int? ?? 2,
@@ -351,9 +614,15 @@ class AccompanimentDefaults extends Equatable {
 
   @override
   List<Object?> get props => [
-        tanpuraEnabled, tanpuraPattern, tanpuraVolume,
-        tablaEnabled, tablaVolume,
-        countInAvartans, demoAvartans, practiceAvartans, swarPerMatra,
+        tanpuraEnabled,
+        tanpuraPattern,
+        tanpuraVolume,
+        tablaEnabled,
+        tablaVolume,
+        countInAvartans,
+        demoAvartans,
+        practiceAvartans,
+        swarPerMatra,
       ];
 }
 

@@ -60,9 +60,7 @@ class _RobotRiyaazScreenState extends State<RobotRiyaazScreen> {
           children: [
             _buildHeader(),
             _buildCategoryTabs(provider),
-            Expanded(
-              child: _buildExerciseList(provider),
-            ),
+            Expanded(child: _buildExerciseList(provider)),
           ],
         );
       },
@@ -123,7 +121,9 @@ class _RobotRiyaazScreenState extends State<RobotRiyaazScreen> {
   }
 
   Widget _buildExerciseList(RobotRiyaazProvider provider) {
-    final exercises = provider.getExercisesByCategory(provider.selectedCategory);
+    final exercises = provider.getExercisesByCategory(
+      provider.selectedCategory,
+    );
 
     if (exercises.isEmpty) {
       return const Center(
@@ -151,7 +151,7 @@ class _RobotRiyaazScreenState extends State<RobotRiyaazScreen> {
   void _openExercise(Exercise exercise) {
     final provider = context.read<RobotRiyaazProvider>();
     provider.selectExercise(exercise.id);
-    
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -169,11 +169,7 @@ class _ExerciseCard extends StatelessWidget {
   final ExerciseTaal? taal;
   final VoidCallback onTap;
 
-  const _ExerciseCard({
-    required this.exercise,
-    this.taal,
-    required this.onTap,
-  });
+  const _ExerciseCard({required this.exercise, this.taal, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -207,18 +203,16 @@ class _ExerciseCard extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   exercise.description!,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: Colors.white60,
-                  ),
+                  style: const TextStyle(fontSize: 13, color: Colors.white60),
                 ),
               ],
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 children: [
-                  if (taal != null)
-                    _buildTag('${taal!.name} (${taal!.beats})'),
+                  if (exercise.raga != null)
+                    _buildTag('Raga ${exercise.raga!.name}'),
+                  if (taal != null) _buildTag('${taal!.name} (${taal!.beats})'),
                   if (exercise.swarsPerBeat > 1)
                     _buildTag('${exercise.swarsPerBeat}x'),
                 ],
@@ -239,10 +233,7 @@ class _ExerciseCard extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 11,
-          color: Colors.white70,
-        ),
+        style: const TextStyle(fontSize: 11, color: Colors.white70),
       ),
     );
   }
@@ -290,11 +281,17 @@ class ExerciseDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                 ],
+                if (exercise.raga != null) ...[
+                  _buildRagaInfo(exercise.raga!),
+                  const SizedBox(height: 16),
+                ],
                 _buildSwarDisplay(exercise, provider),
                 if (taal != null) ...[
                   const SizedBox(height: 16),
                   _buildTaalDisplay(taal),
                 ],
+                const SizedBox(height: 12),
+                _buildPracticeScopeSelector(provider),
                 const SizedBox(height: 12),
                 _buildAccompanimentBadges(provider),
                 const SizedBox(height: 16),
@@ -352,13 +349,147 @@ class ExerciseDetailScreen extends StatelessWidget {
                 child: _buildSwarLine('अवरोह', phrase, provider),
               ),
             ),
+          if (exercise.lessonSections.isNotEmpty)
+            ...exercise.lessonSections.expand(
+              (section) {
+                final startBeat = section.startBeat == null
+                    ? ''
+                    : ' · matra ${section.startBeat}';
+                return [
+                  ...section.phrases.map(
+                    (phrase) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: _buildSwarLine(
+                        '${section.labelHindi ?? section.label}$startBeat',
+                        phrase,
+                        provider,
+                      ),
+                    ),
+                  ),
+                  ...section.parts.expand(
+                    (part) => part.phrases.map(
+                      (phrase) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: _buildSwarLine(
+                          '${section.labelHindi ?? section.label} - '
+                          '${part.labelHindi ?? part.label}$startBeat',
+                          phrase,
+                          provider,
+                        ),
+                      ),
+                    ),
+                  ),
+                ];
+              },
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRagaInfo(RagaInfo raga) {
+    final chips = <String>[
+      if (raga.thaat != null) 'Thaat: ${raga.thaat}',
+      if (raga.jati != null) 'Jati: ${raga.jati}',
+      if (raga.time != null) 'Time: ${raga.time}',
+      if (raga.vadi != null) 'Vadi: ${raga.vadi}',
+      if (raga.samvadi != null) 'Samvadi: ${raga.samvadi}',
+      if (raga.nyas.isNotEmpty) 'Nyas: ${raga.nyas.join(", ")}',
+    ];
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppTheme.surfaceMedium,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Raga ${raga.name}',
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.white60,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: chips.map(_infoBadge).toList(),
+          ),
+          if (raga.notes != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              raga.notes!,
+              style: const TextStyle(color: Colors.white70, fontSize: 13),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPracticeScopeSelector(RobotRiyaazProvider provider) {
+    final scopes = provider.practiceScopes;
+    if (scopes.length <= 1) return const SizedBox.shrink();
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppTheme.surfaceMedium,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Practice Part',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.white60,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: scopes.map((scope) {
+              final selected = provider.selectedScopeId == scope.id;
+              final matra =
+                  scope.startBeat == null ? '' : ' · matra ${scope.startBeat}';
+              return ChoiceChip(
+                label: Text('${scope.labelHindi ?? scope.label}$matra'),
+                selected: selected,
+                onSelected: (_) => provider.selectPracticeScope(scope.id),
+                selectedColor: AppTheme.gold,
+                labelStyle: TextStyle(
+                  color: selected ? Colors.black : Colors.white70,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+                backgroundColor: AppTheme.surfaceLight,
+                side: BorderSide(
+                  color: selected
+                      ? AppTheme.gold
+                      : AppTheme.gold.withValues(alpha: 0.2),
+                ),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
   }
 
   Widget _buildSwarLine(
-      String label, List<String> swars, RobotRiyaazProvider provider) {
+    String label,
+    List<String> swars,
+    RobotRiyaazProvider provider,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -487,10 +618,10 @@ class ExerciseDetailScreen extends StatelessWidget {
       runSpacing: 6,
       children: [
         _infoBadge('Saptak: ${provider.saptak.label}'),
+        _infoBadge('Tanpura: ${provider.tanpuraEnabled ? "ON" : "OFF"}'),
         _infoBadge(
-            'Tanpura: ${provider.tanpuraEnabled ? "ON" : "OFF"}'),
-        _infoBadge(
-            '${taal?.name ?? "Tabla"}: ${provider.tablaEnabled ? "ON" : "OFF"}'),
+          '${taal?.name ?? "Tabla"}: ${provider.tablaEnabled ? "ON" : "OFF"}',
+        ),
       ],
     );
   }
@@ -575,10 +706,7 @@ class ExerciseDetailScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text(
-                'Speed: ',
-                style: TextStyle(color: Colors.white70),
-              ),
+              const Text('Speed: ', style: TextStyle(color: Colors.white70)),
               Text(
                 '${provider.subdivision}x',
                 style: const TextStyle(
@@ -610,8 +738,7 @@ class ExerciseDetailScreen extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => provider.setSubdivision(value),
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isSelected ? AppTheme.gold : AppTheme.surfaceLight,
+          backgroundColor: isSelected ? AppTheme.gold : AppTheme.surfaceLight,
           foregroundColor: isSelected ? Colors.black : AppTheme.gold,
           padding: const EdgeInsets.symmetric(vertical: 8),
         ),
@@ -719,7 +846,9 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     if (beatCol == _lastHighlightedIndex) return;
     _lastHighlightedIndex = beatCol;
 
-    final colWidth = subdivision == 1 ? 49.0 : (subdivision * 30.0 + (subdivision - 1) * 2 + 3);
+    final colWidth = subdivision == 1
+        ? 49.0
+        : (subdivision * 30.0 + (subdivision - 1) * 2 + 3);
     final targetOffset = (beatCol * colWidth) -
         (MediaQuery.of(context).size.width / 2) +
         (colWidth / 2);
@@ -743,11 +872,14 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (widget.mode == PracticeMode.selfPractice) {
               _scrollToBeatColumn(
-                  provider.currentBeatIndex * provider.subdivision,
-                  provider.subdivision);
+                provider.currentBeatIndex * provider.subdivision,
+                provider.subdivision,
+              );
             } else {
               _scrollToBeatColumn(
-                  provider.currentEventIndex, provider.subdivision);
+                provider.currentEventIndex,
+                provider.subdivision,
+              );
             }
           });
         }
@@ -826,12 +958,15 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                       height: 46,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Taal',
-                            style: TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white.withValues(alpha: 0.4),
-                                letterSpacing: 0.5)),
+                        child: Text(
+                          'Taal',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white.withValues(alpha: 0.4),
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 3),
@@ -839,12 +974,15 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                       height: 34,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Swar',
-                            style: TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white.withValues(alpha: 0.4),
-                                letterSpacing: 0.5)),
+                        child: Text(
+                          'Swar',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white.withValues(alpha: 0.4),
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -911,7 +1049,11 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
     final isKhali = taal?.khaliBeats.contains(beatNum) ?? false;
     final isCurrentBeat = beatCol == currentBeatCol;
 
-    final marker = isSam ? 'X' : isKhali ? '०' : (isTali ? '|' : '');
+    final marker = isSam
+        ? 'X'
+        : isKhali
+            ? '०'
+            : (isTali ? '|' : '');
     final bol = (taal?.bols != null && taalBeatIdx < taal!.bols!.length)
         ? taal.bols![taalBeatIdx]
         : '';
@@ -947,7 +1089,8 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
           decoration: BoxDecoration(
             gradient: isActive
                 ? const LinearGradient(
-                    colors: [AppTheme.gold, AppTheme.goldDark])
+                    colors: [AppTheme.gold, AppTheme.goldDark],
+                  )
                 : null,
             color: isActive
                 ? null
@@ -962,7 +1105,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                     BoxShadow(
                       color: AppTheme.gold.withValues(alpha: 0.4),
                       blurRadius: 8,
-                    )
+                    ),
                   ]
                 : null,
           ),
@@ -1017,28 +1160,31 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (marker.isNotEmpty)
-                    Text(marker,
-                        style: TextStyle(
-                          fontSize: 8,
-                          fontWeight: FontWeight.w700,
-                          color:
-                              isCurrentBeat ? Colors.white : borderColor,
-                        )),
-                  Text('$beatNum',
+                    Text(
+                      marker,
                       style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: isCurrentBeat ? Colors.white : Colors.white70,
-                      )),
+                        fontSize: 8,
+                        fontWeight: FontWeight.w700,
+                        color: isCurrentBeat ? Colors.white : borderColor,
+                      ),
+                    ),
+                  Text(
+                    '$beatNum',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: isCurrentBeat ? Colors.white : Colors.white70,
+                    ),
+                  ),
                   if (bol.isNotEmpty)
-                    Text(bol,
-                        style: TextStyle(
-                          fontFamily: 'NotoSansDevanagari',
-                          fontSize: 8,
-                          color: isCurrentBeat
-                              ? Colors.white70
-                              : Colors.white38,
-                        )),
+                    Text(
+                      bol,
+                      style: TextStyle(
+                        fontFamily: 'NotoSansDevanagari',
+                        fontSize: 8,
+                        color: isCurrentBeat ? Colors.white70 : Colors.white38,
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -1097,17 +1243,11 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          Text(
-            statusInfo['icon']!,
-            style: const TextStyle(fontSize: 48),
-          ),
+          Text(statusInfo['icon']!, style: const TextStyle(fontSize: 48)),
           const SizedBox(height: 8),
           Text(
             statusInfo['text']!,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 16,
-            ),
+            style: const TextStyle(color: Colors.white70, fontSize: 16),
           ),
         ],
       ),
@@ -1135,9 +1275,8 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
 
   Widget _buildCurrentSwar(RobotRiyaazProvider provider) {
     final currentSwar = provider.currentSwar;
-    final info = currentSwar != null
-        ? provider.getSwarInfo(currentSwar.swar)
-        : null;
+    final info =
+        currentSwar != null ? provider.getSwarInfo(currentSwar.swar) : null;
 
     return Container(
       padding: const EdgeInsets.all(32),
@@ -1243,10 +1382,7 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
                 color: Colors.white,
               ),
             ),
-            const Text(
-              'Overall',
-              style: TextStyle(color: Colors.white70),
-            ),
+            const Text('Overall', style: TextStyle(color: Colors.white70)),
           ],
         ),
       ),
@@ -1341,7 +1477,9 @@ class _RobotSessionScreenState extends State<RobotSessionScreen> {
   }
 
   Widget _buildReportActions(
-      BuildContext context, RobotRiyaazProvider provider) {
+    BuildContext context,
+    RobotRiyaazProvider provider,
+  ) {
     return Column(
       children: [
         SizedBox(

@@ -23,6 +23,7 @@ class RobotRiyaazProvider extends ChangeNotifier {
   Exercise? _selectedExercise;
   String _selectedCategory = '';
   List<SwarEvent> _currentEvents = [];
+  String _selectedScopeId = 'full';
 
   RobotSessionState _sessionState = RobotSessionState.idle;
   PracticeMode _currentMode = PracticeMode.singAlong;
@@ -56,6 +57,9 @@ class RobotRiyaazProvider extends ChangeNotifier {
   String get selectedCategory => _selectedCategory;
   Exercise? get selectedExercise => _selectedExercise;
   List<SwarEvent> get currentEvents => _currentEvents;
+  String get selectedScopeId => _selectedScopeId;
+  List<PracticeScope> get practiceScopes =>
+      _selectedExercise?.practiceScopes() ?? const [];
   RobotSessionState get sessionState => _sessionState;
   PracticeMode get currentMode => _currentMode;
   int get currentEventIndex => _currentEventIndex;
@@ -117,7 +121,8 @@ class RobotRiyaazProvider extends ChangeNotifier {
         _library?.exercises.firstWhere((ex) => ex.id == exerciseId);
     if (_selectedExercise != null) {
       _selectedCategory = _selectedExercise!.category;
-      _currentEvents = _selectedExercise!.flatten();
+      _selectedScopeId = 'full';
+      _currentEvents = _selectedExercise!.flatten(scopeId: _selectedScopeId);
       _tempo = _selectedExercise!.tempoBpm;
       _subdivision = _selectedExercise!.swarsPerBeat;
       _currentEventIndex = 0;
@@ -125,6 +130,18 @@ class RobotRiyaazProvider extends ChangeNotifier {
       _results.clear();
       _report = null;
     }
+    notifyListeners();
+  }
+
+  void selectPracticeScope(String scopeId) {
+    if (_selectedExercise == null || _selectedScopeId == scopeId) return;
+    _selectedScopeId = scopeId;
+    _currentEvents = _selectedExercise!.flatten(scopeId: _selectedScopeId);
+    _currentEventIndex = 0;
+    _currentBeatIndex = -1;
+    _currentSwar = null;
+    _results.clear();
+    _report = null;
     notifyListeners();
   }
 

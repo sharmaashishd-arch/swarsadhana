@@ -146,6 +146,161 @@ void main() {
       expect(exercise.tempoBpm, 90);
       expect(exercise.defaults.recommendedBpm, 90);
     });
+
+    test('parses raga metadata and generic lesson sections', () {
+      final json = {
+        'id': 'RAGA_TEST',
+        'title': 'Raga Test',
+        'category': 'Beginner Ragas',
+        'raga': {
+          'name': 'Yaman',
+          'thaat': 'Kalyan',
+          'nyas': ['Ga', 'Ni'],
+        },
+        'lesson_sections': [
+          {
+            'id': 'pakad',
+            'label': 'Pakad',
+            'label_hindi': 'पकड़',
+            'phrases': [
+              ['Ni', 'Re', 'Ga', '-'],
+              ['Pa', 'ma', 'Ga', 'Re'],
+            ],
+          },
+        ],
+      };
+
+      final exercise = Exercise.fromJson(json);
+      final events = exercise.flatten();
+
+      expect(exercise.raga?.name, 'Yaman');
+      expect(exercise.raga?.thaat, 'Kalyan');
+      expect(exercise.lessonSections.single.label, 'Pakad');
+      expect(events.map((e) => e.swar), [
+        'Ni',
+        'Re',
+        'Ga',
+        'Pa',
+        'ma',
+        'Ga',
+        'Re',
+      ]);
+      expect(events.first.direction, 'pakad');
+      expect(events[3].beatIndex, 4);
+    });
+
+    test('parses swargeet as data-driven lesson section', () {
+      final json = {
+        'id': 'RAGA_SWARGEET_TEST',
+        'title': 'Raga Swargeet Test',
+        'category': 'Beginner Ragas',
+        'lesson_sections': [
+          {
+            'id': 'swargeet',
+            'label': 'Swargeet',
+            'label_hindi': 'स्वरगीत',
+            'start_beat': 9,
+            'parts': [
+              {
+                'id': 'sthayi',
+                'label': 'Sthayi',
+                'phrases': [
+                  ['Sa', 'Re', 'Ga', 'Ma'],
+                ],
+              },
+              {
+                'id': 'antara',
+                'label': 'Antara',
+                'phrases': [
+                  ['Pa', 'Dha', 'Ni', '.Sa'],
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      final exercise = Exercise.fromJson(json);
+
+      expect(exercise.lessonSections.single.id, 'swargeet');
+      expect(exercise.lessonSections.single.label, 'Swargeet');
+      expect(exercise.lessonSections.single.startBeat, 9);
+      expect(exercise.lessonSections.single.parts.map((p) => p.id), [
+        'sthayi',
+        'antara',
+      ]);
+      expect(exercise.flatten().map((e) => e.direction).toSet(), {
+        'swargeet:sthayi',
+        'swargeet:antara',
+      });
+    });
+
+    test('practice scopes expose nested raga parts', () {
+      final exercise = Exercise.fromJson({
+        'id': 'RAGA_SCOPE_TEST',
+        'title': 'Raga Scope Test',
+        'category': 'Beginner Ragas',
+        'lesson_sections': [
+          {
+            'id': 'swargeet',
+            'label': 'Swargeet',
+            'parts': [
+              {
+                'id': 'sthayi',
+                'label': 'Sthayi',
+                'phrases': [
+                  ['Sa', 'Re'],
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(exercise.practiceScopes().map((scope) => scope.id), [
+        'full',
+        'swargeet',
+        'swargeet:sthayi',
+      ]);
+    });
+
+    test('flatten can isolate nested swargeet part with start beat', () {
+      final exercise = Exercise.fromJson({
+        'id': 'RAGA_SCOPE_PLAY_TEST',
+        'title': 'Raga Scope Play Test',
+        'category': 'Beginner Ragas',
+        'taal_id': 'TEENTAAL_16',
+        'lesson_sections': [
+          {
+            'id': 'swargeet',
+            'label': 'Swargeet',
+            'start_beat': 9,
+            'parts': [
+              {
+                'id': 'sthayi',
+                'label': 'Sthayi',
+                'phrases': [
+                  ['Sa', 'Re', 'Ga'],
+                ],
+              },
+              {
+                'id': 'antara',
+                'label': 'Antara',
+                'phrases': [
+                  ['Pa', 'Dha', 'Ni'],
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+      final events = exercise.flatten(scopeId: 'swargeet:sthayi');
+
+      expect(events.map((e) => e.swar), ['Sa', 'Re', 'Ga']);
+      expect(events.map((e) => e.direction).toSet(), {'swargeet:sthayi'});
+      expect(events.first.beatIndex, 8);
+    });
   });
 
   group('resolveSettings', () {
@@ -176,9 +331,7 @@ void main() {
     });
 
     test('resolves self practice mode', () {
-      const defaults = ExerciseDefaults(
-        defaultMode: 'SELF_PRACTICE',
-      );
+      const defaults = ExerciseDefaults(defaultMode: 'SELF_PRACTICE');
       final settings = resolveSettings(exerciseDefaults: defaults);
       expect(settings.mode, PracticeMode.selfPractice);
     });

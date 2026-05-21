@@ -19,6 +19,7 @@ class RobotRiyaazUI {
         this.currentReport = null;
         this.currentSubdivision = 1;
         this.selectedMode = 'singAlong';
+        this.selectedScopeId = 'full';
         
         // Audio components (exposed for Guruji)
         this.audioEngine = null;
@@ -138,6 +139,7 @@ class RobotRiyaazUI {
                     </div>
                     <p class="exercise-desc">${ex.description || ''}</p>
                     <div class="exercise-meta">
+                        ${ex.raga ? `<span class="raga-tag">Raga ${ex.raga.name}</span>` : ''}
                         ${taal ? `<span class="taal-tag">${taal.name} (${taal.beats} beats)</span>` : ''}
                         ${ex.swars_per_beat > 1 ? `<span class="speed-tag">${ex.swars_per_beat}x</span>` : ''}
                     </div>
@@ -164,6 +166,7 @@ class RobotRiyaazUI {
         const { exercise, events } = this.robotSession.selectExercise(exerciseId);
         this.selectedExercise = exercise;
         this.selectedCategory = exercise.category || this.selectedCategory;
+        this.selectedScopeId = 'full';
         this.currentSubdivision = exercise.swars_per_beat || 1;
         this.robotSession.setSubdivision(this.currentSubdivision);
         
@@ -184,6 +187,8 @@ class RobotRiyaazUI {
                     <h2>${exercise.title}</h2>
                     <p>${exercise.description || ''}</p>
                 </div>
+
+                ${exercise.raga ? this.buildRagaInfo(exercise.raga) : ''}
                 
                 <div class="swar-display-section">
                     <h3>Swar Pattern</h3>
@@ -200,6 +205,8 @@ class RobotRiyaazUI {
                     </div>
                 </div>
                 ` : ''}
+
+                ${this.buildPracticeScopeSelector(exercise)}
                 
                 <div class="session-controls">
                     <div class="accompaniment-defaults">
@@ -249,6 +256,63 @@ class RobotRiyaazUI {
         if (window.robotGurujiUI) {
             window.robotGurujiUI.setExercise(exercise);
         }
+    }
+
+    buildPracticeScopeSelector(exercise) {
+        const scopes = this.exerciseManager.getPracticeScopes(exercise);
+        if (scopes.length <= 1) return '';
+
+        return `
+            <div class="practice-scope-section">
+                <h3>Practice Part</h3>
+                <div class="practice-scope-list">
+                    ${scopes.map(scope => {
+                        const startBeat = scope.start_beat ? ` · matra ${scope.start_beat}` : '';
+                        const label = `${scope.label_hindi || scope.label}${startBeat}`;
+                        return `
+                            <button class="scope-chip ${scope.id === this.selectedScopeId ? 'active' : ''}"
+                                    data-scope-id="${scope.id}"
+                                    onclick="robotUI.selectPracticeScope('${scope.id}')">
+                                ${label}
+                            </button>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    selectPracticeScope(scopeId) {
+        this.selectedScopeId = scopeId || 'full';
+        const events = this.robotSession.selectPracticeScope(this.selectedScopeId);
+        document.querySelectorAll('.scope-chip').forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.scopeId === this.selectedScopeId);
+        });
+        if (this.currentView === 'session') {
+            this.showSessionView();
+        }
+        return events;
+    }
+
+    buildRagaInfo(raga) {
+        const chips = [
+            raga.thaat ? `Thaat: ${raga.thaat}` : '',
+            raga.jati ? `Jati: ${raga.jati}` : '',
+            raga.time ? `Time: ${raga.time}` : '',
+            raga.vadi ? `Vadi: ${raga.vadi}` : '',
+            raga.samvadi ? `Samvadi: ${raga.samvadi}` : '',
+            raga.nyas?.length ? `Nyas: ${raga.nyas.join(', ')}` : ''
+        ].filter(Boolean);
+
+        return `
+            <div class="raga-info-section">
+                <h3>Raga ${raga.name || ''}</h3>
+                <div class="raga-meta">
+                    ${chips.map(chip => `<span class="raga-chip">${chip}</span>`).join('')}
+                </div>
+                ${raga.notes ? `<p class="raga-notes">${raga.notes}</p>` : ''}
+            </div>
+        `;
     }
     
     buildSwarDisplay(exercise) {
@@ -312,6 +376,24 @@ class RobotRiyaazUI {
         }
         if (exercise.avroh_groups) {
             html += renderPhrases(exercise.avroh_groups, 'अवरोह', 'avroh');
+        }
+
+        if (exercise.lesson_sections) {
+            exercise.lesson_sections.forEach(section => {
+                const startBeat = section.start_beat ? ` · starts matra ${section.start_beat}` : '';
+                html += renderPhrases(
+                    section.phrases,
+                    `${section.label_hindi || section.label || 'Section'}${startBeat}`,
+                    section.id || 'section'
+                );
+                (section.parts || []).forEach(part => {
+                    html += renderPhrases(
+                        part.phrases,
+                        `${section.label_hindi || section.label || 'Section'} - ${part.label_hindi || part.label || 'Part'}${startBeat}`,
+                        `${section.id || 'section'}-${part.id || 'part'}`
+                    );
+                });
+            });
         }
         
         return html;
