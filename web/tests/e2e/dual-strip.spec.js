@@ -15,7 +15,7 @@ test.describe('Dual Strip - Detail Page', () => {
     });
 
     test('should show subdivision control on detail page', async ({ page }) => {
-        await expect(page.locator('text=Notes per beat:')).toBeVisible();
+        await expect(page.locator('.subdivision-control label')).toContainText('Speed');
         await expect(page.locator('#subdivision-selector')).toBeVisible();
     });
 
@@ -38,11 +38,9 @@ test.describe('Dual Strip - Detail Page', () => {
         await expect(activeBtn).toContainText('2x');
     });
 
-    test('should still show tempo control alongside subdivision', async ({ page }) => {
-        await expect(page.locator('text=Tempo:')).toBeVisible();
-        await expect(page.locator('#session-tempo-slider')).toBeVisible();
-        await expect(page.locator('text=Slow')).toBeVisible();
-        await expect(page.locator('text=Fast')).toBeVisible();
+    test('tempo is configured via Practice Setup, not detail page', async ({ page }) => {
+        await expect(page.locator('#session-tempo-slider')).toHaveCount(0);
+        await expect(page.locator('text=Tempo:')).toHaveCount(0);
     });
 });
 
@@ -104,10 +102,9 @@ test.describe('Dual Strip - Session View Rendering', () => {
         await expect(firstSwar).toContainText('सा');
     });
 
-    test('should show session controls bar with BPM and subdivision', async ({ page }) => {
+    test('should show session controls bar with subdivision', async ({ page }) => {
         await page.click('.btn-start');
         await expect(page.locator('.session-controls-bar')).toBeVisible();
-        await expect(page.locator('#session-bpm-slider')).toBeVisible();
         await expect(page.locator('#session-subdivision-selector')).toBeVisible();
     });
 });
@@ -163,11 +160,12 @@ test.describe('Dual Strip - Subdivision Changes', () => {
         await page.waitForSelector('.exercise-card', { timeout: 15000 });
     });
 
-    test('should show 2 subcells per beat for exercise with swars_per_beat=2', async ({ page }) => {
+    test('should show 2 subcells per beat after switching to 2x subdivision', async ({ page }) => {
         await page.click('text=Janti Swaras');
         await page.click('.exercise-card >> nth=0');
 
-        const activeBtn = page.locator('.subdivision-selector button.active');
+        await page.click('#subdivision-selector button:has-text("2x")');
+        const activeBtn = page.locator('#subdivision-selector button.active');
         await expect(activeBtn).toContainText('2x');
 
         await page.click('.btn-start');

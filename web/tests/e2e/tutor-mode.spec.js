@@ -48,12 +48,11 @@ test.describe('Exercise Browser', () => {
         await expect(page.locator('.btn-start')).toBeVisible();
     });
 
-    test('should show tempo controls', async ({ page }) => {
+    test('should show speed (subdivision) controls', async ({ page }) => {
         await page.click('text=Exercise 1 - Aaroh/Avaroh');
-        await expect(page.locator('text=Tempo:')).toBeVisible();
-        await expect(page.locator('text=Slow')).toBeVisible();
-        await expect(page.locator('text=Medium')).toBeVisible();
-        await expect(page.locator('text=Fast')).toBeVisible();
+        await expect(page.locator('.subdivision-control label')).toContainText('Speed');
+        const buttons = page.locator('#subdivision-selector button');
+        await expect(buttons).toHaveCount(3);
     });
 
     test('should run self-test programmatically and show results', async ({ page }) => {
@@ -128,10 +127,10 @@ test.describe('Practice Setup (Settings)', () => {
         await expect(page.locator('#key-select')).toBeVisible();
     });
 
-    test('Practice Setup has BPM slider defaulting to 80', async ({ page }) => {
+    test('Practice Setup has BPM slider defaulting to 90', async ({ page }) => {
         await page.click('button:has-text("⚙️")');
         await expect(page.locator('#settings-tempo-slider')).toBeVisible();
-        await expect(page.locator('#settings-tempo-value')).toContainText('80');
+        await expect(page.locator('#settings-tempo-value')).toContainText('90');
     });
 
     test('Practice Setup has tanpura pattern controls', async ({ page }) => {

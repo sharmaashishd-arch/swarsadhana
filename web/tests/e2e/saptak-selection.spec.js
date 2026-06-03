@@ -113,6 +113,7 @@ test.describe('Saptak frequency verification', () => {
     test('Sa=C, Madhya: Sa freq ~261 Hz', async ({ page }) => {
         const freq = await page.evaluate(() => {
             if (!window.realisticAudioEngine) return null;
+            window.realisticAudioEngine.setKey('C');
             window.realisticAudioEngine.setSaptak('MADHYA');
             return window.realisticAudioEngine.getSwarFreq('Sa');
         });
@@ -122,6 +123,7 @@ test.describe('Saptak frequency verification', () => {
     test('Sa=C, Taar: Sa freq ~523 Hz (one octave higher)', async ({ page }) => {
         const freq = await page.evaluate(() => {
             if (!window.realisticAudioEngine) return null;
+            window.realisticAudioEngine.setKey('C');
             window.realisticAudioEngine.setSaptak('TAAR');
             return window.realisticAudioEngine.getSwarFreq('Sa');
         });
@@ -131,6 +133,7 @@ test.describe('Saptak frequency verification', () => {
     test('Sa=C, Mandra: Sa freq ~131 Hz (one octave lower)', async ({ page }) => {
         const freq = await page.evaluate(() => {
             if (!window.realisticAudioEngine) return null;
+            window.realisticAudioEngine.setKey('C');
             window.realisticAudioEngine.setSaptak('MANDRA');
             return window.realisticAudioEngine.getSwarFreq('Sa');
         });
@@ -140,6 +143,7 @@ test.describe('Saptak frequency verification', () => {
     test('Taar Sa is exactly 2x Madhya Sa', async ({ page }) => {
         const result = await page.evaluate(() => {
             if (!window.realisticAudioEngine) return null;
+            window.realisticAudioEngine.setKey('C');
             window.realisticAudioEngine.setSaptak('MADHYA');
             const madhya = window.realisticAudioEngine.getSwarFreq('Sa');
             window.realisticAudioEngine.setSaptak('TAAR');
@@ -152,6 +156,7 @@ test.describe('Saptak frequency verification', () => {
     test('Mandra Sa is exactly 0.5x Madhya Sa', async ({ page }) => {
         const result = await page.evaluate(() => {
             if (!window.realisticAudioEngine) return null;
+            window.realisticAudioEngine.setKey('C');
             window.realisticAudioEngine.setSaptak('MADHYA');
             const madhya = window.realisticAudioEngine.getSwarFreq('Sa');
             window.realisticAudioEngine.setSaptak('MANDRA');

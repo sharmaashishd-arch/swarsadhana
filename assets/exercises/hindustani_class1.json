@@ -142,6 +142,45 @@
         "ना"
       ]
     },
+    "EKTAAL_12": {
+      "id": "EKTAAL_12",
+      "name": "Ektaal",
+      "nameHindi": "एकताल",
+      "beats": 12,
+      "vibhag": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sam_beat": 1,
+      "tali_beats": [
+        1,
+        5,
+        9,
+        11
+      ],
+      "khali_beats": [
+        3,
+        7
+      ],
+      "bols": [
+        "धिं",
+        "धिं",
+        "धागे",
+        "तिरकिट",
+        "तू",
+        "ना",
+        "कत",
+        "ता",
+        "धागे",
+        "तिरकिट",
+        "धीं",
+        "ना"
+      ]
+    },
     "JHAPTAAL_10": {
       "id": "JHAPTAAL_10",
       "name": "Jhaptaal",
@@ -250,6 +289,66 @@
     "Sa.": {
       "semitone": -12,
       "hindi": "सा॒",
+      "octaveMarker": "lower"
+    },
+    ".Re": {
+      "semitone": 14,
+      "hindi": "रें",
+      "octaveMarker": "upper"
+    },
+    ".Ga": {
+      "semitone": 16,
+      "hindi": "गं",
+      "octaveMarker": "upper"
+    },
+    ".Ma": {
+      "semitone": 17,
+      "hindi": "मं",
+      "octaveMarker": "upper"
+    },
+    ".Pa": {
+      "semitone": 19,
+      "hindi": "पं",
+      "octaveMarker": "upper"
+    },
+    ".Dha": {
+      "semitone": 21,
+      "hindi": "धं",
+      "octaveMarker": "upper"
+    },
+    ".Ni": {
+      "semitone": 23,
+      "hindi": "निं",
+      "octaveMarker": "upper"
+    },
+    "Re.": {
+      "semitone": -10,
+      "hindi": "रे॒",
+      "octaveMarker": "lower"
+    },
+    "Ga.": {
+      "semitone": -8,
+      "hindi": "ग॒",
+      "octaveMarker": "lower"
+    },
+    "Ma.": {
+      "semitone": -7,
+      "hindi": "म॒",
+      "octaveMarker": "lower"
+    },
+    "Pa.": {
+      "semitone": -5,
+      "hindi": "प॒",
+      "octaveMarker": "lower"
+    },
+    "Dha.": {
+      "semitone": -3,
+      "hindi": "ध॒",
+      "octaveMarker": "lower"
+    },
+    "Ni.": {
+      "semitone": -1,
+      "hindi": "नि॒",
       "octaveMarker": "lower"
     }
   },
@@ -2102,6 +2201,1280 @@
       ]
     },
     {
+      "id": "ALANKAR_06_PAIRS_REPEAT",
+      "title": "Alankar 6: Repeated Pairs",
+      "category": "Alankar",
+      "description": "Each note doubled — SS RR GG MM…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Sa"
+        ],
+        [
+          "Re",
+          "Re"
+        ],
+        [
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Ni",
+          "Ni"
+        ],
+        [
+          ".Sa",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          ".Sa"
+        ],
+        [
+          "Ni",
+          "Ni"
+        ],
+        [
+          "Dha",
+          "Dha"
+        ],
+        [
+          "Pa",
+          "Pa"
+        ],
+        [
+          "Ma",
+          "Ma"
+        ],
+        [
+          "Ga",
+          "Ga"
+        ],
+        [
+          "Re",
+          "Re"
+        ],
+        [
+          "Sa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_07_PAIRS_STEP",
+      "title": "Alankar 7: Stepping Pairs",
+      "category": "Alankar",
+      "description": "Two-note groups stepping up — SR RG GM…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re"
+        ],
+        [
+          "Re",
+          "Ga"
+        ],
+        [
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni"
+        ],
+        [
+          "Ni",
+          "Dha"
+        ],
+        [
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Ga",
+          "Re"
+        ],
+        [
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_08_PAIRS_REVERSE",
+      "title": "Alankar 8: Reverse Pairs",
+      "category": "Alankar",
+      "description": "Each pair descends then steps up — RS GR MG…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Re",
+          "Sa"
+        ],
+        [
+          "Ga",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Dha"
+        ],
+        [
+          ".Sa",
+          "Ni"
+        ],
+        [
+          ".Re",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          "Ni",
+          ".Sa"
+        ],
+        [
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Ga"
+        ],
+        [
+          "Sa",
+          "Re"
+        ],
+        [
+          "Ni.",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_09_FIVES",
+      "title": "Alankar 9: Groups of Five",
+      "category": "Alankar",
+      "description": "Five-note ascending/descending runs",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 5
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_10_SIXES",
+      "title": "Alankar 10: Groups of Six",
+      "category": "Alankar",
+      "description": "Six-note runs",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 6
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_11_SEVENS",
+      "title": "Alankar 11: Groups of Seven",
+      "category": "Alankar",
+      "description": "Seven-note runs spanning the octave",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 7
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni"
+        ],
+        [
+          "Re",
+          "Ga",
+          "Ma",
+          "Pa",
+          "Dha",
+          "Ni",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re"
+        ],
+        [
+          "Ni",
+          "Dha",
+          "Pa",
+          "Ma",
+          "Ga",
+          "Re",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_12_SKIP1_PAIRS",
+      "title": "Alankar 12: Skip-One Pairs",
+      "category": "Alankar",
+      "description": "Pairs skipping one swara — SG RM GP…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ga"
+        ],
+        [
+          "Re",
+          "Ma"
+        ],
+        [
+          "Ga",
+          "Pa"
+        ],
+        [
+          "Ma",
+          "Dha"
+        ],
+        [
+          "Pa",
+          "Ni"
+        ],
+        [
+          "Dha",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Dha"
+        ],
+        [
+          "Ni",
+          "Pa"
+        ],
+        [
+          "Dha",
+          "Ma"
+        ],
+        [
+          "Pa",
+          "Ga"
+        ],
+        [
+          "Ma",
+          "Re"
+        ],
+        [
+          "Ga",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_13_SKIP1_FOURS",
+      "title": "Alankar 13: Skip-One Fours",
+      "category": "Alankar",
+      "description": "Four-note skip-one patterns — SGRM RMGP…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ga",
+          "Re",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni"
+        ],
+        [
+          "Pa",
+          "Ni",
+          "Dha",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Dha",
+          "Ni",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Re",
+          "Ga",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_14_SKIP1_SIXES",
+      "title": "Alankar 14: Skip-One Sixes",
+      "category": "Alankar",
+      "description": "Six-note skip-one patterns",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 6
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ga",
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa"
+        ],
+        [
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha"
+        ],
+        [
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni"
+        ],
+        [
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni",
+          "Dha",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Dha",
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma"
+        ],
+        [
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga"
+        ],
+        [
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re"
+        ],
+        [
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re",
+          "Ga",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_15_SKIP1_EIGHTS",
+      "title": "Alankar 15: Skip-One Eights",
+      "category": "Alankar",
+      "description": "Eight-note skip-one patterns",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 8
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ga",
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha"
+        ],
+        [
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni"
+        ],
+        [
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni",
+          "Dha",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Dha",
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga"
+        ],
+        [
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re"
+        ],
+        [
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re",
+          "Ga",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_16_SKIP1_TENS",
+      "title": "Alankar 16: Skip-One Tens",
+      "category": "Alankar",
+      "description": "Ten-note skip-one runs across the octave",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 8
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ga",
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni"
+        ],
+        [
+          "Re",
+          "Ma",
+          "Ga",
+          "Pa",
+          "Ma",
+          "Dha",
+          "Pa",
+          "Ni",
+          "Dha",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Dha",
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re"
+        ],
+        [
+          "Ni",
+          "Pa",
+          "Dha",
+          "Ma",
+          "Pa",
+          "Ga",
+          "Ma",
+          "Re",
+          "Ga",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_17_SKIP2_PAIRS",
+      "title": "Alankar 17: Skip-Two Pairs",
+      "category": "Alankar",
+      "description": "Pairs skipping two swaras — SM RP GD…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ma"
+        ],
+        [
+          "Re",
+          "Pa"
+        ],
+        [
+          "Ga",
+          "Dha"
+        ],
+        [
+          "Ma",
+          "Ni"
+        ],
+        [
+          "Pa",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Pa"
+        ],
+        [
+          "Ni",
+          "Ma"
+        ],
+        [
+          "Dha",
+          "Ga"
+        ],
+        [
+          "Pa",
+          "Re"
+        ],
+        [
+          "Ma",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_18_SKIP2_FOURS",
+      "title": "Alankar 18: Skip-Two Fours",
+      "category": "Alankar",
+      "description": "Four-note skip-two patterns",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ma",
+          "Re",
+          "Pa"
+        ],
+        [
+          "Re",
+          "Pa",
+          "Ga",
+          "Dha"
+        ],
+        [
+          "Ga",
+          "Dha",
+          "Ma",
+          "Ni"
+        ],
+        [
+          "Ma",
+          "Ni",
+          "Pa",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Pa",
+          "Ni",
+          "Ma"
+        ],
+        [
+          "Ni",
+          "Ma",
+          "Dha",
+          "Ga"
+        ],
+        [
+          "Dha",
+          "Ga",
+          "Pa",
+          "Re"
+        ],
+        [
+          "Pa",
+          "Re",
+          "Ma",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_19_SKIP2_SIXES",
+      "title": "Alankar 19: Skip-Two Sixes",
+      "category": "Alankar",
+      "description": "Six-note skip-two patterns",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 6
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ma",
+          "Re",
+          "Pa",
+          "Ga",
+          "Dha"
+        ],
+        [
+          "Re",
+          "Pa",
+          "Ga",
+          "Dha",
+          "Ma",
+          "Ni"
+        ],
+        [
+          "Ga",
+          "Dha",
+          "Ma",
+          "Ni",
+          "Pa",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Pa",
+          "Ni",
+          "Ma",
+          "Dha",
+          "Ga"
+        ],
+        [
+          "Ni",
+          "Ma",
+          "Dha",
+          "Ga",
+          "Pa",
+          "Re"
+        ],
+        [
+          "Dha",
+          "Ga",
+          "Pa",
+          "Re",
+          "Ma",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_20_SKIP2_EIGHTS",
+      "title": "Alankar 20: Skip-Two Eights",
+      "category": "Alankar",
+      "description": "Eight-note skip-two patterns",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 8
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Ma",
+          "Re",
+          "Pa",
+          "Ga",
+          "Dha",
+          "Ma",
+          "Ni"
+        ],
+        [
+          "Re",
+          "Pa",
+          "Ga",
+          "Dha",
+          "Ma",
+          "Ni",
+          "Pa",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Pa",
+          "Ni",
+          "Ma",
+          "Dha",
+          "Ga",
+          "Pa",
+          "Re"
+        ],
+        [
+          "Ni",
+          "Ma",
+          "Dha",
+          "Ga",
+          "Pa",
+          "Re",
+          "Ma",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_21_SKIP3_PAIRS",
+      "title": "Alankar 21: Skip-Three Pairs",
+      "category": "Alankar",
+      "description": "Pairs skipping three swaras — SP RD GN MS",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 2
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Pa"
+        ],
+        [
+          "Re",
+          "Dha"
+        ],
+        [
+          "Ga",
+          "Ni"
+        ],
+        [
+          "Ma",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ma"
+        ],
+        [
+          "Ni",
+          "Ga"
+        ],
+        [
+          "Dha",
+          "Re"
+        ],
+        [
+          "Pa",
+          "Sa"
+        ]
+      ]
+    },
+    {
+      "id": "ALANKAR_22_SKIP3_FOURS",
+      "title": "Alankar 22: Skip-Three Fours",
+      "category": "Alankar",
+      "description": "Four-note skip-three patterns — SPRD RDGN…",
+      "raga_mode": "neutral",
+      "taal_id": "KEHARWA_8",
+      "tempo_bpm": 80,
+      "swars_per_beat": 1,
+      "defaults": {
+        "default_mode": "SING_ALONG",
+        "recommended_taal_id": "KEHARWA_8",
+        "recommended_bpm": 80,
+        "recommended_notes_per_beat": 1
+      },
+      "playback_plan": {
+        "repeat_count": 1,
+        "direction": "both",
+        "count_in_beats": 4
+      },
+      "aaroh_phrases": [
+        [
+          "Sa",
+          "Pa",
+          "Re",
+          "Dha"
+        ],
+        [
+          "Re",
+          "Dha",
+          "Ga",
+          "Ni"
+        ],
+        [
+          "Ga",
+          "Ni",
+          "Ma",
+          ".Sa"
+        ]
+      ],
+      "avroh_phrases": [
+        [
+          ".Sa",
+          "Ma",
+          "Ni",
+          "Ga"
+        ],
+        [
+          "Ni",
+          "Ga",
+          "Dha",
+          "Re"
+        ],
+        [
+          "Dha",
+          "Re",
+          "Pa",
+          "Sa"
+        ]
+      ]
+    },
+
+    {
       "id": "RAGA_YAMAN_01",
       "title": "Raga Yaman - Aaroh, Avroh, Pakad",
       "category": "Beginner Ragas",
@@ -2132,6 +3505,15 @@
         "count_in_beats": 4
       },
       "lesson_sections": [
+        {
+          "id": "aaroh_avroh",
+          "label": "Aaroh-Avroh",
+          "label_hindi": "आरोह-अवरोह",
+          "phrases": [
+            ["Sa", "Re", "Ga", "ma", "Pa", "Dha", "Ni", ".Sa"],
+            [".Sa", "Ni", "Dha", "Pa", "ma", "Ga", "Re", "Sa"]
+          ]
+        },
         {
           "id": "aaroh",
           "label": "Aaroh",
@@ -2200,22 +3582,24 @@
     },
     {
       "id": "RAGA_BHUPALI_01",
-      "title": "Raga Bhupali - Aaroh, Avroh, Pakad",
+      "title": "Raga Bhoop - Full Lesson",
       "category": "Beginner Ragas",
-      "description": "Repeat after the teacher: pentatonic Bhupali with clear Re-Ga-Pa-Dha-Sa movement.",
+      "description": "Complete Raga Bhoop (Bhupali) lesson sourced from study material: Aaroh/Avroh, Pakad, Aalap, Swara Geet, Lakshana Geet, Chota Khayal (Teentaal), and Ardha Avarthi Taans.",
       "raga_mode": "bhupali",
       "taal_id": "TEENTAAL_16",
       "tempo_bpm": 72,
       "swars_per_beat": 1,
       "raga": {
-        "name": "Bhupali",
+        "name": "Bhoop (Bhupali)",
         "thaat": "Kalyan",
-        "jati": "Audav-Audav",
-        "time": "Evening",
+        "jati": "Audav",
+        "anga": "Poorvanga",
+        "time": "First prahar of the evening (6pm–9pm)",
         "vadi": "Ga",
         "samvadi": "Dha",
         "nyas": ["Ga", "Dha", "Sa"],
-        "notes": "Ma and Ni are omitted. Keep phrases open, simple, and steady."
+        "rasa": "Shanta Gambhira",
+        "notes": "Ma and Ni are varjit. Pakad: Ga Re Pa Ga Dha Pa Ga Re Sa Re Dha. Sa."
       },
       "defaults": {
         "default_mode": "SING_ALONG",
@@ -2229,6 +3613,15 @@
         "count_in_beats": 4
       },
       "lesson_sections": [
+        {
+          "id": "aaroh_avroh",
+          "label": "Aaroh-Avroh",
+          "label_hindi": "आरोह-अवरोह",
+          "phrases": [
+            ["Sa", "Re", "Ga", "Pa", "Dha", ".Sa"],
+            [".Sa", "Dha", "Pa", "Ga", "Re", "Sa"]
+          ]
+        },
         {
           "id": "aaroh",
           "label": "Aaroh",
@@ -2246,32 +3639,28 @@
           "label": "Pakad",
           "label_hindi": "पकड़",
           "phrases": [
-            ["Ga", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ga"],
-            ["Pa", "Ga", "Re", "Sa", "-", "-", "-", "-"]
+            ["Ga", "Re", "Pa", "Ga", "Dha", "Pa", "Ga", "Re"],
+            ["Sa", "Re", "Dha.", "Sa", "-", "-", "-", "-"]
           ]
         },
         {
-          "id": "chalan",
-          "label": "Chalan",
-          "label_hindi": "चलन",
-          "phrases": [
-            ["Sa", "Re", "Ga", "Pa", "Ga", "Re", "Sa", "-"],
-            ["Re", "Ga", "Pa", "Dha", "Pa", "Ga", "Re", "Sa"]
-          ]
-        },
-        {
-          "id": "swargeet",
-          "label": "Swargeet",
-          "label_hindi": "स्वरगीत",
-          "start_beat": 9,
+          "id": "aalap_1",
+          "label": "Aalap (Set 1)",
+          "label_hindi": "आलाप - १",
           "parts": [
             {
               "id": "sthayi",
               "label": "Sthayi",
               "label_hindi": "स्थायी",
               "phrases": [
-                ["Dha", "Sa", "Dha", "Pa", "Ga", "Re", "Sa", "Re"],
-                ["Ga", "-", "Ga", "Pa", "Ga", "Re", "Sa", "-"]
+                ["Sa", "-", "-", "-", "Dha.", "-", "Sa", "-"],
+                ["Pa.", "-", "Dha.", "-", "Sa", "-", "-", "-"],
+                ["Dha.", "-", "Re", "-", "Sa", "-", "-", "-"],
+                ["Pa.", "-", "Dha.", "-", "Sa", "-", "-", "-"],
+                ["Dha.", "Sa", "Re", "Ga", "Sa", "Re", "Ga", "-"],
+                ["Re", "-", "Sa", "-", "Dha.", "Re", "Sa", "-"],
+                ["Sa", "Re", "Ga", "Pa", "Re", "Ga", "Pa", "-"],
+                ["Ga", "Re", "Sa", "-", "Dha.", "Re", "Sa", "-"]
               ]
             },
             {
@@ -2279,17 +3668,174 @@
               "label": "Antara",
               "label_hindi": "अंतरा",
               "phrases": [
-                ["Ga", "-", "Ga", "Ga", "Pa", "-", "Dha", "Pa"],
-                [".Sa", "-", ".Sa", ".Sa", "Dha", "Re", ".Sa", "-"]
+                [".Sa", "-", "-", "-", "Dha", "-", ".Sa", "-"],
+                ["Pa", "-", "Dha", "-", ".Sa", "-", "-", "-"],
+                ["Dha", "-", ".Sa", "-", ".Re", "-", ".Sa", "-"],
+                ["Pa", "-", "Dha", "-", ".Sa", "-", "-", "-"],
+                ["Dha", ".Sa", ".Re", ".Ga", ".Sa", ".Re", ".Ga", "-"],
+                [".Re", "-", ".Sa", "-", "Dha", ".Re", ".Sa", "-"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swara Geet",
+          "label_hindi": "स्वर गीत",
+          "label_note": "Teen Taal",
+          "start_beat": 9,
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                [".Sa", "Sa", "Dha", "Pa", "Ga", "Re", "Sa", "Re"],
+                ["Ga", "Ga", "Ga", "Re", "Ga", "Pa", "Dha", "Pa"],
+                ["Ga", "Ga", "Ga", "Re", "Ga", "Pa", "Dha", "Pa"],
+                ["Ga", "Ga", "Ga", "Pa", "Ga", "Re", "Sa", "Sa"]
               ]
             },
             {
-              "id": "aalap",
-              "label": "Aalap",
-              "label_hindi": "आलाप",
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
               "phrases": [
-                ["Sa", "Re", "Ga", "Re", "Sa", "-", "Dha", "Sa"],
-                ["Re", "Ga", "Pa", "Dha", "Pa", "Ga", "Re", "Sa"]
+                ["Pa", "Ga", "Pa", "Dha", ".Sa", ".Sa", ".Sa", ".Sa"],
+                ["Dha", ".Sa", ".Re", ".Ga", ".Re", ".Re", ".Sa", ".Sa"],
+                [".Sa", ".Re", ".Ga", ".Re", ".Sa", ".Sa", "Dha", "Pa"],
+                ["Dha", ".Sa", "Dha", "Pa", "Ga", "Re", "Sa", "-"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lakshana_geet",
+          "label": "Lakshana Geet",
+          "label_hindi": "लक्षण गीत",
+          "label_note": "Ektaal",
+          "taal_id": "EKTAAL_12",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Sa", "Dha", "Sa", "Dha", "Pa", "Pa", "Ga", "Dha", "Pa", "Ga", "Re", "Sa"],
+                ["Sa", "Dha", "Sa", "Re", "Ga", "Ga", "Dha", "Pa", "Ga", "Re", "Sa", "Sa"],
+                [".Sa", ".Sa", ".Re", ".Sa", "Dha", "Pa", "Dha", "Sa", "Dha", "Pa", "Ga", "Sa"]
+              ],
+              "lyrics": [
+                ["मधु", "र", "रा", "-", "ग", "भू", "-", "प", "ग", "व", "थ", ""],
+                ["स", "ब", "स्व", "र", "शु", "ध", "म", "नि", "व", "र", "जि", "थ"],
+                ["मे", "-", "ल", "क", "ल्या", "णी", "मे", "-", "सो", "-", "ह", "थ"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Pa", "Ga", "Pa", "Pa", ".Sa", "Dha", ".Sa", "-", ".Sa", "Dha", ".Re", ".Sa"],
+                [".Sa", "Dha", ".Sa", ".Sa", ".Re", ".Re", ".Sa", ".Ga", ".Re", ".Sa", "Dha", "Pa"],
+                [".Sa", ".Sa", ".Ga", ".Re", ".Sa", ".Sa", ".Sa", "Re", ".Sa", ".Sa", "Dha", "Pa"],
+                [".Sa", ".Sa", ".Re", ".Sa", "Dha", "Pa", "Dha", "Sa", "Dha", "Pa", "Ga", "Sa"]
+              ],
+              "lyrics": [
+                ["वा", "-", "थी", "-", "ग", "-", "ध", "-", "र", "क", "ह", "थ"],
+                ["सम", "-", "व", "-", "दी", "-", "शु", "ध", "दै", "-", "व", "थ"],
+                ["द्वि", "थी", "य", "य", "म", "नी", "मे", "-", "सो", "-", "ह", "थ"],
+                ["च", "थु", "र", "सु", "ज", "न", "म", "न", "रे", "-", "ब", "थ"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chota_khayal",
+          "label": "Chota Khayal",
+          "label_hindi": "छोटा ख्याल",
+          "label_note": "Teentaal",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Dha", "Sa", "Dha", "Pa", "Ga", "Re", "Sa", "Re"],
+                ["Sa", "Dha.", "Sa", "Re", "Ga", "Re", "Ga", "-"],
+                ["Ga", "Ga", "Ga", "Re", "Ga", "Pa", "Dha", "Sa"],
+                ["Pa", "Dha", ".Sa", "Sa", "Sa", "Sa", "Dha", "Pa"]
+              ],
+              "lyrics": [
+                ["ई", "थ", "न", "जो", "ब", "न", "प", "र"],
+                ["म", "-", "न", "नो", "क", "रि", "ये", "-"],
+                ["द", "रि", "ये", "-", "प्र", "भु", "सो", "-"],
+                ["अ", "-", "-", "ज", "अ", "-", "ली", "-"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Ga", "-", "Ga", "Re", "Ga", "Pa", "Sa", "Dha"],
+                [".Sa", ".Sa", ".Sa", "-", "Dha", ".Re", ".Sa", "-"],
+                [".Sa", "-", "Dha", "-", ".Sa", ".Sa", ".Re", ".Re"],
+                [".Sa", ".Re", ".Ga", ".Re", ".Sa", "-", "Dha", "Pa"],
+                ["Pa", "Ga", "Re", "Ga", "Pa", "Dha", "Sa", "Sa"]
+              ],
+              "lyrics": [
+                ["जो", "-", "को", "यी", "अ", "-", "वी", "-"],
+                ["अ", "प", "ने", "-", "दि", "ङ्ग", "व", "थ"],
+                ["थ", "-", "सो", "-", "ग", "र", "ब", "न"],
+                ["की", "-", "-", "जि", "ये", "-", "-", "-"],
+                ["स", "ध", "-", "रन", "-", "ग", "य", "ह"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "taans",
+          "label": "Ardha Avarthi Taans",
+          "label_hindi": "अर्ध आवर्ती तानें",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi Taans",
+              "label_hindi": "स्थायी तानें",
+              "phrases": [
+                ["Sa", "Re", "Ga", "Pa", "Dha", ".Sa", "Pa", "Dha"],
+                [".Sa", ".Sa", "Dha", "Pa", "Ga", "Re", "Sa", "-"],
+                ["Ga", "Ga", "Re", "Sa", "Re", "Ga", "Pa", "Dha"],
+                [".Sa", ".Sa", "Dha", "Pa", "Ga", "Re", "Sa", "-"],
+                ["Sa", "Re", "Ga", "Pa", "Dha", ".Sa", "Re", "Sa"],
+                ["Dha", ".Sa", "Dha", "Pa", "Ga", "Re", "Sa", "-"],
+                ["Sa", "Re", "Ga", "Pa", "Dha", ".Sa", "Re", "Ga"],
+                ["Re", "Sa", "Dha", "Pa", "Ga", "Re", "Sa", "-"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara Taans",
+              "label_hindi": "अंतरा तानें",
+              "phrases": [
+                [".Sa", ".Sa", "Dha", "Pa", "Ga", "Re", "Sa", "Ga"],
+                ["Pa", "Dha", "Sa", "Pa", "Dha", ".Sa", "-", "-"],
+                ["Dha", ".Sa", ".Re", ".Sa", "Dha", "Pa", "Ga", "Pa"],
+                ["Dha", ".Sa", "Pa", "Dha", ".Sa", "-", "-", "-"],
+                ["Dha", ".Sa", ".Re", ".Ga", ".Re", ".Sa", "Dha", "Pa"],
+                ["Ga", "Pa", "Dha", ".Sa", "Pa", "Dha", ".Sa", "-"]
+              ]
+            },
+            {
+              "id": "sampoorna",
+              "label": "Sampoorna Taan",
+              "label_hindi": "संपूर्ण तान",
+              "phrases": [
+                ["Sa", "Re", "Ga", "Pa", "Re", "Ga", "Pa", "Dha"],
+                ["Ga", "Pa", "Dha", ".Sa", "Pa", "Dha", ".Sa", ".Re"],
+                [".Sa", ".Re", ".Ga", ".Re", ".Sa", "Dha", "Pa", "Ga"],
+                ["Pa", "Dha", ".Sa", "Pa", "Dha", ".Sa", "-", "-"]
               ]
             }
           ]
@@ -2298,26 +3844,28 @@
     },
     {
       "id": "RAGA_DURGA_01",
-      "title": "Raga Durga - Aaroh, Avroh, Pakad",
+      "title": "Raga Durga - Full Lesson",
       "category": "Beginner Ragas",
-      "description": "Repeat after the teacher: Durga phrases using Sa Re Ma Pa Dha with restful Ma and Sa.",
+      "description": "Complete Raga Durga lesson sourced from study material: Aaroh/Avroh, Pakad, Aalap, Swara Geet, Lakshana Geet, Chota Khayal (Teentaal), Taans, and Madhyalaya (Jhaptaal).",
       "raga_mode": "durga",
-      "taal_id": "KEHARWA_8",
+      "taal_id": "TEENTAAL_16",
       "tempo_bpm": 72,
       "swars_per_beat": 1,
       "raga": {
         "name": "Durga",
         "thaat": "Bilawal",
-        "jati": "Audav-Audav",
-        "time": "Evening",
-        "vadi": "Ma",
-        "samvadi": "Sa",
-        "nyas": ["Ma", "Sa", "Pa"],
-        "notes": "Ga and Ni are omitted. Phrases often lean on Ma."
+        "jati": "Audav",
+        "anga": "Poorvanga",
+        "time": "Second prahar of the night (9pm–12am)",
+        "vadi": "Dha",
+        "samvadi": "Re",
+        "nyas": ["Dha", "Ma", "Re"],
+        "rasa": "Bhakti",
+        "notes": "Ga and Ni are varjit. Pakad: Dha Ma Re Pa — Ma Re Sa Re Dha. Sa. Dha is vadi; Re is samvadi."
       },
       "defaults": {
         "default_mode": "SING_ALONG",
-        "recommended_taal_id": "KEHARWA_8",
+        "recommended_taal_id": "TEENTAAL_16",
         "recommended_bpm": 72,
         "recommended_notes_per_beat": 1
       },
@@ -2327,6 +3875,15 @@
         "count_in_beats": 4
       },
       "lesson_sections": [
+        {
+          "id": "aaroh_avroh",
+          "label": "Aaroh-Avroh",
+          "label_hindi": "आरोह-अवरोह",
+          "phrases": [
+            ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa"],
+            [".Sa", "Dha", "Pa", "Ma", "Re", "Sa"]
+          ]
+        },
         {
           "id": "aaroh",
           "label": "Aaroh",
@@ -2344,31 +3901,28 @@
           "label": "Pakad",
           "label_hindi": "पकड़",
           "phrases": [
-            ["Ma", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ma"],
-            ["Pa", "Dha", "Pa", "Ma", "Re", "Sa", "-", "-"]
+            ["Dha", "Ma", "Re", "Pa", "-", "Ma", "Re", "Sa"],
+            ["Re", "Dha.", "Sa", "-", "-", "-", "-", "-"]
           ]
         },
         {
-          "id": "chalan",
-          "label": "Chalan",
-          "label_hindi": "चलन",
-          "phrases": [
-            ["Sa", "Re", "Ma", "Pa", "Ma", "Re", "Sa", "-"],
-            ["Re", "Ma", "Pa", "Dha", ".Sa", "Dha", "Pa", "Ma"]
-          ]
-        },
-        {
-          "id": "swargeet",
-          "label": "Swargeet",
-          "label_hindi": "स्वरगीत",
+          "id": "aalap_1",
+          "label": "Aalap (Set 1)",
+          "label_hindi": "आलाप - १",
           "parts": [
             {
               "id": "sthayi",
               "label": "Sthayi",
               "label_hindi": "स्थायी",
               "phrases": [
-                ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa", "Dha", "Pa"],
-                ["Ma", "Re", "Sa", "-", "Dha", "Sa", "Re", "Ma"]
+                ["Sa", "-", "-", "-", "Dha.", "-", "Sa", "-"],
+                ["Ma", "-", "Re", "-", "Sa", "-", "-", "-"],
+                ["Ma", "-", "Re", "-", "Pa", "-", "Ma", "-"],
+                ["Dha", "-", "Pa", "-", "Ma", "Re", "Sa", "-"],
+                ["Re", "Ma", "Pa", "Dha", "Ma", "Pa", "Dha", "-"],
+                ["Pa", "-", "-", "-", "Ma", "Re", "Sa", "-"],
+                ["Ma", "Pa", "Dha", ".Sa", "Pa", "Dha", ".Sa", "-"],
+                ["Dha", "-", "Pa", "-", "Ma", "Re", "Sa", "-"]
               ]
             },
             {
@@ -2376,17 +3930,215 @@
               "label": "Antara",
               "label_hindi": "अंतरा",
               "phrases": [
-                ["Pa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Re", "Sa"],
-                ["Ma", "Pa", "Dha", "Pa", "Ma", "Re", "Sa", "-"]
+                ["Ma", "-", "Pa", "-", "Dha", "-", ".Sa", "-"],
+                ["Pa", "-", "Dha", "-", ".Sa", "-", "-", "-"],
+                ["Dha", "-", ".Sa", "-", ".Re", "-", ".Sa", "-"],
+                ["Dha", "-", "Ma", "-", "Pa", "Dha", ".Sa", "-"],
+                ["Dha", "-", ".Sa", "-", ".Re", "-", ".Ma", "-"],
+                [".Re", "-", "-", "-", ".Sa", "-", "-", "-"],
+                ["Dha", "-", ".Sa", "-", ".Re", "-", ".Sa", "-"],
+                ["Dha", "-", "Ma", "-", "Pa", "Dha", ".Sa", "-"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "swargeet",
+          "label": "Swara Geet",
+          "label_hindi": "स्वर गीत",
+          "label_note": "Teen Taal",
+          "start_beat": 9,
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                [".Sa", ".Sa", "Dha", "Pa", "Ma", "Pa", "Dha", "Pa"],
+                ["Ma", "-", "Re", "Sa", "Re", "Dha.", "Sa", "-"],
+                ["Sa", "Re", "Ma", "Pa", "Re", "Ma", "Pa", "Dha"],
+                ["Ma", "Pa", "Dha", "Pa", "Ma", "Ma", "Re", "Sa"]
               ]
             },
             {
-              "id": "aalap",
-              "label": "Aalap",
-              "label_hindi": "आलाप",
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
               "phrases": [
-                ["Sa", "Re", "Ma", "-", "Ma", "Pa", "Dha", "-"],
-                [".Sa", "Dha", "Pa", "Ma", "Re", "Sa", "-", "-"]
+                ["Ma", "Ma", "Pa", "Dha", ".Sa", "-", ".Sa", "-"],
+                ["Dha", ".Sa", ".Re", "Ma", ".Re", ".Re", ".Sa", ".Sa"],
+                ["Dha", ".Sa", ".Re", ".Sa", "Dha", "Dha", "Pa", "-"],
+                ["Ma", "Pa", "Dha", "Pa", "Ma", "Ma", "Re", "Sa"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lakshana_geet",
+          "label": "Lakshana Geet",
+          "label_hindi": "लक्षण गीत",
+          "label_note": "Ektaal",
+          "taal_id": "EKTAAL_12",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Dha", "-", "Ma", "Ma", "Pa", "Dha", "Ma", "-", "Re", "Sa", "Dha.", "Sa"],
+                ["Sa", "-", "Re", "Re", "Ma", "Ma", "Pa", "-", "Ma", "Dha", "Pa", "-"],
+                ["Ma", "Pa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Pa", "Ma", "Pa", "Re", "Sa"]
+              ],
+              "lyrics": [
+                ["गा", "-", "व", "थ", "दु", "श्रु", "ग", "-", "रा", "-", "गि", "नी"],
+                ["औ", "-", "द", "व", "स्व", "र", "शु", "-", "ध", "ब", "नी", "-"],
+                ["व", "र", "जि", "थ", "ग", "नी", "अ", "थ", "शो", "-", "बी", "थ"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Ma", "-", "Pa", "-", ".Sa", "Dha", ".Sa", "-", ".Sa", "Dha", ".Re", ".Sa"],
+                [".Sa", "Dha", ".Sa", "-", ".Re", "-", ".Sa", ".Re", ".Sa", "Dha", "Pa", "Pa"],
+                ["Dha", "-", "Ma", "Pa", "-", "Ma", "Dha", "Pa", "Ma", "Re", "Sa", "Sa"],
+                ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Re"]
+              ],
+              "lyrics": [
+                ["वा", "-", "दी", "-", "सु", "र", "व", "-", "र", "द", "व", "थ"],
+                ["सम", "व", "दी", "-", "द्वि", "-", "थी", "य", "क", "ह", "थ", "थ"],
+                ["धी", "-", "र", "द्वी", "-", "रा", "अ", "थ", "गम", "भी", "र", "र"],
+                ["स", "म", "य", "क", "ह", "थ", "द्वी", "थी", "य", "मि", "मि", "रा"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chota_khayal",
+          "label": "Chota Khayal",
+          "label_hindi": "छोटा ख्याल",
+          "label_note": "Teentaal",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Pa", "Ma", "Pa", "Dha", "Ma", "Re", "Sa", "Re"],
+                ["Pa", "-", "-", "Pa", "Ma", "Pa", "Dha", "Dha"],
+                ["Re", "Ma", "Re", "Ma", "Re", "Re", "Sa", "Sa"],
+                [".Sa", "Dha", ".Re", ".Sa", "Dha", "Dha", "Pa", "Pa"]
+              ],
+              "lyrics": [
+                ["दे", "-", "वी", "ब", "जो", "-", "दु", "र्गा"],
+                ["भ", "-", "-", "व", "-", "नी", "-", "-"],
+                ["ज", "ग", "त", "ज", "न", "नी", "म", "हि"],
+                ["शा", "-", "सु", "र", "म", "र", "दि", "नी"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Dha", "Ma", "Pa", "Dha", ".Sa", "-", ".Sa", ".Sa"],
+                ["Dha", ".Sa", ".Re", ".Sa", "Dha", "-", "Pa", "Pa"],
+                ["Dha", ".Sa", ".Re", "Ma", ".Re", ".Sa", ".Sa", ".Sa"],
+                ["Dha", ".Re", ".Sa", "Dha", "Dha", "Pa", "-", "Pa"]
+              ],
+              "lyrics": [
+                ["हि", "म", "न", "ग", "रा", "-", "दि", "नी"],
+                ["भ", "व", "भ", "य", "क", "-", "दि", "नी"],
+                ["भ", "र", "न", "ग", "थ", "च", "थ", "र"],
+                ["अ", "भ", "य", "व", "र", "द", "-", "नी"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "taans",
+          "label": "Taans",
+          "label_hindi": "तानें",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi Taans",
+              "label_hindi": "स्थायी तानें",
+              "phrases": [
+                ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa", "Dha", "Pa"],
+                ["Ma", "Pa", "Dha", "Pa", "Ma", "Ma", "Re", "Sa"],
+                ["Sa", "Re", "Ma", "Ma", "Re", "Sa", "Sa", "Re"],
+                ["Ma", "Pa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Re"],
+                ["Sa", "Re", "Ma", "Pa", "Dha", ".Sa", ".Re", ".Sa"],
+                ["Dha", ".Sa", "Dha", "Pa", "Ma", "Pa", "Dha", ".Sa"],
+                ["Ma", "Re", "Ma", "Re", "Ma", "Ma", "Re", "Sa"],
+                [".Sa", "Dha", ".Sa", "Dha", ".Sa", ".Sa", "Dha", "Pa"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara Taans",
+              "label_hindi": "अंतरा तानें",
+              "phrases": [
+                [".Sa", ".Sa", "Dha", "Pa", "Ma", "Ma", "Re", "Sa"],
+                ["Re", "Ma", "Pa", "Dha", "Ma", "Pa", "Dha", ".Sa"],
+                ["Dha", ".Sa", ".Re", ".Sa", "Dha", "Pa", "Ma", "Pa"],
+                ["Dha", ".Sa", "Pa", "Dha", ".Sa", "-", "-", "-"],
+                ["Ma", "Pa", "Dha", ".Sa", ".Re", "Ma", ".Re", ".Sa"],
+                ["Dha", "Pa", "Ma", "Pa", "Dha", ".Sa", "-", "-"]
+              ]
+            },
+            {
+              "id": "sampoorna",
+              "label": "Sampoorna Taan",
+              "label_hindi": "संपूर्ण तान",
+              "phrases": [
+                ["Sa", "Re", "Ma", "Pa", "Dha", "Pa", "Ma", "Pa"],
+                ["Dha", ".Sa", ".Re", ".Sa", "Dha", ".Sa", ".Re", "Ma"],
+                [".Re", ".Sa", "Dha", ".Sa", ".Re", ".Sa", "Dha", ".Sa"],
+                ["Dha", "Pa", "Ma", "Pa", "Dha", ".Sa", "-", "-"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "madhyalaya",
+          "label": "Madhyalaya",
+          "label_hindi": "मध्यलय",
+          "label_note": "Jhaptaal",
+          "taal_id": "JHAPTAAL_10",
+          "parts": [
+            {
+              "id": "sthayi",
+              "label": "Sthayi",
+              "label_hindi": "स्थायी",
+              "phrases": [
+                ["Pa", "Pa", "Ma", "Re", "Ma", "Pa", "Dha", "Ma", "Pa", ".Sa"],
+                ["Dha", "Dha", "Ma", "Ma", "Ma", "Re", "Ma", "Re", "Sa", "-"],
+                ["Sa", "Dha.", "Sa", "Ma", "Re", "Pa", "Dha", "Pa", "Ma", "Pa"],
+                [".Sa", "Dha", ".Sa", "Dha", "Pa", "Ma", "Ma", "Re", "Sa", "-"]
+              ],
+              "lyrics": [
+                ["स", "खी", "मो", "-", "रे", "गो", "-", "म", "जो", "-"],
+                ["-", "-", "म", "-", "म", "-", "-", "-", "-", "-"],
+                ["ब", "-", "द", "ल", "ग", "र", "ज", "ए", "ब", "र"],
+                ["से", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
+              ]
+            },
+            {
+              "id": "antara",
+              "label": "Antara",
+              "label_hindi": "अंतरा",
+              "phrases": [
+                ["Dha", "Pa", "Pa", ".Sa", "Dha", ".Sa", "-", ".Sa", "Re", "Sa"],
+                [".Sa", "Dha", ".Sa", ".Sa", ".Re", ".Sa", ".Sa", "Dha", ".Sa", "Dha"],
+                ["Pa", "Pa", "Ma", "Re", "Ma", "Pa", "Dha", "Ma", "Pa", ".Sa"]
+              ],
+              "lyrics": [
+                ["रे", "-", "न", "-", "-", "धे", "-", "-", "-", "रे"],
+                ["क", "ली", "बि", "जा", "ली", "च", "म", "के", "-", "-"],
+                ["से", "ज", "-", "ऊ", "ने", "पी", "य", "प", "-", "स"]
               ]
             }
           ]
@@ -2424,6 +4176,15 @@
         "count_in_beats": 4
       },
       "lesson_sections": [
+        {
+          "id": "aaroh_avroh",
+          "label": "Aaroh-Avroh",
+          "label_hindi": "आरोह-अवरोह",
+          "phrases": [
+            ["Sa", "Re", "ga", "Ma", "Pa", "Dha", "ni", ".Sa"],
+            [".Sa", "ni", "Dha", "Pa", "Ma", "ga", "Re", "Sa"]
+          ]
+        },
         {
           "id": "aaroh",
           "label": "Aaroh",
@@ -2521,6 +4282,15 @@
         "count_in_beats": 4
       },
       "lesson_sections": [
+        {
+          "id": "aaroh_avroh",
+          "label": "Aaroh-Avroh",
+          "label_hindi": "आरोह-अवरोह",
+          "phrases": [
+            ["Sa", "Ga", "Ma", "Pa", "Dha", "Ni", ".Sa"],
+            [".Sa", "ni", "Dha", "Pa", "Ma", "Ga", "Re", "Sa"]
+          ]
+        },
         {
           "id": "aaroh",
           "label": "Aaroh",

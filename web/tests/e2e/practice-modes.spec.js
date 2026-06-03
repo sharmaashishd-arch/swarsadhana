@@ -88,9 +88,9 @@ test.describe('Practice Modes', () => {
         await expect(tablaToggle).toContainText('OFF');
     });
 
-    test('exercise displays BPM 80', async ({ page }) => {
-        const tempoValue = page.locator('#session-tempo-value');
-        await expect(tempoValue).toContainText('80');
+    test('exercise detail renders subdivision and mode controls', async ({ page }) => {
+        await expect(page.locator('#subdivision-selector')).toBeVisible();
+        await expect(page.locator('.mode-selector')).toBeVisible();
     });
 
     test('start Sing Along shows session view', async ({ page }) => {
